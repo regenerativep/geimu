@@ -9,5 +9,10 @@ namespace Geimu
     public class Room
     {
         List<GameObject> objects;
+
+        public Room()
+        {
+
+        }
     }
 }
