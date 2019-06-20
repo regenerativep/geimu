@@ -90,7 +90,8 @@
             "Key": "4e2f496a-29a1-4b09-af6a-5bad389e54a5",
             "Value": {
                 "id": "1623cb79-7a33-4015-ba25-b23ddd1086f2",
-                "resourcePath": "objects\\obj_block\\obj_block.yy"
+                "resourcePath": "objects\\obj_block\\obj_block.yy",
+                "resourceType": null
             }
         },
         {
@@ -147,6 +148,14 @@
                 "id": "a76a7f9e-6fea-4537-940b-d7ec6871546b",
                 "resourcePath": "rooms\\room0\\room0.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "986aecc3-815b-4757-9277-01e65579921d",
+            "Value": {
+                "id": "bc94f9ca-fc51-4638-9cb7-c08d60a6dd4c",
+                "resourcePath": "sprites\\spr_reimu\\spr_reimu.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
