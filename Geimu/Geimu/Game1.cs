@@ -12,6 +12,8 @@ namespace Geimu
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Room room;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -62,7 +64,7 @@ namespace Geimu
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
