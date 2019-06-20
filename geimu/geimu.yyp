@@ -90,7 +90,8 @@
             "Key": "4e2f496a-29a1-4b09-af6a-5bad389e54a5",
             "Value": {
                 "id": "1623cb79-7a33-4015-ba25-b23ddd1086f2",
-                "resourcePath": "objects\\obj_block\\obj_block.yy"
+                "resourcePath": "objects\\obj_block\\obj_block.yy",
+                "resourceType": null
             }
         },
         {
@@ -138,6 +139,14 @@
             "Value": {
                 "id": "8d126dd2-640e-46a1-a686-c12276fa799e",
                 "resourcePath": "objects\\obj_sanae\\obj_sanae.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "8228ae16-5aa0-4b2b-879f-a9a4adb8faa0",
+            "Value": {
+                "id": "2428777c-d5fb-4c6f-853b-deb79747e3e8",
+                "resourcePath": "objects\\obj_block\\obj_block.yy",
                 "resourceType": "GMObject"
             }
         },
