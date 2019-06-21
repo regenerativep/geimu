@@ -1,37 +1,5 @@
-width 640
+width 512
 height 512
-snapx 64
-snapy 64
-createobject block 0 448
-createobject block 64 448
-createobject block 128 448
-createobject block 192 448
-createobject block 256 448
-createobject block 320 448
-createobject block 384 448
-createobject block 448 448
-createobject block 512 448
-createobject block 576 448
-createobject block 576 384
-createobject block 576 320
-createobject block 576 256
-createobject block 576 192
-createobject block 576 128
-createobject block 576 64
-createobject block 576 0
-createobject block 512 0
-createobject block 448 0
-createobject block 384 0
-createobject block 320 0
-createobject block 256 0
-createobject block 192 0
-createobject block 128 0
-createobject block 64 0
-createobject block 0 0
-createobject block 0 64
-createobject block 0 128
-createobject block 0 192
-createobject block 0 256
-createobject block 0 320
-createobject block 0 384
+snapx 32
+snapy 32
 createobject reimu 64 320

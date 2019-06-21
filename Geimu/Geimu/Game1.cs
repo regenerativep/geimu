@@ -12,8 +12,7 @@ namespace Geimu
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Room room;
-
+        Room currentRoom;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -28,8 +27,7 @@ namespace Geimu
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            currentRoom = Room.Load("test.txt");
             base.Initialize();
         }
 
@@ -39,10 +37,8 @@ namespace Geimu
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            SpriteManager.Load("reimu", "sprites\\reimu", 3, Content);
         }
 
         /// <summary>
@@ -51,7 +47,7 @@ namespace Geimu
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -64,8 +60,7 @@ namespace Geimu
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
-
+            currentRoom.Update();
             base.Update(gameTime);
         }
 
@@ -77,7 +72,9 @@ namespace Geimu
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            currentRoom.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
