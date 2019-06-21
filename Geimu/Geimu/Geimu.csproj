@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="GameObjects\BlockObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
+    <Compile Include="GameObjects\EnemyObject.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\ReimuObject.cs" />
     <Compile Include="GameTiles\DirtSideBottomTile.cs" />
