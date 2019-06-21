@@ -12,9 +12,10 @@ namespace Geimu
     public class ReimuObject : GameObject
     {
         public static float AccelSpeed = 1;
+        public static float JumpSpeed = -4;
         public static float HorizontalFriction = 1;
-        public static Vector2 MaxVelocity = new Vector2(4, 4);
-        public static float gravity = .03f;
+        public static Vector2 MaxVelocity = new Vector2(4, 16);
+        public static float gravity = 0.3f;
         private KeyboardState keyState;
         private KeyboardState prevKeyState;
         private bool isJumping = false;
@@ -26,7 +27,7 @@ namespace Geimu
                 Sprite.Size = new Vector2(64, 64);
                 Sprite.Speed = 1f / 10;
             });
-            Hitbox = new Rectangle(16, 4, 32, 59);
+            Hitbox = new Rectangle(12, 4, 40, 59);
         }
         public override void Update()
         {
@@ -46,8 +47,25 @@ namespace Geimu
             }
             if (keyState.IsKeyDown(Settings.Binds.Jump) && !isJumping)
             {
-                vel.Y -= AccelSpeed * 4;
+                vel.Y += JumpSpeed;
                 isJumping = true;
+            }
+            if(isJumping)
+            {
+                for(int i = 0; i < Room.GameObjectList.Count; i++)
+                {
+                    GameObject obj = Room.GameObjectList[i];
+                    if(obj.Solid)
+                    {
+                        Rectangle fromRect = AddVectorToRect(Hitbox, Position, new Vector2(0, 1));
+                        Rectangle targetRect = AddVectorToRect(obj.Hitbox, obj.Position);
+                        if(RectangleInRectangle(fromRect, targetRect))
+                        {
+                            isJumping = false;
+                            break;
+                        }
+                    }
+                }
             }
             if(Math.Abs(vel.X) > MaxVelocity.X)
             {

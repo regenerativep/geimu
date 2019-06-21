@@ -71,7 +71,29 @@ namespace Geimu
                                 fromRect = AddVectorToRect(Hitbox, Position, VectorCeil(new Vector2(vel.X, 0)));
                             }
                         }
-                        
+                        fromRect = AddVectorToRect(Hitbox, Position, VectorCeil(vel));
+                        while (RectangleInRectangle(fromRect, targetRect))
+                        {
+                            if (Math.Abs(vel.X) < CollisionPrecision)
+                            {
+                                vel.X = 0;
+                                break;
+                            }
+                            else
+                            {
+                                vel.X -= Math.Sign(vel.X) * CollisionPrecision;
+                            }
+                            if (Math.Abs(vel.Y) < CollisionPrecision)
+                            {
+                                vel.Y = 0;
+                                break;
+                            }
+                            else
+                            {
+                                vel.Y -= Math.Sign(vel.Y) * CollisionPrecision;
+                            }
+                            fromRect = AddVectorToRect(Hitbox, Position, VectorCeil(vel));
+                        }
                     }
                 }
                 Velocity = vel;
@@ -83,17 +105,17 @@ namespace Geimu
         {
             Sprite?.Draw(batch, Position);
         }
-        private static Vector2 VectorCeil(Vector2 val)
+        public static Vector2 VectorCeil(Vector2 val)
         {
-            return new Vector2((float)Math.Ceiling(val.X), (float)Math.Ceiling(val.Y));
+            return new Vector2((float)Math.Ceiling(Math.Abs(val.X)) * Math.Sign(val.X), (float)Math.Ceiling(Math.Abs(val.Y)) * Math.Sign(val.Y));
         }
         //https://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
-        private static bool RectangleInRectangle(Rectangle a, Rectangle b)
+        public static bool RectangleInRectangle(Rectangle a, Rectangle b)
         {
             //return a.Left < b.Right && a.Right > b.Left && a.Top > b.Bottom && a.Bottom < b.Top;
             return a.X < b.X + b.Width && a.X + a.Width > b.X && a.Y < b.Y + b.Height && a.Y + a.Height > b.Y; //flipped comparisons for y since original code is for cartesian coords
         }
-        private static Rectangle AddVectorToRect(Rectangle rect, params Vector2[] vecs)
+        public static Rectangle AddVectorToRect(Rectangle rect, params Vector2[] vecs)
         {
             Rectangle newRect = new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
             foreach(Vector2 vec in vecs)
