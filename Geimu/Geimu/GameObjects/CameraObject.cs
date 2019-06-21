@@ -25,7 +25,7 @@ namespace Geimu
             pos.X = ((TargetPreference * Target.Position.X) + (SelfPreference * pos.X)) / (TargetPreference + SelfPreference);
             pos.Y = ((TargetPreference * Target.Position.Y) + (SelfPreference * pos.Y)) / (TargetPreference + SelfPreference);
             Position = pos;
-            Room.ViewOffset = (Target.Position * 2 - Position) - (new Vector2(Room.Width, Room.Height) / 2);
+            Room.ViewOffset = (Target.Position * 2 - Position) - (new Vector2(Room.Game.GraphicsDevice.Viewport.Width, Room.Game.GraphicsDevice.Viewport.Height) / 2);
         }
     }
 }

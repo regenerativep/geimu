@@ -12,7 +12,7 @@ namespace Geimu
     public class ReimuObject : GameObject
     {
         public static float MoveSpeed = 1.5f;
-        public static float JumpSpeed = -8;
+        public static float JumpSpeed = -7;
         public static float HorizontalFriction = 1;
         public static Vector2 MaxVelocity = new Vector2(4, 16);
         public static float Gravity = 0.3f;

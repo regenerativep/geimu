@@ -13,7 +13,7 @@ namespace Geimu
         public List<GameTile> GameTileList { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public GeimuGame game { get; set; }
+        public GeimuGame Game { get; set; }
         public Vector2 ViewOffset { get; set; }
         public Room(GeimuGame game)
         {
