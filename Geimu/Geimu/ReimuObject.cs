@@ -61,7 +61,7 @@ namespace Geimu
             {
                 vel.X -= Math.Sign(vel.X) * HorizontalFriction;
             }
-            for(int i = 0; i < Room.GameObjectList.Count; i++)
+            /*for(int i = 0; i < Room.GameObjectList.Count; i++)
             {
                 GameObject obj = Room.GameObjectList[i];
                 if(obj.Solid)
@@ -76,7 +76,9 @@ namespace Geimu
                         vel.Y = vDist * Math.Sign(vel.Y);
                     }
                 }
-            }
+            }*/
+
+
             Velocity = vel;
 
             prevKeyState = keyState;
