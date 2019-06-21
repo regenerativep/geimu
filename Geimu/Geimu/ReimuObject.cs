@@ -26,27 +26,27 @@ namespace Geimu
                 Sprite.Size = new Vector2(64, 64);
                 Sprite.Speed = 1f / 10;
             });
-            Hitbox = new Rectangle(16, 4, 48, 63);
+            Hitbox = new Rectangle(16, 4, 32, 59);
         }
         public override void Update()
         {
             keyState = Keyboard.GetState();
             Vector2 vel = Velocity; //don't know why i cant just use Velocity
-            vel += new Vector2(0, gravity);
+            vel.Y += gravity;
             bool moveKeyPressed = false;
             if (keyState.IsKeyDown(Settings.Binds.Left))
             {
-                vel -= new Vector2(AccelSpeed, 0);
+                vel.X -= AccelSpeed;
                 moveKeyPressed = true;
             }
             if (keyState.IsKeyDown(Settings.Binds.Right))
             {
-                vel += new Vector2(AccelSpeed, 0);
+                vel.X += AccelSpeed;
                 moveKeyPressed = true;
             }
             if (keyState.IsKeyDown(Settings.Binds.Jump) && !isJumping)
             {
-                vel -= new Vector2(0, AccelSpeed*4);
+                vel.Y -= AccelSpeed * 4;
                 isJumping = true;
             }
             if(Math.Abs(vel.X) > MaxVelocity.X)
@@ -61,24 +61,6 @@ namespace Geimu
             {
                 vel.X -= Math.Sign(vel.X) * HorizontalFriction;
             }
-            /*for(int i = 0; i < Room.GameObjectList.Count; i++)
-            {
-                GameObject obj = Room.GameObjectList[i];
-                if(obj.Solid)
-                {
-                    Rectangle fromRect = new Rectangle((int)Position.X + Hitbox.X + (int)vel.X, (int)Position.Y + Hitbox.Y + (int)vel.Y, Hitbox.X, Hitbox.Y);
-                    Rectangle targetRect = new Rectangle((int)obj.Position.X + obj.Hitbox.X + (int)obj.Velocity.X, (int)obj.Position.Y + obj.Hitbox.Y + (int)obj.Velocity.Y, obj.Hitbox.X, obj.Hitbox.Y);
-                    if(fromRect.Intersects(targetRect))
-                    {
-                        int hDist = Room.HorizRectDistance(fromRect, targetRect);
-                        int vDist = Room.VertiRectDistance(fromRect, targetRect);
-                        vel.X = hDist * Math.Sign(vel.X);
-                        vel.Y = vDist * Math.Sign(vel.Y);
-                    }
-                }
-            }*/
-
-
             Velocity = vel;
 
             prevKeyState = keyState;
