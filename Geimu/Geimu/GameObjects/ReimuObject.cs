@@ -17,7 +17,7 @@ namespace Geimu
         public static Vector2 MaxVelocity = new Vector2(4, 16);
         public static float Gravity = 0.3f;
         public static float IdleMaxSpeed = 3;
-
+        private int jumpsRemaining = 2;
         private KeyboardState keyState;
         private KeyboardState prevKeyState;
         private bool isJumping;
@@ -75,16 +75,18 @@ namespace Geimu
                     facingRight = true;
                 }
             }
-            if (keyState.IsKeyDown(Settings.Binds.Jump) && !isJumping)
+            if (keyState.IsKeyReleased(Settings.Binds.Jump) && jumpsRemaining > 0)
             {
                 vel.Y += JumpSpeed;
                 isJumping = true;
+                jumpsRemaining--;
             }
             if(isJumping)
             {
                 //check if there is something below us
                 if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(0, 1))))
                 {
+                    jumpsRemaining = 2;
                     isJumping = false;
                 }
                 else
