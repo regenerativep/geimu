@@ -12,7 +12,7 @@ namespace Geimu
     public class ReimuObject : GameObject
     {
         public static float MoveSpeed = 1.5f;
-        public static float JumpSpeed = -4;
+        public static float JumpSpeed = -6;
         public static float HorizontalFriction = 1;
         public static Vector2 MaxVelocity = new Vector2(4, 16);
         public static float Gravity = 0.3f;
@@ -73,12 +73,6 @@ namespace Geimu
                     facingRight = true;
                 }
             }
-            if (keyState.IsKeyReleased(Settings.Binds.Jump) && jumpsRemaining > 0)
-            {
-                vel.Y += JumpSpeed;
-                isJumping = true;
-                jumpsRemaining--;
-            }
             if(isJumping)
             {
                 //check if there is something below us
@@ -105,7 +99,13 @@ namespace Geimu
                     Sprite.Speed = 1f / 5;
                 }
             }
-            if(Math.Abs(vel.X) > MaxVelocity.X)
+            if (keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0)
+            {
+                vel.Y = JumpSpeed;
+                isJumping = true;
+                jumpsRemaining--;
+            }
+            if (Math.Abs(vel.X) > MaxVelocity.X)
             {
                 vel.X = Math.Sign(vel.X) * MaxVelocity.X;
             }
