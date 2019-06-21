@@ -17,6 +17,7 @@ namespace Geimu
         public Vector2 ViewOffset { get; set; }
         public Room(GeimuGame game)
         {
+            Game = game;
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
             Width = 512;
