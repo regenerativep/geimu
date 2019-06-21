@@ -13,13 +13,13 @@ boolean showTiles;
 boolean showObjects;
 GameObjectType[] possibleTypes = new GameObjectType[] {
   null,
-  new GameObjectType("reimu", 128, 128),
-  new GameObjectType("block", 64, 64)
+  new GameObjectType("reimu", 64, 64),
+  new GameObjectType("block", 32, 32)
 };
 GameObjectType[] possibleTiles = new GameObjectType[] {
   null,
-  new GameObjectType("dirt", 64, 64),
-  new GameObjectType("grass", 64, 64)
+  new GameObjectType("dirt", 32, 32),
+  new GameObjectType("grass", 32, 32)
 };
 void setup()
 {

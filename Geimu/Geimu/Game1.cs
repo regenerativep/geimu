@@ -27,7 +27,13 @@ namespace Geimu
         /// </summary>
         protected override void Initialize()
         {
-            currentRoom = Room.Load("test.txt");
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 512;
+            graphics.ApplyChanges();
+
+            currentRoom = new Room(this);
+            currentRoom.Load("test.txt");
             base.Initialize();
         }
 
@@ -40,6 +46,8 @@ namespace Geimu
             spriteBatch = new SpriteBatch(GraphicsDevice);
             SpriteManager.Load("reimu", "sprites\\reimu", 3, Content);
             SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
+            SpriteManager.Load("dirt2", "sprites\\dirt2", 1, Content);
+            SpriteManager.Load("grass", "sprites\\grass", 1, Content);
         }
 
         /// <summary>

@@ -18,16 +18,21 @@ namespace Geimu
         /// hitbox, relative to Position
         /// </summary>
         public Rectangle Hitbox { get; set; }
-        public GameObject(Vector2 pos, Vector2 vel, Vector2 size)
+        public Room Room { get; set; }
+        public bool Solid { get; set; }
+        public GameObject(Room room, Vector2 pos, Vector2 vel, Vector2 size)
         {
+            Solid = false;
+            Room = room;
             Position = pos;
             Velocity = vel;
             Size = size;
             Sprite = null;
-            Hitbox = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+            Hitbox = new Rectangle(0, 0, (int)size.X, (int)size.Y);
         }
         public virtual void Update()
         {
+            Position += Velocity;
             Sprite?.Update();
         }
         public virtual void Draw(SpriteBatch batch)

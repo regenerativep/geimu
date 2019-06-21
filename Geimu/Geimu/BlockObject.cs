@@ -10,24 +10,9 @@ namespace Geimu
 {
     public class BlockObject : GameObject
     {
-        public BlockObject(Vector2 pos) : base(pos, new Vector2(0, 0), new Vector2(64, 64))
+        public BlockObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
-            SpriteManager.RequestTexture("dirt", (frames) =>
-            {
-                Sprite = new SpriteData(frames);
-                Sprite.Size = new Vector2(64, 64);
-                Sprite.Speed = 1f / 10;
-            });
-        }
-
-        public override void Draw(SpriteBatch batch)
-        {
-            base.Draw(batch);
-        }
-
-        public override void Update()
-        {
-            base.Update();
+            Solid = true;
         }
     }
 }

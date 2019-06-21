@@ -44,10 +44,14 @@
     <Compile Include="BlockObject.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameTile.cs" />
+    <Compile Include="DirtTile.cs" />
+    <Compile Include="GrassTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReimuObject.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SpriteData.cs" />
     <Compile Include="SpriteManager.cs" />
   </ItemGroup>
