@@ -26,6 +26,7 @@ namespace Geimu
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(64, 64);
                 Sprite.Speed = 1f / 10;
+                Sprite.Layer = Layer;
             });
             Hitbox = new Rectangle(12, 4, 40, 59);
         }

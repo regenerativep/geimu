@@ -41,15 +41,20 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BlockObject.cs" />
-    <Compile Include="Game1.cs" />
-    <Compile Include="GameObject.cs" />
-    <Compile Include="GameTile.cs" />
-    <Compile Include="DirtTile.cs" />
-    <Compile Include="GrassTile.cs" />
+    <Compile Include="GameObjects\BlockObject.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\ReimuObject.cs" />
+    <Compile Include="GameTiles\DirtSideBottomTile.cs" />
+    <Compile Include="GameTiles\DirtSideLeftTile.cs" />
+    <Compile Include="GameTiles\DirtSideRightTile.cs" />
+    <Compile Include="GameTiles\DirtSideTopTile.cs" />
+    <Compile Include="GameTiles\DirtTile.cs" />
+    <Compile Include="GameTiles\GameTile.cs" />
+    <Compile Include="GameTiles\GrassTile.cs" />
+    <Compile Include="GameTiles\GrassTopTile.cs" />
+    <Compile Include="GeimuGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReimuObject.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SpriteData.cs" />

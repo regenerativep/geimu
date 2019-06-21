@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin sprites/dirt/dirt.png
+#begin sprites/dirt/2hudirt1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,9 +23,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/dirt/dirt.png;sprites/dirt/0.png
+/build:sprites/dirt/2hudirt1.png;sprites/dirt/0.png
 
-#begin sprites/dirt2/dirt2.png
+#begin sprites/dirt2/2hudirt2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,9 +35,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/dirt2/dirt2.png;sprites/dirt2/0.png
+/build:sprites/dirt2/2hudirt2.png;sprites/dirt2/0.png
 
-#begin sprites/grass/Grass.png
+#begin sprites/dirtSideBottom/2huDirtEdgeBottom.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,7 +47,79 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/grass/Grass.png;sprites/grass/0.png
+/build:sprites/dirtSideBottom/2huDirtEdgeBottom.png;sprites/dirtSideBottom/0.png
+
+#begin sprites/dirtSideLeft/2huDirtEdgeLeft.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/dirtSideLeft/2huDirtEdgeLeft.png;sprites/dirtSideLeft/0.png
+
+#begin sprites/dirtSideRight/2huDirtEdgeRight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/dirtSideRight/2huDirtEdgeRight.png;sprites/dirtSideRight/0.png
+
+#begin sprites/dirtSideTop/2huDirtEdgeTop.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/dirtSideTop/2huDirtEdgeTop.png;sprites/dirtSideTop/0.png
+
+#begin sprites/grass/2hugrass1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/grass/2hugrass1.png;sprites/grass/0.png
+
+#begin sprites/grass2/2hugrass2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/grass2/2hugrass2.png;sprites/grass2/0.png
+
+#begin sprites/grassTop/2hugrass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/grassTop/2hugrass.png;sprites/grassTop/0.png
 
 #begin sprites/reimu/ReimuGJIdlepose-1.png
 /importer:TextureImporter
@@ -61,7 +133,7 @@
 /processorParam:TextureFormat=Color
 /build:sprites/reimu/ReimuGJIdlepose-1.png;sprites/reimu/0.png
 
-#begin sprites/reimu/ReimuGJIdlepose-2.png
+#begin sprites/reimu/ReimuGJIdlepose-2 (1).png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,7 +143,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/reimu/ReimuGJIdlepose-2.png;sprites/reimu/1.png
+/build:sprites/reimu/ReimuGJIdlepose-2 (1).png;sprites/reimu/1.png
 
 #begin sprites/reimu/ReimuGJIdlepose-3.png
 /importer:TextureImporter

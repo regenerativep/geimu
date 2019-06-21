@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace Geimu
 {
-    public class DirtTile : GameTile
+    public class GrassTile : GameTile
     {
-        private static Random randGen = new Random();
-        public DirtTile(Vector2 pos) : base(pos, new Vector2(32, 32))
+        public GrassTile(Vector2 pos) : base(pos, new Vector2(32, 32))
         {
-            string[] options = new string[] { "dirt", "dirt2" };
-            int optionInd = randGen.Next(options.Length);
-            SpriteManager.RequestTexture(options[optionInd], (frames) =>
+            SpriteManager.RequestTexture("grass", (frames) =>
             {
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(32, 32);
                 Sprite.Speed = 0;
+                Sprite.Layer = Layer;
             });
         }
     }

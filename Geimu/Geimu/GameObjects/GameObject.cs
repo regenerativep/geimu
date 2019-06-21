@@ -21,6 +21,22 @@ namespace Geimu
         public Rectangle Hitbox { get; set; }
         public Room Room { get; set; }
         public bool Solid { get; set; }
+        private float layer;
+        public float Layer
+        {
+            get
+            {
+                return layer;
+            }
+            set
+            {
+                layer = value / 100;
+                if (Sprite != null)
+                {
+                    Sprite.Layer = layer;
+                }
+            }
+        }
         public GameObject(Room room, Vector2 pos, Vector2 vel, Vector2 size)
         {
             Solid = false;
@@ -29,6 +45,7 @@ namespace Geimu
             Velocity = vel;
             Size = size;
             Sprite = null;
+            Layer = 0;
             Hitbox = new Rectangle(0, 0, (int)size.X, (int)size.Y);
         }
         public virtual void Update()

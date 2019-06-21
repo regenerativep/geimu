@@ -23,14 +23,18 @@ namespace Geimu
             }
         }
         private float currentFrame;
+        public SpriteEffects SpriteEffect { get; set; }
         public float Speed { get; set; }
         public Texture2D[] Frames { get; set; }
         public Vector2 Size { get; set; }
+        public float Layer { get; set; }
         public SpriteData(Texture2D[] frames)
         {
             CurrentFrame = 0;
             Speed = 1;
             Frames = frames;
+            Layer = 0;
+            SpriteEffect = SpriteEffects.None;
         }
         public void Update()
         {
@@ -40,7 +44,7 @@ namespace Geimu
         }
         public void Draw(SpriteBatch batch, Vector2 position)
         {
-            batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), Color.White);
+            batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffect, Layer);
         }
     }
 }

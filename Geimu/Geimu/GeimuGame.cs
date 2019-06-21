@@ -7,13 +7,13 @@ namespace Geimu
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class GeimuGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         Room currentRoom;
-        public Game1()
+        public GeimuGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -48,6 +48,12 @@ namespace Geimu
             SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
             SpriteManager.Load("dirt2", "sprites\\dirt2", 1, Content);
             SpriteManager.Load("grass", "sprites\\grass", 1, Content);
+            SpriteManager.Load("grass2", "sprites\\grass2", 1, Content);
+            SpriteManager.Load("grassTop", "sprites\\grassTop", 1, Content);
+            SpriteManager.Load("dirtSideRight", "sprites\\dirtSideRight", 1, Content);
+            SpriteManager.Load("dirtSideBottom", "sprites\\dirtSideBottom", 1, Content);
+            SpriteManager.Load("dirtSideLeft", "sprites\\dirtSideLeft", 1, Content);
+            SpriteManager.Load("dirtSideTop", "sprites\\dirtSideTop", 1, Content);
         }
 
         /// <summary>
@@ -81,7 +87,7 @@ namespace Geimu
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);
             currentRoom.Draw(spriteBatch);
             spriteBatch.End();
 

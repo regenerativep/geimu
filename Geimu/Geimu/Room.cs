@@ -13,8 +13,8 @@ namespace Geimu
         public List<GameTile> GameTileList { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public Game1 game { get; set; }
-        public Room(Game1 game)
+        public GeimuGame game { get; set; }
+        public Room(GeimuGame game)
         {
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
@@ -58,6 +58,7 @@ namespace Geimu
                         Type type = GameObject.GetObjectFromName(parts[1]);
                         Vector2 position = new Vector2(int.Parse(parts[2]), int.Parse(parts[3]));
                         GameObject obj = (GameObject)type.GetConstructor(new Type[] { typeof(Room), typeof(Vector2) }).Invoke(new object[] { this, position });
+                        obj.Layer = int.Parse(parts[4]);
                         GameObjectList.Add(obj);
                         break;
                     }
@@ -66,6 +67,7 @@ namespace Geimu
                         Type type = GameTile.GetObjectFromName(parts[1]);
                         Vector2 position = new Vector2(int.Parse(parts[2]), int.Parse(parts[3]));
                         GameTile obj = (GameTile)type.GetConstructor(new Type[] { typeof(Vector2) }).Invoke(new object[] { position });
+                        obj.Layer = int.Parse(parts[4]);
                         GameTileList.Add(obj);
                         break;
                     }
