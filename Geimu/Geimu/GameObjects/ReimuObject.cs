@@ -16,11 +16,15 @@ namespace Geimu
         public static float HorizontalFriction = 1;
         public static Vector2 MaxVelocity = new Vector2(4, 16);
         public static float gravity = 0.3f;
+
         private KeyboardState keyState;
         private KeyboardState prevKeyState;
-        private bool isJumping = false;
+        private bool isJumping;
+        private bool facingRight;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(128, 128))
         {
+            isJumping = false;
+            facingRight = true;
             SpriteManager.RequestTexture("reimu", (frames) =>
             {
                 Sprite = new SpriteData(frames);
@@ -40,11 +44,20 @@ namespace Geimu
             {
                 vel.X -= AccelSpeed;
                 moveKeyPressed = true;
+                facingRight = false;
             }
             if (keyState.IsKeyDown(Settings.Binds.Right))
             {
                 vel.X += AccelSpeed;
-                moveKeyPressed = true;
+                if (moveKeyPressed)
+                {
+                    facingRight = vel.X > 0;
+                }
+                else
+                {
+                    moveKeyPressed = true;
+                    facingRight = true;
+                }
             }
             if (keyState.IsKeyDown(Settings.Binds.Jump) && !isJumping)
             {
@@ -87,6 +100,14 @@ namespace Geimu
         }
         public override void Draw(SpriteBatch batch)
         {
+            if(facingRight)
+            {
+                Sprite.SpriteEffect = SpriteEffects.None;
+            }
+            else
+            {
+                Sprite.SpriteEffect = SpriteEffects.FlipHorizontally;
+            }
             base.Draw(batch);
         }
     }
