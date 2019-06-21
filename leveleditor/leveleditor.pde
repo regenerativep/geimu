@@ -1,14 +1,25 @@
 ArrayList<GameObject> objects;
-int currentObject;
+ArrayList<GameObject> tiles;
+int currentObject, currentTile;
 int currentX, currentY;
 int snapX, snapY;
 int viewOffsetX, viewOffsetY;
 int roomWidth, roomHeight;
 String commandInput;
+boolean doSpecialAction;
+boolean showGrid;
+boolean showDebug; //not actually used xd
+boolean showTiles;
+boolean showObjects;
 GameObjectType[] possibleTypes = new GameObjectType[] {
   null,
   new GameObjectType("reimu", 128, 128),
   new GameObjectType("block", 64, 64)
+};
+GameObjectType[] possibleTiles = new GameObjectType[] {
+  null,
+  new GameObjectType("dirt", 64, 64),
+  new GameObjectType("grass", 64, 64)
 };
 void setup()
 {
@@ -20,7 +31,9 @@ void setup()
 void reset()
 {
   objects = new ArrayList<GameObject>();
+  tiles = new ArrayList<GameObject>();
   currentObject = 0;
+  currentTile = 0;
   currentX = 0;
   currentY = 0;
   snapX = 32;
@@ -29,6 +42,11 @@ void reset()
   viewOffsetY = 0;
   roomWidth = 512;
   roomHeight = 512;
+  doSpecialAction = false;
+  showGrid = true;
+  showDebug = true;
+  showTiles = true;
+  showObjects = true;
 }
 void draw()
 {
@@ -43,23 +61,45 @@ void draw()
   background(255);
   pushMatrix();
   translate(viewOffsetX, viewOffsetY);
-  stroke(0, 0, 255);
-  noFill();
-  rect(0, 0, roomWidth, roomHeight);
-  stroke(0);
-  for(int i = 0; i < roomWidth; i += snapX)
+  if(showGrid)
   {
-    line(i, 0, i, roomHeight);
+    stroke(0, 0, 255);
+    noFill();
+    rect(0, 0, roomWidth, roomHeight);
+    stroke(0);
+    for(int i = 0; i < roomWidth; i += snapX)
+    {
+      line(i, 0, i, roomHeight);
+    }
+    for(int i = 0; i < roomHeight; i += snapY)
+    {
+      line(0, i, roomWidth, i);
+    }
   }
-  for(int i = 0; i < roomHeight; i += snapY)
+  if(showObjects)
   {
-    line(0, i, roomWidth, i);
+    for(GameObject obj : objects)
+    {
+      drawObject(obj, 255);
+    }
   }
-  for(GameObject obj : objects)
+  if(showTiles)
   {
-    drawObject(obj);
+    for(GameObject obj : tiles)
+    {
+      drawObject(obj, 128);
+    }
   }
-  drawObject(new GameObject(currentX, currentY, possibleTypes[currentObject]));
+  GameObject obj;
+  if(showTiles)
+  {
+    obj = new GameObject(currentX, currentY, possibleTiles[currentTile]);
+  }
+  else
+  {
+    obj = new GameObject(currentX, currentY, possibleTypes[currentObject]);
+  }
+  drawObject(obj, 255 - (showTiles ? 127 : 0));
   popMatrix();
   noStroke();
   fill(0);
@@ -69,11 +109,11 @@ void draw()
   noStroke();
   text(commandInput, 0, 0);
 }
-void drawObject(GameObject obj)
+void drawObject(GameObject obj, int alpha)
 {
   if(obj.type == null) return;
   stroke(0);
-  fill(255);
+  fill(alpha, alpha);
   rect(obj.x, obj.y, obj.type.wid, obj.type.hgt);
   noStroke();
   fill(0);
@@ -94,9 +134,42 @@ void keyPressed()
       commandInput = commandInput.substring(0, commandInput.length() - 1);
     }
   }
+  else if(keyCode == SHIFT)
+  {
+    doSpecialAction = true;
+  }
   else
   {
-    commandInput += key;
+    if(doSpecialAction)
+    {
+      if(key == 'G') //uppercase because we're also holding down shift
+      {
+        showGrid = !showGrid;
+      }
+      else if(key == 'T')
+      {
+        showTiles = !showTiles;
+      }
+      else if(key == 'O')
+      {
+        showObjects = !showObjects;
+      }
+      else if(key == 'D')
+      {
+        showDebug = !showDebug;
+      }
+    }
+    else
+    {
+      commandInput += key;
+    }
+  }
+}
+void keyReleased()
+{
+  if(keyCode == SHIFT)
+  {
+    doSpecialAction = false;
   }
 }
 void doCommand(String inp)
@@ -161,6 +234,36 @@ void doCommand(String inp)
         objects.add(new GameObject(x, y, type));
         break;
       }
+      case "createtile":
+      {
+        String name = parts[1];
+        GameObjectType type = null;
+        for(int i = 0; i < possibleTiles.length; i++)
+        {
+          if(possibleTiles[i] != null && name.equals(possibleTiles[i].name))
+          {
+            type = possibleTiles[i];
+          }
+        }
+        if(type == null)
+        {
+          println("failed to load type \"" + name + "\"");
+          break;
+        }
+        int x = 0;
+        int y = 0;
+        try
+        {
+          x = parseInt(parts[2]);
+          y = parseInt(parts[3]);
+        }
+        catch(Exception e)
+        {
+          println("failed to load positions for type \"" + name + "\"");
+        }
+        tiles.add(new GameObject(x, y, type));
+        break;
+      }
       default:
         println("invalid command");
         break;
@@ -199,6 +302,11 @@ void saveRoom(String filename)
     GameObject obj = objects.get(i);
     writer.println("createobject " + obj.type.name + " " + obj.x + " " + obj.y);
   }
+  for(int i = 0; i < tiles.size(); i++)
+  {
+    GameObject obj = tiles.get(i);
+    writer.println("createtile " + obj.type.name + " " + obj.x + " " + obj.y);
+  }
   writer.flush();
   writer.close();
 }
@@ -206,20 +314,46 @@ void mousePressed()
 {
   if(mouseButton == LEFT)
   {
-    GameObjectType type = possibleTypes[currentObject];
+    GameObjectType type;
+    if(showTiles)
+    {
+      type = possibleTiles[currentTile];
+    }
+    else
+    {
+      type = possibleTypes[currentObject];
+    }
+    GameObject obj;
     if(type != null)
     {
-      objects.add(new GameObject(currentX, currentY, type));
+      obj = new GameObject(currentX, currentY, type);
+      if(showTiles)
+      {
+        tiles.add(obj);
+      }
+      else
+      {
+        objects.add(obj);
+      }
     }
   }
   else if(mouseButton == RIGHT)
   {
-    for(int i = 0; i < objects.size(); i++)
+    ArrayList<GameObject> iterArray;
+    if(showTiles)
     {
-      GameObject obj = objects.get(i);
+      iterArray = tiles;
+    }
+    else
+    {
+      iterArray = objects;
+    }
+    for(int i = 0; i < iterArray.size(); i++)
+    {
+      GameObject obj = iterArray.get(i);
       if(obj.x <= currentX && obj.y <= currentY && obj.x + obj.type.wid > currentX && obj.y + obj.type.hgt > currentY)
       {
-        objects.remove(i);
+        iterArray.remove(i);
         break;
       }
     }
@@ -228,20 +362,42 @@ void mousePressed()
 void mouseWheel(MouseEvent event)
 {
   float ev = event.getCount();
-  if(ev > 0)
+  if(showTiles)
   {
-    currentObject++;
-    if(currentObject >= possibleTypes.length)
+    if(ev > 0)
     {
-      currentObject = 0;
+      currentTile++;
+      if(currentTile >= possibleTiles.length)
+      {
+        currentTile = 0;
+      }
+    }
+    else if(ev < 0)
+    {
+      currentTile--;
+      if(currentTile < 0)
+      {
+        currentTile = possibleTiles.length - 1;
+      }
     }
   }
-  else if(ev < 0)
+  else
   {
-    currentObject--;
-    if(currentObject < 0)
+    if(ev > 0)
     {
-      currentObject = possibleTypes.length - 1;
+      currentObject++;
+      if(currentObject >= possibleTypes.length)
+      {
+        currentObject = 0;
+      }
+    }
+    else if(ev < 0)
+    {
+      currentObject--;
+      if(currentObject < 0)
+      {
+        currentObject = possibleTypes.length - 1;
+      }
     }
   }
 }
@@ -268,5 +424,4 @@ class GameObjectType
     this.wid = wid;
     this.hgt = hgt;
   }
-  
 }
