@@ -118,9 +118,9 @@ namespace Geimu
             Position += Velocity;
             Sprite?.Update();
         }
-        public virtual void Draw(SpriteBatch batch)
+        public virtual void Draw(SpriteBatch batch, Vector2 offset)
         {
-            Sprite?.Draw(batch, Position);
+            Sprite?.Draw(batch, Position - offset);
         }
         public static Vector2 VectorCeil(Vector2 val)
         {

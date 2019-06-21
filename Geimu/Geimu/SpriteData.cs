@@ -28,23 +28,38 @@ namespace Geimu
         public Texture2D[] Frames { get; set; }
         public Vector2 Size { get; set; }
         public float Layer { get; set; }
-        public SpriteData(Texture2D[] frames)
+        public SpriteData()
         {
             CurrentFrame = 0;
             Speed = 1;
-            Frames = frames;
             Layer = 0;
             SpriteEffect = SpriteEffects.None;
         }
+        public SpriteData(Texture2D[] frames) : base()
+        {
+            Frames = frames;
+        }
         public void Update()
         {
+            if (Frames == null) return;
             currentFrame += Speed;
             if (currentFrame < 0) currentFrame += Frames.Length;
             if (currentFrame >= Frames.Length) currentFrame -= Frames.Length;
         }
         public void Draw(SpriteBatch batch, Vector2 position)
         {
-            batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffect, Layer);
+            if (Frames != null)
+            {
+                batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffect, Layer);
+            }
+        }
+        public void Change(Texture2D[] newSprite)
+        {
+            if (Frames != newSprite)
+            {
+                Frames = newSprite;
+                CurrentFrame = 0;
+            }
         }
     }
 }

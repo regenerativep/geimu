@@ -14,12 +14,14 @@ namespace Geimu
         public int Width { get; set; }
         public int Height { get; set; }
         public GeimuGame game { get; set; }
+        public Vector2 ViewOffset { get; set; }
         public Room(GeimuGame game)
         {
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
             Width = 512;
             Height = 512;
+            ViewOffset = new Vector2(0, 0);
         }
         public void Update()
         {
@@ -34,12 +36,12 @@ namespace Geimu
             for (int i = 0; i < GameObjectList.Count; i++)
             {
                 GameObject obj = GameObjectList[i];
-                obj.Draw(batch);
+                obj.Draw(batch, ViewOffset);
             }
             for (int i = 0; i < GameTileList.Count; i++)
             {
                 GameTile tile = GameTileList[i];
-                tile.Draw(batch);
+                tile.Draw(batch, ViewOffset);
             }
         }
         public void ProcessCommand(string cmd)
@@ -72,6 +74,34 @@ namespace Geimu
                         break;
                     }
             }
+        }
+        public bool CheckCollision(Rectangle collider)
+        {
+            for (int i = 0; i < GameObjectList.Count; i++)
+            {
+                GameObject obj = GameObjectList[i];
+                if (obj.Solid)
+                {
+                    Rectangle targetRect = GameObject.AddVectorToRect(obj.Hitbox, obj.Position);
+                    if (GameObject.RectangleInRectangle(collider, targetRect))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public GameObject FindObject(string name)
+        {
+            for(int i = 0; i < GameObjectList.Count; i++)
+            {
+                GameObject obj = GameObjectList[i];
+                if(obj.GetType() == GameObject.GetObjectFromName(name))
+                {
+                    return obj;
+                }
+            }
+            return null;
         }
         public void Load(string filename)
         {

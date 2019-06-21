@@ -34,6 +34,10 @@ namespace Geimu
 
             currentRoom = new Room(this);
             currentRoom.Load("test.txt");
+            CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
+            camera.Target = currentRoom.FindObject("reimu");
+            currentRoom.GameObjectList.Add(camera);
+            
             base.Initialize();
         }
 
@@ -44,7 +48,7 @@ namespace Geimu
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            SpriteManager.Load("reimu", "sprites\\reimu", 3, Content);
+            SpriteManager.Load("reimuIdle", "sprites\\reimu", 3, Content);
             SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
             SpriteManager.Load("dirt2", "sprites\\dirt2", 1, Content);
             SpriteManager.Load("grass", "sprites\\grass", 1, Content);
