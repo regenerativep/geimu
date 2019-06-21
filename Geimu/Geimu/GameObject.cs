@@ -32,6 +32,7 @@ namespace Geimu
         }
         public virtual void Update()
         {
+            //Velocity
             Position += Velocity;
             Sprite?.Update();
         }
