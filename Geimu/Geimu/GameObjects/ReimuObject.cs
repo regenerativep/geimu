@@ -29,7 +29,6 @@ namespace Geimu
             facingRight = true;
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(64, 64);
-            Sprite.Speed = 1f / 10;
             Sprite.Layer = Layer;
             Hitbox = new Rectangle(12, 4, 40, 59);
             idleSprite = null;
@@ -38,8 +37,7 @@ namespace Geimu
             SpriteManager.RequestTexture("reimuIdle", (frames) =>
             {
                 idleSprite = frames;
-                moveSprite = idleSprite; //todo remove when we get the other sprites
-                jumpSprite = idleSprite;
+                jumpSprite = idleSprite; //todo remove when we get the other sprites
             });
             SpriteManager.RequestTexture("reimuRun", (frames) =>
             {
@@ -97,10 +95,12 @@ namespace Geimu
                 if(Math.Abs(vel.X) < IdleMaxSpeed)
                 {
                     Sprite.Change(idleSprite);
+                    Sprite.Speed = 1f / 10;
                 }
                 else
                 {
                     Sprite.Change(moveSprite);
+                    Sprite.Speed = 1f / 5;
                 }
             }
             if(Math.Abs(vel.X) > MaxVelocity.X)

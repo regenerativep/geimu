@@ -49,6 +49,7 @@ namespace Geimu
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             SpriteManager.Load("reimuIdle", "sprites\\reimu", 3, Content);
+            SpriteManager.Load("reimuRun", "sprites\\reimuRun", 8, Content);
             SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
             SpriteManager.Load("dirt2", "sprites\\dirt2", 1, Content);
             SpriteManager.Load("grass", "sprites\\grass", 1, Content);
