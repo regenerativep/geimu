@@ -5,12 +5,14 @@ int currentX, currentY;
 int snapX, snapY;
 int viewOffsetX, viewOffsetY;
 int roomWidth, roomHeight;
+int currentLayer;
 String commandInput;
 boolean doSpecialAction;
 boolean showGrid;
 boolean showDebug; //not actually used xd
 boolean showTiles;
 boolean showObjects;
+boolean showCurrentLayer;
 GameObjectType[] possibleTypes = new GameObjectType[] {
   null,
   new GameObjectType("reimu", 64, 64),
@@ -19,7 +21,12 @@ GameObjectType[] possibleTypes = new GameObjectType[] {
 GameObjectType[] possibleTiles = new GameObjectType[] {
   null,
   new GameObjectType("dirt", 32, 32),
-  new GameObjectType("grass", 32, 32)
+  new GameObjectType("grass", 32, 32),
+  new GameObjectType("grassTop", 32, 32),
+  new GameObjectType("dirtSideRight", 32, 32),
+  new GameObjectType("dirtSideBottom", 32, 32),
+  new GameObjectType("dirtSideLeft", 32, 32),
+  new GameObjectType("dirtSideTop", 32, 32),
 };
 void setup()
 {
@@ -36,6 +43,7 @@ void reset()
   currentTile = 0;
   currentX = 0;
   currentY = 0;
+  currentLayer = 0;
   snapX = 32;
   snapY = 32;
   viewOffsetX = 0;
@@ -47,6 +55,7 @@ void reset()
   showDebug = true;
   showTiles = true;
   showObjects = true;
+  showCurrentLayer = false;
 }
 void draw()
 {
@@ -80,24 +89,30 @@ void draw()
   {
     for(GameObject obj : objects)
     {
-      drawObject(obj, 255);
+      if(!showCurrentLayer || currentLayer == obj.layer)
+      {
+        drawObject(obj, 255);
+      }
     }
   }
   if(showTiles)
   {
     for(GameObject obj : tiles)
     {
-      drawObject(obj, 128);
+      if(!showCurrentLayer || currentLayer == obj.layer)
+      {
+        drawObject(obj, 128);
+      }
     }
   }
   GameObject obj;
   if(showTiles)
   {
-    obj = new GameObject(currentX, currentY, possibleTiles[currentTile]);
+    obj = new GameObject(currentX, currentY, possibleTiles[currentTile], 0);
   }
   else
   {
-    obj = new GameObject(currentX, currentY, possibleTypes[currentObject]);
+    obj = new GameObject(currentX, currentY, possibleTypes[currentObject], 0);
   }
   drawObject(obj, 255 - (showTiles ? 127 : 0));
   popMatrix();
@@ -157,6 +172,10 @@ void keyPressed()
       else if(key == 'D')
       {
         showDebug = !showDebug;
+      }
+      else if(key == 'S')
+      {
+        showCurrentLayer = !showCurrentLayer;
       }
     }
     else
@@ -222,16 +241,18 @@ void doCommand(String inp)
         }
         int x = 0;
         int y = 0;
+        int layer = 0;
         try
         {
           x = parseInt(parts[2]);
           y = parseInt(parts[3]);
+          layer = parseInt(parts[4]);
         }
         catch(Exception e)
         {
-          println("failed to load positions for type \"" + name + "\"");
+          println("failed to load data for type \"" + name + "\"");
         }
-        objects.add(new GameObject(x, y, type));
+        objects.add(new GameObject(x, y, type, layer));
         break;
       }
       case "createtile":
@@ -252,18 +273,23 @@ void doCommand(String inp)
         }
         int x = 0;
         int y = 0;
+        int layer = 0;
         try
         {
           x = parseInt(parts[2]);
           y = parseInt(parts[3]);
+          layer = parseInt(parts[4]);
         }
         catch(Exception e)
         {
-          println("failed to load positions for type \"" + name + "\"");
+          println("failed to load data for type \"" + name + "\"");
         }
-        tiles.add(new GameObject(x, y, type));
+        tiles.add(new GameObject(x, y, type, layer));
         break;
       }
+      case "layer":
+        currentLayer = parseInt(parts[1]);
+        break;
       default:
         println("invalid command");
         break;
@@ -300,12 +326,12 @@ void saveRoom(String filename)
   for(int i = 0; i < objects.size(); i++)
   {
     GameObject obj = objects.get(i);
-    writer.println("createobject " + obj.type.name + " " + obj.x + " " + obj.y);
+    writer.println("createobject " + obj.type.name + " " + obj.x + " " + obj.y + " " + obj.layer);
   }
   for(int i = 0; i < tiles.size(); i++)
   {
     GameObject obj = tiles.get(i);
-    writer.println("createtile " + obj.type.name + " " + obj.x + " " + obj.y);
+    writer.println("createtile " + obj.type.name + " " + obj.x + " " + obj.y + " " + obj.layer);
   }
   writer.flush();
   writer.close();
@@ -326,7 +352,7 @@ void mousePressed()
     GameObject obj;
     if(type != null)
     {
-      obj = new GameObject(currentX, currentY, type);
+      obj = new GameObject(currentX, currentY, type, currentLayer);
       if(showTiles)
       {
         tiles.add(obj);
@@ -407,8 +433,10 @@ class GameObject
   public int x;
   public int y;
   public GameObjectType type;
-  public GameObject(int x, int y, GameObjectType type)
+  public int layer;
+  public GameObject(int x, int y, GameObjectType type, int layer)
   {
+    this.layer = layer;
     this.x = x;
     this.y = y;
     this.type = type;
