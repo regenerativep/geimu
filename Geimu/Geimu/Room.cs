@@ -36,12 +36,12 @@ namespace Geimu
             for (int i = 0; i < GameObjectList.Count; i++)
             {
                 GameObject obj = GameObjectList[i];
-                obj.Draw(batch, ViewOffset);
+                obj.Draw(batch, GameObject.VectorCeil(ViewOffset));
             }
             for (int i = 0; i < GameTileList.Count; i++)
             {
                 GameTile tile = GameTileList[i];
-                tile.Draw(batch, ViewOffset);
+                tile.Draw(batch, GameObject.VectorCeil(ViewOffset));
             }
         }
         public void ProcessCommand(string cmd)
