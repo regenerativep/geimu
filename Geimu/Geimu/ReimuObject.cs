@@ -17,7 +17,6 @@ namespace Geimu
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(128, 128);
                 Sprite.Speed = 1f / 10;
-                System.Diagnostics.Debug.WriteLine("got reimu :)");
             });
         }
         public override void Update()

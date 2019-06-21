@@ -39,6 +39,7 @@ namespace Geimu
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             SpriteManager.Load("reimu", "sprites\\reimu", 3, Content);
+            SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
         }
 
         /// <summary>

@@ -2,11 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Geimu
 {
@@ -55,7 +52,6 @@ namespace Geimu
                     Vector2 position = new Vector2(int.Parse(parts[2]), int.Parse(parts[3]));
                     GameObject obj = (GameObject)type.GetConstructor(new Type[] { typeof(Vector2) }).Invoke(new object[] { position });
                     GameObjectList.Add(obj);
-                    Debug.WriteLine("created object at " + position.ToString());
                     break;
             }
         }
