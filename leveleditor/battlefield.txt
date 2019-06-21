@@ -1,0 +1,37 @@
+width 512
+height 512
+snapx 32
+snapy 32
+createobject block 0 480
+createobject block 32 480
+createobject block 64 480
+createobject block 96 480
+createobject block 128 480
+createobject block 160 480
+createobject block 224 480
+createobject block 192 480
+createobject block 256 480
+createobject block 288 480
+createobject block 352 480
+createobject block 320 480
+createobject block 384 480
+createobject block 448 480
+createobject block 416 480
+createobject block 480 480
+createobject reimu 0 416
+createtile dirt 96 384
+createtile dirt 128 384
+createtile dirt 160 384
+createtile dirt 192 384
+createtile dirt 224 384
+createtile dirt 256 384
+createtile dirt 288 384
+createtile dirt 320 384
+createtile dirt 352 384
+createtile dirt 384 384
+createtile dirt 128 288
+createtile dirt 160 288
+createtile dirt 224 224
+createtile dirt 256 224
+createtile dirt 320 288
+createtile dirt 352 288
