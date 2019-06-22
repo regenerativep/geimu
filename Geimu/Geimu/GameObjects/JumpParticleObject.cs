@@ -38,7 +38,6 @@ namespace Geimu.GameObjects
 
         public override void Draw(SpriteBatch batch, Vector2 offset)
         {
-            System.Diagnostics.Debug.WriteLine("Drawing @ " + Position.X + ", " + Position.Y);
             base.Draw(batch, offset);
         }
     }
