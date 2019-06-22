@@ -72,6 +72,10 @@ namespace Geimu
             SpriteManager.Load("yinYang", "sprites\\yinYang", 4, Content);
             SpriteManager.Load("cardBullet", "sprites\\cardBullet", 1, Content);
             SpriteManager.Load("jumpParticle", "sprites\\jumpParticle", 3, Content);
+            SpriteManager.Load("clownpiece", "sprites\\clownpiece", 3, Content);
+            SpriteManager.Load("hakureiShrine", "sprites\\hakureiShrine", 1, Content);
+            SpriteManager.Load("hakureiShrine2", "sprites\\hakureiShrine2", 1, Content);
+            SpriteManager.Load("hakureiShrine3", "sprites\\hakureiShrine3", 1, Content);
         }
 
         /// <summary>

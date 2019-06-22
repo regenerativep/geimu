@@ -116,6 +116,17 @@ namespace Geimu
                         Background.Backgrounds.Add(bg);
                         break;
                     }
+                case "showBackgroundOutsideRoom":
+                    {
+                        Background.ShowBackgroundOutsideRoom = true;
+                        break;
+                    }
+                case "darknessColor":
+                    {
+                        Color col = new Color(int.Parse(parts[1]), int.Parse(parts[2]), int.Parse(parts[3]));
+                        Lighting.DarknessColor = col;
+                        break;
+                    }
             }
         }
         public bool CheckCollision(Rectangle collider)

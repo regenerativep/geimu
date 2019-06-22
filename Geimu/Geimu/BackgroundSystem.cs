@@ -12,6 +12,7 @@ namespace Geimu
     {
         public List<ParallaxBackground> Backgrounds { get; set; }
         public Room Room { get; set; }
+        public bool ShowBackgroundOutsideRoom { get; set; }
         private Texture2D whiteChunk;
         public BackgroundSystem(Room room)
         {
@@ -20,17 +21,18 @@ namespace Geimu
                 whiteChunk = frames[0];
             });
             Room = room;
+            ShowBackgroundOutsideRoom = false;
             Backgrounds = new List<ParallaxBackground>();
         }
         public void Draw(SpriteBatch batch, Vector2 offset)
         {
-            if (whiteChunk != null)
+            if (whiteChunk != null && !ShowBackgroundOutsideRoom)
             {
                 List<Rectangle> rectanglesToDraw = new List<Rectangle>();
                 int windowWidth = Room.Game.GraphicsDevice.Viewport.Width, windowHeight = Room.Game.GraphicsDevice.Viewport.Height;
                 if (offset.X < 0)
                 {
-                    rectanglesToDraw.Add(new Rectangle(0, 0, (int)(-offset.X), windowHeight));
+                    rectanglesToDraw.Add(new Rectangle(0, (int)(-offset.Y), (int)(-offset.X), Room.Height));
                 }
                 if (offset.Y < 0)
                 {
@@ -38,7 +40,7 @@ namespace Geimu
                 }
                 if (offset.X > Room.Width - windowWidth)
                 {
-                    rectanglesToDraw.Add(new Rectangle((int)(Room.Width - offset.X), 0, (int)(windowWidth - (Room.Width - offset.X)), windowHeight));
+                    rectanglesToDraw.Add(new Rectangle((int)(Room.Width - offset.X), (int)(-offset.Y), (int)(windowWidth - (Room.Width - offset.X)), Room.Height));
                 }
                 if (offset.Y > Room.Height - windowHeight)
                 {
@@ -46,7 +48,7 @@ namespace Geimu
                 }
                 foreach (Rectangle rect in rectanglesToDraw)
                 {
-                    batch.Draw(whiteChunk, rect, null, Room.Lighting.DarknessColor, 0f, Vector2.Zero, SpriteEffects.None, 6f / 100);
+                    batch.Draw(whiteChunk, rect, null, Room.Lighting.DarknessColor * Room.Lighting.LightingOpacity, 0f, Vector2.Zero, SpriteEffects.None, 6f / 100);
                 }
             }
             for (int i = 0; i < Backgrounds.Count; i++)
