@@ -13,10 +13,10 @@ namespace Geimu.GameObjects
     {
         private Texture2D[] crosshairSprite;
         private MouseState mouseState;
-        public CrosshairObject(Room room) : base(room, new Vector2(0,0), new Vector2(0,0), new Vector2(8,8))
+        public CrosshairObject(Room room) : base(room, new Vector2(0,0), new Vector2(0,0), new Vector2(24,24))
         {
             Sprite = new SpriteData();
-            Sprite.Size = new Vector2(8, 8);
+            Sprite.Size = new Vector2(24, 24);
             Sprite.Layer = 1;
             crosshairSprite = null;
             SpriteManager.RequestTexture("crosshair", (frames) =>
@@ -27,7 +27,7 @@ namespace Geimu.GameObjects
 
             
             Sprite.Speed = 1f / 10;
-            Sprite.Offset = new Vector2(4, 4);
+            Sprite.Offset = new Vector2(12, 12);
         }
 
         public override void Update()
