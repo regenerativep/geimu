@@ -104,6 +104,21 @@ namespace Geimu
             }
             return null;
         }
+        public GameObject FindCollision(Rectangle collider, string name)
+        {
+            for(int i = 0; i < GameObjectList.Count; i++)
+            {
+                GameObject obj = GameObjectList[i];
+                if(obj.GetType() == GameObject.GetObjectFromName(name))
+                {
+                    if(GameObject.RectangleInRectangle(collider, GameObject.AddVectorToRect(obj.Hitbox, obj.Position)))
+                    {
+                        return obj;
+                    }
+                }
+            }
+            return null;
+        }
         public void Load(string filename)
         {
             string[] lines = File.ReadAllLines(filename, Encoding.UTF8);
@@ -112,7 +127,6 @@ namespace Geimu
                 ProcessCommand(lines[i]);
             }
         }
-
         public static int HorizRectDistance(Rectangle a, Rectangle b) //not too sure where to put these
         {
             if (a.X > b.X) //a is to the right of b

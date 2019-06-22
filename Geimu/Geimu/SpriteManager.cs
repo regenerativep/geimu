@@ -32,6 +32,7 @@ namespace Geimu
                     requests.RemoveAt(i);
                 }
             }
+            data[name] = frames;
             return frames;
         }
         public static void RequestTexture(string name, Action<Texture2D[]> callback)

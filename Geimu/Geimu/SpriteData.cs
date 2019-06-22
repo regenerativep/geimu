@@ -28,11 +28,13 @@ namespace Geimu
         public Texture2D[] Frames { get; set; }
         public Vector2 Size { get; set; }
         public float Layer { get; set; }
+        public Vector2 Offset { get; set; }
         public SpriteData()
         {
             CurrentFrame = 0;
             Speed = 1;
             Layer = 0;
+            Offset = new Vector2(0, 0);
             SpriteEffect = SpriteEffects.None;
         }
         public SpriteData(Texture2D[] frames) : base()

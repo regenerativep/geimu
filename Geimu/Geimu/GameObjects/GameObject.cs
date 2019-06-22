@@ -120,7 +120,7 @@ namespace Geimu
         }
         public virtual void Draw(SpriteBatch batch, Vector2 offset)
         {
-            Sprite?.Draw(batch, Position - offset);
+            Sprite?.Draw(batch, Position - offset - Sprite.Offset);
         }
         public static Vector2 VectorCeil(Vector2 val)
         {
@@ -150,6 +150,10 @@ namespace Geimu
                     return typeof(ReimuObject);
                 case "block":
                     return typeof(BlockObject);
+                case "bullet":
+                    return typeof(BulletObject);
+                case "":
+                    return typeof(GameObject);
             }
             return null;
         }

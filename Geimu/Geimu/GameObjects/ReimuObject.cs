@@ -22,10 +22,12 @@ namespace Geimu
         private int jumpsRemaining = 2;
         private KeyboardState keyState;
         private KeyboardState prevKeyState;
+        private MouseState mouseState;
+        private MouseState prevMouseState;
         private bool isJumping;
         private bool facingRight;
         private Texture2D[] idleSprite, moveSprite, jumpSprite, airSprite;
-        public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(128, 128))
+        public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
             isJumping = false;
             facingRight = true;
@@ -40,8 +42,6 @@ namespace Geimu
             SpriteManager.RequestTexture("reimuIdle", (frames) =>
             {
                 idleSprite = frames;
-                airSprite = idleSprite;
-                jumpSprite = idleSprite; //todo remove when we get the other sprites
             });
             SpriteManager.RequestTexture("reimuRun", (frames) =>
             {
@@ -56,9 +56,38 @@ namespace Geimu
                 airSprite = frames;
             });
         }
+        public void SwitchMode(string mode)
+        {
+            switch(mode)
+            {
+                case "idle":
+                    Sprite.Change(idleSprite);
+                    Sprite.Speed = 1f / 10;
+                    Sprite.Size = new Vector2(64, 64);
+                    Sprite.Offset = new Vector2(0, 0);
+                    break;
+                case "move":
+                    Sprite.Change(moveSprite);
+                    Sprite.Speed = 1f / 5;
+                    Sprite.Size = new Vector2(64, 64);
+                    Sprite.Offset = new Vector2(0, 0);
+                    break;
+                case "fall":
+                    Sprite.Change(airSprite);
+                    Sprite.Size = new Vector2(64, 96);
+                    Sprite.Offset = new Vector2(0, 32);
+                    break;
+                case "jump":
+                    Sprite.Change(jumpSprite);
+                    Sprite.Size = new Vector2(64, 96);
+                    Sprite.Offset = new Vector2(0, 32);
+                    break;
+            }
+        }
         public override void Update()
         {
             keyState = Keyboard.GetState();
+            mouseState = Mouse.GetState();
             Vector2 vel = Velocity; //don't know why i cant just use Velocity
             vel.Y += Gravity;
             bool moveKeyPressed = false;
@@ -81,9 +110,27 @@ namespace Geimu
                     facingRight = true;
                 }
             }
-            if(isJumping)
+            if(!isJumping)
             {
-                //check if there is something below us
+                if(Math.Abs(vel.X) < IdleMaxSpeed)
+                {
+                    SwitchMode("idle");
+                }
+                else
+                {
+                    SwitchMode("move");
+                }
+            }
+            if (vel.Y > AirMinSpeed)
+            {
+                SwitchMode("fall");
+            }
+            else if (vel.Y < -AirMinSpeed)
+            {
+                SwitchMode("jump");
+            }
+            else
+            {
                 if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(0, 1))))
                 {
                     jumpsRemaining = 2;
@@ -91,25 +138,8 @@ namespace Geimu
                 }
                 else
                 {
-                    Sprite.Change(jumpSprite);
+                    SwitchMode("idle");
                 }
-            }
-            else
-            {
-                if(Math.Abs(vel.X) < IdleMaxSpeed)
-                {
-                    Sprite.Change(idleSprite);
-                    Sprite.Speed = 1f / 10;
-                }
-                else
-                {
-                    Sprite.Change(moveSprite);
-                    Sprite.Speed = 1f / 5;
-                }
-            }
-            if(vel.Y > AirMinSpeed)
-            {
-                Sprite.Change(airSprite);
             }
             if (keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0)
             {
@@ -129,9 +159,18 @@ namespace Geimu
             {
                 vel.X -= Math.Sign(vel.X) * HorizontalFriction;
             }
+            if(mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+            {
+                Vector2 playerPos = Position + (Size / 2);
+                Vector2 playerOnScreenPos = playerPos - Room.ViewOffset;
+                Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
+                Room.GameObjectList.Add(new BulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
+            }
+
             Velocity = vel;
 
             prevKeyState = keyState;
+            prevMouseState = mouseState;
             base.Update();
         }
         public override void Draw(SpriteBatch batch, Vector2 offset)

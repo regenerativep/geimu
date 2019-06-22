@@ -50,6 +50,8 @@ namespace Geimu
             spriteBatch = new SpriteBatch(GraphicsDevice);
             SpriteManager.Load("reimuIdle", "sprites\\reimu", 3, Content);
             SpriteManager.Load("reimuRun", "sprites\\reimuRun", 8, Content);
+            SpriteManager.Load("reimuJump", "sprites\\reimuJump", 1, Content);
+            SpriteManager.Load("reimuFall", "sprites\\reimuFall", 1, Content);
             SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
             SpriteManager.Load("dirt2", "sprites\\dirt2", 1, Content);
             SpriteManager.Load("grass", "sprites\\grass", 1, Content);
@@ -59,6 +61,7 @@ namespace Geimu
             SpriteManager.Load("dirtSideBottom", "sprites\\dirtSideBottom", 1, Content);
             SpriteManager.Load("dirtSideLeft", "sprites\\dirtSideLeft", 1, Content);
             SpriteManager.Load("dirtSideTop", "sprites\\dirtSideTop", 1, Content);
+            SpriteManager.Load("bullet", "sprites\\bullet", 1, Content);
         }
 
         /// <summary>

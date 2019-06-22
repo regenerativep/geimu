@@ -11,9 +11,9 @@ namespace Geimu
     {
         public static class Binds
         {
-            public static Keys Left = Keys.Left;
-            public static Keys Right = Keys.Right;
-            public static Keys Jump = Keys.Z;
+            public static Keys Left = Keys.A;
+            public static Keys Right = Keys.D;
+            public static Keys Jump = Keys.Space;
         }
     }
 }
