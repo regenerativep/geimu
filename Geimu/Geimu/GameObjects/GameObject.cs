@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Geimu.GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -154,6 +155,8 @@ namespace Geimu
                     return typeof(BlockObject);
                 case "bullet":
                     return typeof(BulletObject);
+                case "fairy":
+                    return typeof(FairyObject);
                 case "":
                     return typeof(GameObject);
             }

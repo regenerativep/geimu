@@ -33,7 +33,7 @@ namespace Geimu
             graphics.ApplyChanges();
 
             currentRoom = new Room(this);
-            currentRoom.Load("test.txt");
+            currentRoom.Load("test2.txt");
             CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
             camera.Target = currentRoom.FindObject("reimu");
             currentRoom.GameObjectList.Add(camera);
@@ -63,6 +63,8 @@ namespace Geimu
             SpriteManager.Load("dirtSideTop", "sprites\\dirtSideTop", 1, Content);
             SpriteManager.Load("bullet", "sprites\\bullet", 1, Content);
             SpriteManager.Load("whiteChunk", "sprites\\whiteChunk", 1, Content);
+            SpriteManager.Load("fairyIdle", "sprites\\fairy", 2, Content);
+            SpriteManager.Load("fairyRun", "sprites\\fairy", 2, Content);
         }
 
         /// <summary>
