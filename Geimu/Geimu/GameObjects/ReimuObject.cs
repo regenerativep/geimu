@@ -202,7 +202,7 @@ namespace Geimu
                 Vector2 playerPos = YinYang.Position + (YinYang.Size / 2);
                 Vector2 playerOnScreenPos = playerPos - Room.ViewOffset;
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
-                Room.GameObjectList.Add(new BulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
+                Room.GameObjectList.Add(new CardBulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
                 throwCardSound?.Play();
             }
 

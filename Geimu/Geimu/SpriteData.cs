@@ -51,9 +51,13 @@ namespace Geimu
         }
         public void Draw(SpriteBatch batch, Vector2 position)
         {
+            Draw(batch, position, Color.White);
+        }
+        public void Draw(SpriteBatch batch, Vector2 position, Color color)
+        {
             if (Frames != null)
             {
-                batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), null, Color.White, Angle, Offset, SpriteEffect, Layer);
+                batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), null, color, Angle, Offset, SpriteEffect, Layer);
             }
         }
         public void Change(Texture2D[] newSprite)

@@ -77,6 +77,8 @@ namespace Geimu
             AssetManager.LoadTexture("hakureiShrine", "sprites\\hakureiShrine", 1);
             AssetManager.LoadTexture("hakureiShrine2", "sprites\\hakureiShrine2", 1);
             AssetManager.LoadTexture("hakureiShrine3", "sprites\\hakureiShrine3", 1);
+            AssetManager.LoadTexture("touhouBall", "sprites\\touhouBall", 1);
+            AssetManager.LoadTexture("touhouBallOutline", "sprites\\touhouBallOutline", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");

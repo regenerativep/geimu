@@ -27,6 +27,7 @@ GameObjectType[] possibleTiles = new GameObjectType[] {
   new GameObjectType("dirtSideBottom", 32, 32),
   new GameObjectType("dirtSideLeft", 32, 32),
   new GameObjectType("dirtSideTop", 32, 32),
+  new GameObjectType("darkness", 32, 32)
 };
 void setup()
 {

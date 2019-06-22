@@ -505,6 +505,30 @@
 /processorParam:TextureFormat=Color
 /build:sprites/reimuRun/7.png
 
+#begin sprites/touhouBall/PurpleBall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/touhouBall/PurpleBall.png;sprites/touhouBall/0.png
+
+#begin sprites/touhouBallOutline/RainbowOrb.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/touhouBallOutline/RainbowOrb.png;sprites/touhouBallOutline/0.png
+
 #begin sprites/whiteChunk/white.png
 /importer:TextureImporter
 /processor:TextureProcessor
