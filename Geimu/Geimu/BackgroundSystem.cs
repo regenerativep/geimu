@@ -10,7 +10,7 @@ namespace Geimu
 {
     public class BackgroundSystem
     {
-        public ParallaxBackground[] Backgrounds { get; set; }
+        public List<ParallaxBackground> Backgrounds { get; set; }
         public Room Room { get; set; }
         private Texture2D whiteChunk;
         public BackgroundSystem(Room room)
@@ -20,7 +20,7 @@ namespace Geimu
                 whiteChunk = frames[0];
             });
             Room = room;
-            Backgrounds = new ParallaxBackground[] { new ParallaxBackground(Room, "woodedBackground", 0, 0.5f) };
+            Backgrounds = new List<ParallaxBackground>();
         }
         public void Draw(SpriteBatch batch, Vector2 offset)
         {
@@ -46,10 +46,10 @@ namespace Geimu
                 }
                 foreach (Rectangle rect in rectanglesToDraw)
                 {
-                    batch.Draw(whiteChunk, rect, null, Room.Lighting.DarknessColor, 0f, Vector2.Zero, SpriteEffects.None, 1f / 100);
+                    batch.Draw(whiteChunk, rect, null, Room.Lighting.DarknessColor, 0f, Vector2.Zero, SpriteEffects.None, 6f / 100);
                 }
             }
-            for (int i = 0; i < Backgrounds.Length; i++)
+            for (int i = 0; i < Backgrounds.Count; i++)
             {
                 Backgrounds[i].Draw(batch, offset);
             }
