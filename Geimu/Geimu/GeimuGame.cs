@@ -65,6 +65,7 @@ namespace Geimu
             SpriteManager.Load("whiteChunk", "sprites\\whiteChunk", 1, Content);
             SpriteManager.Load("fairyIdle", "sprites\\fairy", 2, Content);
             SpriteManager.Load("fairyRun", "sprites\\fairy", 2, Content);
+            SpriteManager.Load("crosshair", "sprites\\crosshair", 3, Content);
         }
 
         /// <summary>
