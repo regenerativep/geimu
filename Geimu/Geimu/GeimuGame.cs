@@ -33,7 +33,7 @@ namespace Geimu
             graphics.ApplyChanges();
 
             currentRoom = new Room(this);
-            currentRoom.Load("test2.txt");
+            currentRoom.Load("test3.txt");
             CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
             camera.Target = currentRoom.FindObject("reimu");
             currentRoom.GameObjectList.Add(camera);
@@ -79,6 +79,11 @@ namespace Geimu
             AssetManager.LoadTexture("hakureiShrine3", "sprites\\hakureiShrine3", 1);
             AssetManager.LoadTexture("touhouBall", "sprites\\touhouBall", 1);
             AssetManager.LoadTexture("touhouBallOutline", "sprites\\touhouBallOutline", 1);
+            AssetManager.LoadTexture("yokaiMountain0", "sprites\\yokaiMountain0", 1);
+            AssetManager.LoadTexture("yokaiMountain1", "sprites\\yokaiMountain1", 1);
+            AssetManager.LoadTexture("yokaiMountain2", "sprites\\yokaiMountain2", 1);
+            AssetManager.LoadTexture("yokaiMountain3", "sprites\\yokaiMountain3", 1);
+            AssetManager.LoadTexture("yokaiMountain4", "sprites\\yokaiMountain4", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
