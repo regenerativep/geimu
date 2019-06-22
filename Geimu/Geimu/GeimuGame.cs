@@ -69,6 +69,7 @@ namespace Geimu
             SpriteManager.Load("crosshair", "sprites\\crosshair", 3, Content);
             SpriteManager.Load("yinYang", "sprites\\yinYang", 4, Content);
             SpriteManager.Load("cardBullet", "sprites\\cardBullet", 1, Content);
+            SpriteManager.Load("jumpParticle", "sprites\\jumpParticle", 3, Content);
         }
 
         /// <summary>
