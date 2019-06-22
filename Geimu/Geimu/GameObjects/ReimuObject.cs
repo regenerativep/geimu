@@ -98,7 +98,6 @@ namespace Geimu
             Vector2 vel = Velocity; //don't know why i cant just use Velocity
             vel.Y += Gravity;
             bool moveKeyPressed = false;
-            System.Diagnostics.Debug.WriteLine("ReimuPos: " + Position);
             YinYang.UpdatePos(Position + (Size / 2));
             if (keyState.IsKeyDown(Settings.Binds.Left))
             {

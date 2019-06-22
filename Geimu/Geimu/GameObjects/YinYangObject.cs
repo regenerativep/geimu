@@ -38,11 +38,6 @@ namespace Geimu.GameObjects
             Vector2 DirectionVector = new Vector2((float)Math.Cos(dir), (float)Math.Sin(dir));
             //Sprite.Update();
             Position = playerPos + (DirectionVector*25);
-            System.Diagnostics.Debug.WriteLine("Pos: " + Position);
-            System.Diagnostics.Debug.WriteLine("MousePos: " + new Vector2(mouseState.X, mouseState.Y));
-            System.Diagnostics.Debug.WriteLine("MouseRelPos: " + mouseRelative);
-            System.Diagnostics.Debug.WriteLine("Player Pos: " + playerPos);
-            System.Diagnostics.Debug.WriteLine("Dvector: " + DirectionVector);
             base.Update();
         }
     }
