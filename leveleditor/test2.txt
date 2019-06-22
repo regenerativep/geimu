@@ -83,7 +83,7 @@ createobject block 192 160 5
 createobject block 160 160 5
 createobject block 352 192 5
 createobject block 384 192 5
-createobject fairy 160 416 5
+createobject clownpiece 288 32 5
 createtile dirt 0 480 6
 createtile dirt 32 480 6
 createtile dirt 64 480 6

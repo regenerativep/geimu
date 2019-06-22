@@ -18,6 +18,7 @@ namespace Geimu.GameObjects
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(24, 24);
             Sprite.Layer = 1;
+            Sprite.Speed = 0.1f;
             crosshairSprite = null;
             AssetManager.RequestTexture("crosshair", (frames) =>
             {

@@ -61,6 +61,30 @@
 /processorParam:TextureFormat=Color
 /build:sprites/clownpiece/0.png
 
+#begin sprites/clownpiece/0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/clownpiece/0.png;sprites/clownpiece/2.png
+
+#begin sprites/clownpiece/1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/clownpiece/1.png
+
 #begin sprites/clownpiece/1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -83,7 +107,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/clownpiece/2.png
+/build:sprites/clownpiece/2.png;sprites/clownpiece/0.png
 
 #begin sprites/crosshair/0.png
 /importer:TextureImporter

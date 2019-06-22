@@ -166,6 +166,8 @@ namespace Geimu
                     return typeof(BulletObject);
                 case "fairy":
                     return typeof(FairyObject);
+                case "clownpiece":
+                    return typeof(BossObject);
                 case "":
                     return typeof(GameObject);
             }

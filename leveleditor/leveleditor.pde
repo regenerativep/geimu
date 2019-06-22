@@ -16,7 +16,8 @@ boolean showCurrentLayer;
 GameObjectType[] possibleTypes = new GameObjectType[] {
   null,
   new GameObjectType("reimu", 64, 64),
-  new GameObjectType("block", 32, 32)
+  new GameObjectType("block", 32, 32),
+  new GameObjectType("clownpiece", 64, 64)
 };
 GameObjectType[] possibleTiles = new GameObjectType[] {
   null,
