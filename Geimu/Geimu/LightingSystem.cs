@@ -14,45 +14,50 @@ namespace Geimu
         public Room Room { get; set; }
         public int ChunkSize { get; set; }
         public Color DarknessColor { get; set; }
+        public Color BackgroundColor { get; set; }
+        public float LightingDifficulty { get; set; }
         private float[,] lightLevels;
         private Texture2D whiteChunk;
-        public LightingSystem(Room room)
+        public LightingSystem(Room room, int chunkSize)
         {
+            ChunkSize = chunkSize;
             whiteChunk = null;
+            LightingDifficulty = 2;
             SpriteManager.RequestTexture("whiteChunk", (frames) =>
             {
                 whiteChunk = frames[0];
             });
             Room = room;
-            ChunkSize = 32;
             DarknessColor = Color.Black;
-            lightLevels = new float[room.Game.GraphicsDevice.Viewport.Width / ChunkSize, room.Game.GraphicsDevice.Viewport.Height / ChunkSize];
-            ResetLighting();
+            BackgroundColor = Color.CornflowerBlue;
+            ResetLighting(LightingDifficulty);
         }
-        public void ResetLighting()
+        public void ResetLighting(float baseLight)
         {
+            lightLevels = new float[Room.Width / ChunkSize, Room.Height / ChunkSize];
             for (int i = 0; i < lightLevels.GetLength(0); i++)
             {
                 for (int j = 0; j < lightLevels.GetLength(1); j++)
                 {
-                    lightLevels[i, j] = 1;
+                    lightLevels[i, j] = baseLight;
                 }
             }
         }
         public void Draw(SpriteBatch batch, Vector2 offset)
         {
             if (whiteChunk == null) return;
+            batch.Draw(whiteChunk, new Rectangle((int)(-offset.X), (int)(-offset.Y), Room.Width, Room.Height), null, BackgroundColor, 0f, Vector2.Zero, SpriteEffects.None, 1f / 100);
             for (int i = 0; i < lightLevels.GetLength(0); i++)
             {
                 for (int j = 0; j < lightLevels.GetLength(1); j++)
                 {
-                    batch.Draw(whiteChunk, new Rectangle(i * ChunkSize - (int)offset.X, j * ChunkSize - (int)offset.Y, ChunkSize, ChunkSize), null, DarknessColor  * lightLevels[i, j], 0, Vector2.Zero, SpriteEffects.None, 0.9f);
+                    batch.Draw(whiteChunk, new Rectangle(i * ChunkSize - (int)offset.X, j * ChunkSize - (int)offset.Y, ChunkSize, ChunkSize), null, DarknessColor * Math.Min(lightLevels[i, j], 1f), 0, Vector2.Zero, SpriteEffects.None, 0.9f);
                 }
             }
         }
         public void UpdateLighting(LightData[] lights)
         {
-            ResetLighting();
+            ResetLighting(LightingDifficulty);
             foreach(LightData light in lights)
             {
                 for (int i = 0; i < lightLevels.GetLength(0); i++)

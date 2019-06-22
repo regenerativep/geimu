@@ -96,8 +96,6 @@ namespace Geimu
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
             currentRoom.Draw(spriteBatch);
             spriteBatch.End();

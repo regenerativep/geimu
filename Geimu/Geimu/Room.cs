@@ -29,8 +29,8 @@ namespace Geimu
             Width = 512;
             Height = 512;
             ViewOffset = new Vector2(0, 0);
-            Lighting = new LightingSystem(this);
-            LightingUpdateRate = 1;
+            Lighting = new LightingSystem(this, 16);
+            LightingUpdateRate = 4;
             lightingUpdateRateCounter = 0;
         }
         public void Update()
@@ -57,6 +57,7 @@ namespace Geimu
         }
         public void Draw(SpriteBatch batch)
         {
+            Game.GraphicsDevice.Clear(Lighting.DarknessColor);
             for (int i = 0; i < GameObjectList.Count; i++)
             {
                 GameObject obj = GameObjectList[i];
@@ -67,7 +68,7 @@ namespace Geimu
                 GameTile tile = GameTileList[i];
                 tile.Draw(batch, GameObject.VectorCeil(ViewOffset));
             }
-            Lighting.Draw(batch, ViewOffset);
+            Lighting.Draw(batch, GameObject.VectorCeil(ViewOffset));
         }
         public void ProcessCommand(string cmd)
         {

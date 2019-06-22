@@ -36,7 +36,7 @@ namespace Geimu
             Sprite.Layer = Layer;
             Hitbox = new Rectangle(12, 4, 40, 59);
             Light = new LightData();
-            Light.Brightness = 16;
+            Light.Brightness = 128;
             Light.Position = Position + (Size / 2);
 
             idleSprite = null;
