@@ -16,24 +16,20 @@ namespace Geimu.GameObjects
         public static float IdleMaxSpeed = 3;
 
         private bool facingRight;
-        private Texture2D[] idleSprite, moveSprite;
+        private Texture2D[] fairySprite;
 
         public FairyObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
             facingRight = true;
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(32, 32);
+            
             Sprite.Layer = Layer;
             Hitbox = new Rectangle(12, 4, 40, 59);
-            idleSprite = null;
-            moveSprite = null;
-            SpriteManager.RequestTexture("fairyIdle", (frames) =>
+            fairySprite = null;
+            SpriteManager.RequestTexture("fairy", (frames) =>
             {
-                idleSprite = frames;
-            });
-            SpriteManager.RequestTexture("fairyRun", (frames) =>
-            {
-                moveSprite = frames;
+                fairySprite = frames;
             });
         }
 
@@ -42,13 +38,13 @@ namespace Geimu.GameObjects
             switch (mode)
             {
                 case "idle":
-                    Sprite.Change(idleSprite);
+                    Sprite.Change(fairySprite);
                     Sprite.Speed = 1f / 10;
                     Sprite.Size = new Vector2(32, 32);
                     Sprite.Offset = new Vector2(0, 0);
                     break;
                 case "move":
-                    Sprite.Change(moveSprite);
+                    Sprite.Change(fairySprite);
                     Sprite.Speed = 1f / 5;
                     Sprite.Size = new Vector2(32, 32);
                     Sprite.Offset = new Vector2(0, 0);
@@ -73,11 +69,11 @@ namespace Geimu.GameObjects
         {
             if (facingRight)
             {
-                Sprite.SpriteEffect = SpriteEffects.None;
+                Sprite.SpriteEffect = SpriteEffects.FlipHorizontally;
             }
             else
             {
-                Sprite.SpriteEffect = SpriteEffects.FlipHorizontally;
+                Sprite.SpriteEffect = SpriteEffects.None;
             }
             base.Draw(batch, offset);
         }
