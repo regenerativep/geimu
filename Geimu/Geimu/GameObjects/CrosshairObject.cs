@@ -34,13 +34,11 @@ namespace Geimu.GameObjects
         {
             mouseState = Mouse.GetState();
             Position = new Vector2(mouseState.X, mouseState.Y);
-            System.Diagnostics.Debug.WriteLine("test @ " + mouseState.X + ", " + mouseState.Y);
             base.Update();
         }
 
         public override void Draw(SpriteBatch batch, Vector2 offset)
         {
-            System.Diagnostics.Debug.WriteLine("drawing...");
             Sprite.SpriteEffect = SpriteEffects.None;
             base.Draw(batch, Vector2.Zero);
         }

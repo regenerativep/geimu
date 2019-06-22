@@ -67,6 +67,8 @@ namespace Geimu
             SpriteManager.Load("fairyRun", "sprites\\fairy", 2, Content);
             SpriteManager.Load("woodedBackground", "sprites\\woodedBackground0", 1, Content);
             SpriteManager.Load("crosshair", "sprites\\crosshair", 3, Content);
+            SpriteManager.Load("yinYang", "sprites\\yinYang", 4, Content);
+            SpriteManager.Load("cardBullet", "sprites\\cardBullet", 1, Content);
         }
 
         /// <summary>

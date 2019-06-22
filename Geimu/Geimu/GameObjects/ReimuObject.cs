@@ -79,12 +79,12 @@ namespace Geimu
                 case "fall":
                     Sprite.Change(airSprite);
                     Sprite.Size = new Vector2(64, 96);
-                    Sprite.Offset = new Vector2(0, 32);
+                    Sprite.Offset = new Vector2(0, 16);
                     break;
                 case "jump":
                     Sprite.Change(jumpSprite);
                     Sprite.Size = new Vector2(64, 96);
-                    Sprite.Offset = new Vector2(0, 32);
+                    Sprite.Offset = new Vector2(0, 16);
                     break;
             }
         }

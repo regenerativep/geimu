@@ -22,18 +22,20 @@ namespace Geimu
         {
             DirectionVector = new Vector2((float)Math.Cos(dir), (float)Math.Sin(dir));
             Speed = 4;
-            Hitbox = new Rectangle(-8, 8, 16, 16);
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(16, 16);
             Sprite.Offset = new Vector2(8, 8);
+            Hitbox = new Rectangle(-12, -12, 12, 12);
             Sprite.Layer = 4f / 100;
-            SpriteManager.RequestTexture("bullet", (frames) =>
+            Sprite.Angle = dir;
+            SpriteManager.RequestTexture("cardBullet", (frames) =>
             {
                 Sprite.Change(frames);
             });
         }
         public override void Update()
         {
+            Sprite.Update();
             Position += DirectionVector * Speed;
             GameObject coll = Room.FindCollision(AddVectorToRect(Hitbox, Position), "block");
             if(coll != null)
