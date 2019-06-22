@@ -2,6 +2,10 @@ width 640
 height 512
 snapx 32
 snapy 32
+darknessColor 42 32 68
+background hakureiShrine 1 0.01
+background hakureiShrine2 2 0.05
+background hakureiShrine3 3 0.3
 createobject block 0 480 5
 createobject block 32 480 5
 createobject block 64 480 5
@@ -79,6 +83,7 @@ createobject block 192 160 5
 createobject block 160 160 5
 createobject block 352 192 5
 createobject block 384 192 5
+createobject fairy 160 416 5
 createtile dirt 0 480 6
 createtile dirt 32 480 6
 createtile dirt 64 480 6
@@ -243,4 +248,3 @@ createtile dirt 480 288 6
 createtile dirt 512 288 6
 createtile dirt 384 384 6
 createtile dirt 352 384 6
-createtile grass 352 352 0

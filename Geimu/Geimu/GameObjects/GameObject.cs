@@ -132,7 +132,7 @@ namespace Geimu
         {
             Sprite?.Draw(batch, Position - offset - Sprite.Offset);
             if (drawHitbox)
-                batch.Draw(hitboxSprite, AddVectorToRect(Hitbox, Position - offset), Color.White);
+                batch.Draw(hitboxSprite, AddVectorToRect(Hitbox, Position - offset), null, Color.White, (float)0.0, new Vector2(0,0), SpriteEffects.None, (float)0.04);
         }
         public static Vector2 VectorCeil(Vector2 val)
         {

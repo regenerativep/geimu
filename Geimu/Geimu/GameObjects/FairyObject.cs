@@ -28,7 +28,7 @@ namespace Geimu.GameObjects
             Sprite.Size = new Vector2(32, 32);
             animationindex = -16;
             goingUp = true;
-            
+            Hitbox = new Rectangle(0, 0, 32, 48);
             Sprite.Layer = Layer;
             fairySprite = null;
             AssetManager.RequestTexture("fairy", (frames) =>
@@ -73,6 +73,10 @@ namespace Geimu.GameObjects
             else
             {
                 SwitchMode("move");
+            }
+            if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(0, 1))))
+            {
+                System.Diagnostics.Debug.WriteLine("fairy collide");
             }
             base.Update();
         }
