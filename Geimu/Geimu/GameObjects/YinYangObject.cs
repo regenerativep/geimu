@@ -18,6 +18,7 @@ namespace Geimu.GameObjects
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(16, 16);
             Sprite.Layer = 1;
+            Sprite.Speed = 0.2f;
             yinyangSprite = null;
             SpriteManager.RequestTexture("yinYang", (frames) =>
             {
@@ -36,7 +37,6 @@ namespace Geimu.GameObjects
             Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
             float dir = (float)Math.Atan2(mouseRelative.Y, mouseRelative.X);
             Vector2 DirectionVector = new Vector2((float)Math.Cos(dir), (float)Math.Sin(dir));
-            //Sprite.Update();
             Position = playerPos + (DirectionVector*25);
             base.Update();
         }

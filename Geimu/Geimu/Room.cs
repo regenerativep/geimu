@@ -110,6 +110,12 @@ namespace Geimu
                         GameTileList.Add(obj);
                         break;
                     }
+                case "background": //"background [assetName] [layer * 100] [distSpeed]
+                    {
+                        ParallaxBackground bg = new ParallaxBackground(this, parts[1], (float)int.Parse(parts[2]) / 100f, float.Parse(parts[3]));
+                        Background.Backgrounds.Add(bg);
+                        break;
+                    }
             }
         }
         public bool CheckCollision(Rectangle collider)
