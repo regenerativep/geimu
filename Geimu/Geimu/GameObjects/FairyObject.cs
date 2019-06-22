@@ -17,6 +17,8 @@ namespace Geimu.GameObjects
 
         private bool facingRight;
         private Texture2D[] fairySprite;
+        private int animationindex;
+        private bool goingUp;
 
         public FairyObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
@@ -24,6 +26,8 @@ namespace Geimu.GameObjects
             facingRight = true;
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(32, 32);
+            animationindex = -16;
+            goingUp = true;
             
             Sprite.Layer = Layer;
             fairySprite = null;
@@ -54,6 +58,14 @@ namespace Geimu.GameObjects
 
         public override void Update()
         {
+            if (animationindex == -10)
+                goingUp = true;
+            if (animationindex == 14)
+                goingUp = false;
+            if (goingUp)
+                animationindex++;
+            else
+                animationindex--;
             if (Math.Abs(Velocity.X) < IdleMaxSpeed)
             {
                 SwitchMode("idle");
@@ -75,6 +87,17 @@ namespace Geimu.GameObjects
             {
                 Sprite.SpriteEffect = SpriteEffects.None;
             }
+            Sprite.Offset = new Vector2(0, animationindex/2);
+            /*if (animationindex < -15)
+                Sprite.Offset = new Vector2(0, -16);
+            else if (animationindex < 0)
+                Sprite.Offset = new Vector2(0, -8);
+            else if (animationindex < 15)
+                Sprite.Offset = new Vector2(0, 0);
+            else if (animationindex < 30)
+                Sprite.Offset = new Vector2(0, 8);
+            else
+                Sprite.Offset = new Vector2(0, 16);*/
             base.Draw(batch, offset);
         }
     }

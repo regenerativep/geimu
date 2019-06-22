@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="BackgroundSystem.cs" />
     <Compile Include="GameObjects\BlockObject.cs" />
-    <Compile Include="GameObjects\BossObject.cs" />
     <Compile Include="GameObjects\BulletObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
     <Compile Include="GameObjects\YinYangObject.cs" />
