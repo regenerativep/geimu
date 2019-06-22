@@ -19,6 +19,9 @@ namespace Geimu
         public static float Gravity = 0.3f;
         public static float IdleMaxSpeed = 3;
         public static float AirMinSpeed = 2;
+        public static float BaseJumpSpeed = -5;
+        public static float PerStepJumpSpeed = -0.4f;
+        public static int MaximumAfterJumpSteps = 9;
 
         private YinYangObject YinYang;
         private int jumpsRemaining = 2;
@@ -29,9 +32,11 @@ namespace Geimu
         private bool isJumping;
         private bool facingRight;
         private Texture2D[] idleSprite, moveSprite, jumpSprite, airSprite;
+        private int remainingJumpSteps;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
             isJumping = false;
+            remainingJumpSteps = 0;
             facingRight = true;
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(64, 64);
@@ -129,6 +134,14 @@ namespace Geimu
                     SwitchMode("move");
                 }
             }
+            else
+            {
+                if(remainingJumpSteps > 0 && keyState.IsKeyDown(Settings.Binds.Jump))
+                {
+                    vel.Y += PerStepJumpSpeed;
+                    remainingJumpSteps--;
+                }
+            }
             if (vel.Y > AirMinSpeed)
             {
                 SwitchMode("fall");
@@ -151,8 +164,9 @@ namespace Geimu
             }
             if (keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0)
             {
-                vel.Y = JumpSpeed;
+                vel.Y = BaseJumpSpeed;
                 isJumping = true;
+                remainingJumpSteps = MaximumAfterJumpSteps;
                 jumpsRemaining--;
                 Vector2 footPos = new Vector2(Position.X + (Size.X / 4), Position.Y + Size.Y);
                 Room.GameObjectList.Add(new JumpParticleObject(Room, footPos));
