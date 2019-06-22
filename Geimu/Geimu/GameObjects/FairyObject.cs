@@ -20,12 +20,12 @@ namespace Geimu.GameObjects
 
         public FairyObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
+            Position -= new Vector2(0, 16);
             facingRight = true;
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(32, 32);
             
             Sprite.Layer = Layer;
-            Hitbox = new Rectangle(12, 4, 40, 59);
             fairySprite = null;
             AssetManager.RequestTexture("fairy", (frames) =>
             {

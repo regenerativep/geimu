@@ -81,6 +81,14 @@ namespace Geimu
             Lighting.Draw(batch, ceiledOffset);
             //crosshair.Draw(batch, GameObject.VectorCeil(ViewOffset));
         }
+        public void DisplayHitbox()
+        {
+            for (int i = 0; i < GameObjectList.Count; i++)
+            {
+                GameObject obj = GameObjectList[i];
+                obj.drawHitbox = true;
+            }
+        }
         public void ProcessCommand(string cmd)
         {
             string[] parts = cmd.Split(' ');
