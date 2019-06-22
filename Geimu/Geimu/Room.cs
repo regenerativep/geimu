@@ -15,6 +15,12 @@ namespace Geimu
         public int Height { get; set; }
         public GeimuGame Game { get; set; }
         public Vector2 ViewOffset { get; set; }
+        public LightingSystem Lighting { get; set; }
+        /// <summary>
+        /// frames/update
+        /// </summary>
+        public int LightingUpdateRate { get; set; }
+        private int lightingUpdateRateCounter;
         public Room(GeimuGame game)
         {
             Game = game;
@@ -23,6 +29,9 @@ namespace Geimu
             Width = 512;
             Height = 512;
             ViewOffset = new Vector2(0, 0);
+            Lighting = new LightingSystem(this);
+            LightingUpdateRate = 1;
+            lightingUpdateRateCounter = 0;
         }
         public void Update()
         {
@@ -31,6 +40,20 @@ namespace Geimu
                 GameObject obj = GameObjectList[i];
                 obj.Update();
             }
+            if(lightingUpdateRateCounter == 0)
+            {
+                List<LightData> lights = new List<LightData>();
+                for (int i = 0; i < GameObjectList.Count; i++)
+                {
+                    GameObject obj = GameObjectList[i];
+                    if(obj.Light != null)
+                    {
+                        lights.Add(obj.Light);
+                    }
+                }
+                Lighting.UpdateLighting(lights.ToArray());
+            }
+            lightingUpdateRateCounter = (lightingUpdateRateCounter + 1) % LightingUpdateRate;
         }
         public void Draw(SpriteBatch batch)
         {
@@ -44,6 +67,7 @@ namespace Geimu
                 GameTile tile = GameTileList[i];
                 tile.Draw(batch, GameObject.VectorCeil(ViewOffset));
             }
+            Lighting.Draw(batch, ViewOffset);
         }
         public void ProcessCommand(string cmd)
         {

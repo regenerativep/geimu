@@ -62,6 +62,7 @@ namespace Geimu
             SpriteManager.Load("dirtSideLeft", "sprites\\dirtSideLeft", 1, Content);
             SpriteManager.Load("dirtSideTop", "sprites\\dirtSideTop", 1, Content);
             SpriteManager.Load("bullet", "sprites\\bullet", 1, Content);
+            SpriteManager.Load("whiteChunk", "sprites\\whiteChunk", 1, Content);
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Geimu
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
             currentRoom.Draw(spriteBatch);
             spriteBatch.End();
 

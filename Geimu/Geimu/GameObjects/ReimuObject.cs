@@ -35,6 +35,10 @@ namespace Geimu
             Sprite.Size = new Vector2(64, 64);
             Sprite.Layer = Layer;
             Hitbox = new Rectangle(12, 4, 40, 59);
+            Light = new LightData();
+            Light.Brightness = 16;
+            Light.Position = Position + (Size / 2);
+
             idleSprite = null;
             moveSprite = null;
             jumpSprite = null;
@@ -86,6 +90,7 @@ namespace Geimu
         }
         public override void Update()
         {
+            Light.Position = Position + (Size / 2);
             keyState = Keyboard.GetState();
             mouseState = Mouse.GetState();
             Vector2 vel = Velocity; //don't know why i cant just use Velocity

@@ -21,6 +21,7 @@ namespace Geimu
         public Rectangle Hitbox { get; set; }
         public Room Room { get; set; }
         public bool Solid { get; set; }
+        public LightData Light { get; set; }
         private float layer;
         public float Layer
         {
@@ -39,6 +40,7 @@ namespace Geimu
         }
         public GameObject(Room room, Vector2 pos, Vector2 vel, Vector2 size)
         {
+            Light = null;
             Solid = false;
             Room = room;
             Position = pos;
