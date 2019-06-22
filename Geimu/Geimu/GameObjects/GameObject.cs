@@ -17,6 +17,7 @@ namespace Geimu
         public Vector2 Size { get; set; }
         public SpriteData Sprite { get; set; }
         private Texture2D hitboxSprite;
+        public bool drawHitbox;
         /// <summary>
         /// hitbox, relative to Position
         /// </summary>
@@ -51,6 +52,7 @@ namespace Geimu
             Sprite = null;
             Layer = 0;
             Hitbox = new Rectangle(0, 0, (int)size.X, (int)size.Y);
+            drawHitbox = false;
             AssetManager.RequestTexture("whiteChunk", (frames) =>
             {
                 hitboxSprite = frames[0];
@@ -129,7 +131,8 @@ namespace Geimu
         public virtual void Draw(SpriteBatch batch, Vector2 offset)
         {
             Sprite?.Draw(batch, Position - offset - Sprite.Offset);
-            batch.Draw(hitboxSprite, AddVectorToRect(Hitbox, Position-offset), Color.White);
+            if (drawHitbox)
+                batch.Draw(hitboxSprite, AddVectorToRect(Hitbox, Position - offset), null, Color.White, (float)0.0, new Vector2(0,0), SpriteEffects.None, (float)0.04);
         }
         public static Vector2 VectorCeil(Vector2 val)
         {

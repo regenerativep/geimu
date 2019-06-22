@@ -102,7 +102,8 @@ namespace Geimu
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            if (Keyboard.GetState().IsKeyDown(Keys.H))
+                currentRoom.DisplayHitbox();
             currentRoom.Update();
             base.Update(gameTime);
         }
