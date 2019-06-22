@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Geimu.GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,11 +24,15 @@ namespace Geimu
         /// </summary>
         public int LightingUpdateRate { get; set; }
         private int lightingUpdateRateCounter;
+        private CrosshairObject crosshair;
+
         public Room(GeimuGame game)
         {
             Game = game;
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
+            crosshair = new CrosshairObject(this);
+            GameObjectList.Add(crosshair);
             Width = 512;
             Height = 512;
             ViewOffset = new Vector2(0, 0);
@@ -73,6 +79,7 @@ namespace Geimu
                 tile.Draw(batch, ceiledOffset);
             }
             Lighting.Draw(batch, ceiledOffset);
+            //crosshair.Draw(batch, GameObject.VectorCeil(ViewOffset));
         }
         public void ProcessCommand(string cmd)
         {
