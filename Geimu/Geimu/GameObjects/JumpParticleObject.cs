@@ -20,7 +20,7 @@ namespace Geimu.GameObjects
             Sprite.Layer = 1;
             jumpSprite = null;
             lifetime = 20;
-            SpriteManager.RequestTexture("jumpParticle", (frames) =>
+            AssetManager.RequestTexture("jumpParticle", (frames) =>
             {
                 jumpSprite = frames;
                 Sprite.Change(jumpSprite);

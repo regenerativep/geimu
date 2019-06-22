@@ -48,34 +48,38 @@ namespace Geimu
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            SpriteManager.Load("reimuIdle", "sprites\\reimu", 3, Content);
-            SpriteManager.Load("reimuRun", "sprites\\reimuRun", 8, Content);
-            SpriteManager.Load("reimuJump", "sprites\\reimuJump", 1, Content);
-            SpriteManager.Load("reimuFall", "sprites\\reimuFall", 1, Content);
-            SpriteManager.Load("dirt", "sprites\\dirt", 1, Content);
-            SpriteManager.Load("dirt2", "sprites\\dirt2", 1, Content);
-            SpriteManager.Load("grass", "sprites\\grass", 1, Content);
-            SpriteManager.Load("grass2", "sprites\\grass2", 1, Content);
-            SpriteManager.Load("grassTop", "sprites\\grassTop", 1, Content);
-            SpriteManager.Load("dirtSideRight", "sprites\\dirtSideRight", 1, Content);
-            SpriteManager.Load("dirtSideBottom", "sprites\\dirtSideBottom", 1, Content);
-            SpriteManager.Load("dirtSideLeft", "sprites\\dirtSideLeft", 1, Content);
-            SpriteManager.Load("dirtSideTop", "sprites\\dirtSideTop", 1, Content);
-            SpriteManager.Load("bullet", "sprites\\bullet", 1, Content);
-            SpriteManager.Load("whiteChunk", "sprites\\whiteChunk", 1, Content);
-            SpriteManager.Load("fairy", "sprites\\fairy", 4, Content);
-            SpriteManager.Load("fairyRun", "sprites\\fairy", 2, Content);
-            SpriteManager.Load("woodedBackground", "sprites\\woodedBackground0", 1, Content);
-            SpriteManager.Load("woodedBackground2", "sprites\\woodedBackground1", 1, Content);
-            SpriteManager.Load("woodedBackground3", "sprites\\woodedBackground2", 1, Content);
-            SpriteManager.Load("crosshair", "sprites\\crosshair", 3, Content);
-            SpriteManager.Load("yinYang", "sprites\\yinYang", 4, Content);
-            SpriteManager.Load("cardBullet", "sprites\\cardBullet", 1, Content);
-            SpriteManager.Load("jumpParticle", "sprites\\jumpParticle", 3, Content);
-            SpriteManager.Load("clownpiece", "sprites\\clownpiece", 3, Content);
-            SpriteManager.Load("hakureiShrine", "sprites\\hakureiShrine", 1, Content);
-            SpriteManager.Load("hakureiShrine2", "sprites\\hakureiShrine2", 1, Content);
-            SpriteManager.Load("hakureiShrine3", "sprites\\hakureiShrine3", 1, Content);
+            AssetManager.Content = Content;
+            AssetManager.LoadTexture("reimuIdle", "sprites\\reimu", 3);
+            AssetManager.LoadTexture("reimuRun", "sprites\\reimuRun", 8);
+            AssetManager.LoadTexture("reimuJump", "sprites\\reimuJump", 1);
+            AssetManager.LoadTexture("reimuFall", "sprites\\reimuFall", 1);
+            AssetManager.LoadTexture("dirt", "sprites\\dirt", 1);
+            AssetManager.LoadTexture("dirt2", "sprites\\dirt2", 1);
+            AssetManager.LoadTexture("grass", "sprites\\grass", 1);
+            AssetManager.LoadTexture("grass2", "sprites\\grass2", 1);
+            AssetManager.LoadTexture("grassTop", "sprites\\grassTop", 1);
+            AssetManager.LoadTexture("dirtSideRight", "sprites\\dirtSideRight", 1);
+            AssetManager.LoadTexture("dirtSideBottom", "sprites\\dirtSideBottom", 1);
+            AssetManager.LoadTexture("dirtSideLeft", "sprites\\dirtSideLeft", 1);
+            AssetManager.LoadTexture("dirtSideTop", "sprites\\dirtSideTop", 1);
+            AssetManager.LoadTexture("bullet", "sprites\\bullet", 1);
+            AssetManager.LoadTexture("whiteChunk", "sprites\\whiteChunk", 1);
+            AssetManager.LoadTexture("fairy", "sprites\\fairy", 4);
+            AssetManager.LoadTexture("fairyRun", "sprites\\fairy", 2);
+            AssetManager.LoadTexture("woodedBackground", "sprites\\woodedBackground0", 1);
+            AssetManager.LoadTexture("woodedBackground2", "sprites\\woodedBackground1", 1);
+            AssetManager.LoadTexture("woodedBackground3", "sprites\\woodedBackground2", 1);
+            AssetManager.LoadTexture("crosshair", "sprites\\crosshair", 3);
+            AssetManager.LoadTexture("yinYang", "sprites\\yinYang", 4);
+            AssetManager.LoadTexture("cardBullet", "sprites\\cardBullet", 1);
+            AssetManager.LoadTexture("jumpParticle", "sprites\\jumpParticle", 3);
+            AssetManager.LoadTexture("clownpiece", "sprites\\clownpiece", 3);
+            AssetManager.LoadTexture("hakureiShrine", "sprites\\hakureiShrine", 1);
+            AssetManager.LoadTexture("hakureiShrine2", "sprites\\hakureiShrine2", 1);
+            AssetManager.LoadTexture("hakureiShrine3", "sprites\\hakureiShrine3", 1);
+
+            AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
+            AssetManager.LoadSound("throwCard", "sounds\\throwCard");
         }
 
         /// <summary>

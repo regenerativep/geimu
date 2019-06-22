@@ -20,7 +20,7 @@ namespace Geimu.GameObjects
             Sprite.Layer = 1;
             Sprite.Speed = 0.2f;
             yinyangSprite = null;
-            SpriteManager.RequestTexture("yinYang", (frames) =>
+            AssetManager.RequestTexture("yinYang", (frames) =>
             {
                 yinyangSprite = frames;
                 Sprite.Change(yinyangSprite);

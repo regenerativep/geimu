@@ -25,7 +25,7 @@ namespace Geimu
             whiteChunk = null;
             LightingDifficulty = 1f;
             LightingOpacity = 0.5f;
-            SpriteManager.RequestTexture("whiteChunk", (frames) =>
+            AssetManager.RequestTexture("whiteChunk", (frames) =>
             {
                 whiteChunk = frames[0];
             });

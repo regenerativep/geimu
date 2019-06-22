@@ -27,7 +27,7 @@ namespace Geimu.GameObjects
             Sprite.Layer = Layer;
             Hitbox = new Rectangle(12, 4, 40, 59);
             fairySprite = null;
-            SpriteManager.RequestTexture("fairy", (frames) =>
+            AssetManager.RequestTexture("fairy", (frames) =>
             {
                 fairySprite = frames;
             });

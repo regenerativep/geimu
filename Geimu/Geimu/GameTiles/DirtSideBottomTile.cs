@@ -11,7 +11,7 @@ namespace Geimu
     {
         public DirtSideBottomTile(Vector2 pos) : base(pos, new Vector2(32, 32))
         {
-            SpriteManager.RequestTexture("dirtSideBottom", (frames) =>
+            AssetManager.RequestTexture("dirtSideBottom", (frames) =>
             {
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(32, 32);

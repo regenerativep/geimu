@@ -51,7 +51,7 @@ namespace Geimu
             Sprite = null;
             Layer = 0;
             Hitbox = new Rectangle(0, 0, (int)size.X, (int)size.Y);
-            SpriteManager.RequestTexture("whiteChunk", (frames) =>
+            AssetManager.RequestTexture("whiteChunk", (frames) =>
             {
                 hitboxSprite = frames[0];
             });

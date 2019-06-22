@@ -16,7 +16,7 @@ namespace Geimu
         private Texture2D whiteChunk;
         public BackgroundSystem(Room room)
         {
-            SpriteManager.RequestTexture("whiteChunk", (frames) =>
+            AssetManager.RequestTexture("whiteChunk", (frames) =>
             {
                 whiteChunk = frames[0];
             });

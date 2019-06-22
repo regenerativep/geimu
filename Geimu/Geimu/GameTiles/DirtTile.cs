@@ -14,7 +14,7 @@ namespace Geimu
         {
             string[] options = new string[] { "dirt", "dirt2" };
             int optionInd = randGen.Next(options.Length);
-            SpriteManager.RequestTexture(options[optionInd], (frames) =>
+            AssetManager.RequestTexture(options[optionInd], (frames) =>
             {
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(32, 32);

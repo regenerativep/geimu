@@ -21,7 +21,7 @@ namespace Geimu
             Sprite = new SpriteData();
             Sprite.Layer = layer;
             drawFrom = new Vector2(0, 0);
-            SpriteManager.RequestTexture(spriteName, (frame) =>
+            AssetManager.RequestTexture(spriteName, (frame) =>
             {
                 Sprite.Change(frame);
                 Sprite.Size = new Vector2(frame[0].Bounds.Width, frame[0].Bounds.Height);

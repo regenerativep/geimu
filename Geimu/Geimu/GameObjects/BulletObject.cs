@@ -28,7 +28,7 @@ namespace Geimu
             Hitbox = new Rectangle(-12, -12, 12, 12);
             Sprite.Layer = 4f / 100;
             Sprite.Angle = dir;
-            SpriteManager.RequestTexture("cardBullet", (frames) =>
+            AssetManager.RequestTexture("cardBullet", (frames) =>
             {
                 Sprite.Change(frames);
             });

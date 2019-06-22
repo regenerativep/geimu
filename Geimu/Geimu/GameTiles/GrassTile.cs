@@ -11,7 +11,7 @@ namespace Geimu
     {
         public GrassTile(Vector2 pos) : base(pos, new Vector2(32, 32))
         {
-            SpriteManager.RequestTexture("grass", (frames) =>
+            AssetManager.RequestTexture("grass", (frames) =>
             {
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(32, 32);

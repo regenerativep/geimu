@@ -7,6 +7,7 @@ using Geimu.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Geimu
 {
@@ -33,6 +34,8 @@ namespace Geimu
         private bool facingRight;
         private Texture2D[] idleSprite, moveSprite, jumpSprite, airSprite;
         private int remainingJumpSteps;
+        private SoundEffect throwCardSound;
+        private SoundEffect jumpSound;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
             isJumping = false;
@@ -50,21 +53,31 @@ namespace Geimu
             moveSprite = null;
             jumpSprite = null;
             airSprite = null;
-            SpriteManager.RequestTexture("reimuIdle", (frames) =>
+            jumpSound = null;
+            throwCardSound = null;
+            AssetManager.RequestTexture("reimuIdle", (frames) =>
             {
                 idleSprite = frames;
             });
-            SpriteManager.RequestTexture("reimuRun", (frames) =>
+            AssetManager.RequestTexture("reimuRun", (frames) =>
             {
                 moveSprite = frames;
             });
-            SpriteManager.RequestTexture("reimuJump", (frames) =>
+            AssetManager.RequestTexture("reimuJump", (frames) =>
             {
                 jumpSprite = frames;
             });
-            SpriteManager.RequestTexture("reimuFall", (frames) =>
+            AssetManager.RequestTexture("reimuFall", (frames) =>
             {
                 airSprite = frames;
+            });
+            AssetManager.RequestSound("reimuJump", (sound) =>
+            {
+                jumpSound = sound;
+            });
+            AssetManager.RequestSound("throwCard", (sound) =>
+            {
+                throwCardSound = sound;
             });
         }
         public void SwitchMode(string mode)
@@ -164,6 +177,7 @@ namespace Geimu
             }
             if (keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0)
             {
+                jumpSound?.Play();
                 vel.Y = BaseJumpSpeed;
                 isJumping = true;
                 remainingJumpSteps = MaximumAfterJumpSteps;
@@ -189,6 +203,7 @@ namespace Geimu
                 Vector2 playerOnScreenPos = playerPos - Room.ViewOffset;
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
                 Room.GameObjectList.Add(new BulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
+                throwCardSound?.Play();
             }
 
             Velocity = vel;
