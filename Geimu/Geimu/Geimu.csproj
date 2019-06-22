@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BackgroundSystem.cs" />
     <Compile Include="GameObjects\BlockObject.cs" />
     <Compile Include="GameObjects\BulletObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="GeimuGame.cs" />
     <Compile Include="LightData.cs" />
     <Compile Include="LightingSystem.cs" />
+    <Compile Include="ParallaxBackground.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />

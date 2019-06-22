@@ -20,7 +20,6 @@ namespace Geimu.GameObjects
 
         public FairyObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
-            System.Diagnostics.Debug.WriteLine("yee");
             facingRight = true;
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(32, 32);
@@ -67,7 +66,6 @@ namespace Geimu.GameObjects
             {
                 SwitchMode("move");
             }
-            System.Diagnostics.Debug.WriteLine(Position);
             base.Update();
         }
 
@@ -81,7 +79,6 @@ namespace Geimu.GameObjects
             {
                 Sprite.SpriteEffect = SpriteEffects.FlipHorizontally;
             }
-            System.Diagnostics.Debug.WriteLine("Drawing to screen");
             base.Draw(batch, offset);
         }
     }
