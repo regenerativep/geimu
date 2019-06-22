@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Geimu.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -151,6 +152,8 @@ namespace Geimu
                 vel.Y = JumpSpeed;
                 isJumping = true;
                 jumpsRemaining--;
+                Vector2 footPos = new Vector2(Position.X + (Size.Y / 4), Position.Y + Size.Y);
+                Room.GameObjectList.Add(new JumpParticleObject(Room, footPos));
             }
             if (Math.Abs(vel.X) > MaxVelocity.X)
             {

@@ -45,6 +45,7 @@
     <Compile Include="GameObjects\BlockObject.cs" />
     <Compile Include="GameObjects\BulletObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
+    <Compile Include="GameObjects\JumpParticleObject.cs" />
     <Compile Include="GameObjects\CrosshairObject.cs" />
     <Compile Include="GameObjects\FairyObject.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
