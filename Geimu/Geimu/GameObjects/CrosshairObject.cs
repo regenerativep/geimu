@@ -24,9 +24,7 @@ namespace Geimu.GameObjects
                 crosshairSprite = frames;
                 Sprite.Change(crosshairSprite);
             });
-
             
-            Sprite.Speed = 1f / 10;
             Sprite.Offset = new Vector2(12, 12);
         }
 
