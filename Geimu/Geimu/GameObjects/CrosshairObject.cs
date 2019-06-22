@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Geimu.GameObjects
 {
-    class CrosshairObject : GameObject
+    public class CrosshairObject : GameObject
     {
         private Texture2D[] crosshairSprite;
         private MouseState mouseState;
@@ -25,7 +25,7 @@ namespace Geimu.GameObjects
                 Sprite.Change(crosshairSprite);
             });
             
-            Sprite.Offset = new Vector2(12, 12);
+            Sprite.Offset = new Vector2(6, 6);
         }
 
         public override void Update()

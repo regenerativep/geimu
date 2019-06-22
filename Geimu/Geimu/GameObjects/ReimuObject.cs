@@ -20,6 +20,7 @@ namespace Geimu
         public static float IdleMaxSpeed = 3;
         public static float AirMinSpeed = 2;
 
+        private YinYangObject YinYang;
         private int jumpsRemaining = 2;
         private KeyboardState keyState;
         private KeyboardState prevKeyState;
@@ -39,7 +40,7 @@ namespace Geimu
             Light = new LightData();
             Light.Brightness = 128;
             Light.Position = Position + (Size / 2);
-
+            YinYang = new YinYangObject(room, pos);
             idleSprite = null;
             moveSprite = null;
             jumpSprite = null;
@@ -97,6 +98,8 @@ namespace Geimu
             Vector2 vel = Velocity; //don't know why i cant just use Velocity
             vel.Y += Gravity;
             bool moveKeyPressed = false;
+            System.Diagnostics.Debug.WriteLine("ReimuPos: " + Position);
+            YinYang.UpdatePos(Position + (Size / 2));
             if (keyState.IsKeyDown(Settings.Binds.Left))
             {
                 vel.X -= MoveSpeed;
@@ -152,7 +155,7 @@ namespace Geimu
                 vel.Y = JumpSpeed;
                 isJumping = true;
                 jumpsRemaining--;
-                Vector2 footPos = new Vector2(Position.X + (Size.Y / 4), Position.Y + Size.Y);
+                Vector2 footPos = new Vector2(Position.X + (Size.X / 4), Position.Y + Size.Y);
                 Room.GameObjectList.Add(new JumpParticleObject(Room, footPos));
             }
             if (Math.Abs(vel.X) > MaxVelocity.X)
@@ -169,7 +172,7 @@ namespace Geimu
             }
             if(mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
             {
-                Vector2 playerPos = Position + (Size / 2);
+                Vector2 playerPos = YinYang.Position + (YinYang.Size / 2);
                 Vector2 playerOnScreenPos = playerPos - Room.ViewOffset;
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
                 Room.GameObjectList.Add(new BulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
@@ -191,6 +194,7 @@ namespace Geimu
             {
                 Sprite.SpriteEffect = SpriteEffects.FlipHorizontally;
             }
+            YinYang.Draw(batch, offset);
             base.Draw(batch, offset);
         }
     }
