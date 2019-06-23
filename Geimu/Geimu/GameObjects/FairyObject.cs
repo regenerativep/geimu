@@ -83,23 +83,19 @@ namespace Geimu.GameObjects
             }
             if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 0))))
             {
-                System.Diagnostics.Debug.WriteLine("fairy collide x+1");
                 facingRight = false;
 
             }
             if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(-1, 0))))
             {
-                System.Diagnostics.Debug.WriteLine("fairy collide x-1");
                 facingRight = true;
             }
             if (!Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(-1, 1))))
             {
-                System.Diagnostics.Debug.WriteLine("fairy collide x-1, y+1");
                 facingRight = true;
             }
             if (!Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 1))))
             {
-                System.Diagnostics.Debug.WriteLine("fairy collide x+1, y+1");
                 facingRight = false;
             }
 
@@ -117,16 +113,6 @@ namespace Geimu.GameObjects
                 Sprite.SpriteEffect = SpriteEffects.None;
             }
             Sprite.Offset = new Vector2(0, animationindex/2);
-            /*if (animationindex < -15)
-                Sprite.Offset = new Vector2(0, -16);
-            else if (animationindex < 0)
-                Sprite.Offset = new Vector2(0, -8);
-            else if (animationindex < 15)
-                Sprite.Offset = new Vector2(0, 0);
-            else if (animationindex < 30)
-                Sprite.Offset = new Vector2(0, 8);
-            else
-                Sprite.Offset = new Vector2(0, 16);*/
             base.Draw(batch, offset);
         }
     }
