@@ -10,6 +10,7 @@ namespace Geimu.GameObjects
 {
     class GoalBlockObject : GameObject
     {
+        public static bool HasPlayedSound = false;
         private SoundEffect levelCompleteSound;
         public GoalBlockObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
@@ -26,7 +27,11 @@ namespace Geimu.GameObjects
             {
                 if (Room.FindObject("fairy") == null && Room.FindObject("clownpiece") == null)
                 {
-                    Room.Sounds.PlaySound(levelCompleteSound);
+                    if (!HasPlayedSound)
+                    {
+                        Room.Sounds.PlaySound(levelCompleteSound);
+                        HasPlayedSound = true;
+                    }
                     Room.NextRoom();
                 }
                     

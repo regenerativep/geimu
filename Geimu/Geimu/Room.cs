@@ -54,6 +54,7 @@ namespace Geimu
             LightingUpdateRate = 4;
             lightingUpdateRateCounter = 0;
             NoteText = "";
+            GoalBlockObject.HasPlayedSound = false;
             AssetManager.RequestSound("mainTheme", (sound) =>
             {
                 mainTheme = sound;

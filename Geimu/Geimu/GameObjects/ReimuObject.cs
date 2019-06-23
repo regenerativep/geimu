@@ -24,6 +24,8 @@ namespace Geimu
         public static float PerStepJumpSpeed = -0.4f;
         public static int MaximumAfterJumpSteps = 9;
         public static int ShootCooldown = 8;
+        private static int graceFlashStepLength = 15;
+        private static int graceFlashTotalLength = 180;
 
         private YinYangObject YinYang;
         private int jumpsRemaining = 2;
@@ -38,11 +40,13 @@ namespace Geimu
         private SoundEffect jumpSound;
         private SoundEffect jumpResetSound;
         private SoundEffect reimuDamagedSound;
+        private int remainingGraceSteps;
 
         private Vector2 spawnLoc;
         private int remainingShootCooldown;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
+            remainingGraceSteps = 0;
             remainingShootCooldown = 0;
             spawnLoc = pos;
             isJumping = false;
@@ -251,6 +255,10 @@ namespace Geimu
             {
                 remainingShootCooldown--;
             }
+            if(remainingGraceSteps > 0)
+            {
+                remainingGraceSteps--;
+            }
 
             if (Position.Y > 2000)
                 Damage();
@@ -271,7 +279,10 @@ namespace Geimu
             }
             YinYang.Draw(batch, offset);
             DrawLives(batch);
-            base.Draw(batch, offset);
+            if (remainingGraceSteps % (graceFlashStepLength * 2) < graceFlashStepLength)
+            {
+                base.Draw(batch, offset);
+            }
         }
 
         public void DrawLives(SpriteBatch batch)
@@ -287,6 +298,8 @@ namespace Geimu
         }
         public void Damage()
         {
+            if (remainingGraceSteps != 0) return;
+            remainingGraceSteps = graceFlashTotalLength;
             Room.Sounds.PlaySound(reimuDamagedSound);
             Position = spawnLoc;
             if (Room.Game.lives == 0)
