@@ -17,8 +17,6 @@ namespace Geimu
                 Sprite.Size = new Vector2(32, 32);
                 Sprite.Speed = 0;
                 Sprite.Layer = Layer;
-                //System.Diagnostics.Debug.WriteLine("Asdasdasd");
-
             });
         }
     }

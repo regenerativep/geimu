@@ -11,13 +11,14 @@ namespace Geimu
     public class BossObject : GameObject
     {
         private static Random randNumGenerator = new Random();
-        //private static int stepCooldownReset = 12;
+        private static int stepCooldownReset = 12;
         private static float minSprayDir = 0;
         private static float maxSprayDir = (float) Math.PI;
-        private static float sprayDirChange = 0.04f;
+        private static float sprayDirChange = 0.48f;
         private static int stepsBeforeAttackChange = 300;
-        private static int maxLife = 200;
+        private static int maxLife = 400;
         private static int healthbarTopPadding = 8;
+        private static int betweenAttackSteps = 120;
         private int attackMode;
         private int stepCooldown;
         private float sprayDir;
@@ -32,7 +33,7 @@ namespace Geimu
             life = maxLife;
             stepCooldown = 0;
             sprayDir = minSprayDir;
-            attackMode = 0;
+            attackMode = 3;
             target = null;
             remainingStepsBeforeChange = stepsBeforeAttackChange;
             Sprite = new SpriteData();
@@ -71,26 +72,52 @@ namespace Geimu
             }
             else
             {
-                switch (attackMode)
+                if (stepCooldown == 0)
                 {
-                    case 0: //no attack
-                        break;
-                    case 1: //direct attack
-                        {
-                            float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
-                            fireBullet(dir, 30);
+                    switch(attackMode)
+                    {
+                        case 0: //no attack
                             break;
-                        }
-                    case 2: //spray attack
-                        {
-                            sprayDir += sprayDirChange;
-                            if(sprayDir > maxSprayDir)
+                        case 1: //direct attack
                             {
-                                sprayDir = minSprayDir;
+                                float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
+                                fireBullet(dir);
+                                stepCooldown = 30;
+                                break;
                             }
-                            fireBullet(sprayDir, 12);
-                            break;
-                        }
+                        case 1: //direct attack
+                            {
+                                float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
+                                fireBullet(dir);
+                                break;
+                            }
+                        case 2: //spray attack
+                            {
+                                sprayDir += sprayDirChange;
+                                if (sprayDir > maxSprayDir)
+                                {
+                                    sprayDir = minSprayDir;
+                                }
+                                fireBullet(sprayDir);
+                                break;
+                            }
+                        case 3: //spray attack
+                            {
+                                sprayDir += sprayDirChange;
+                                if (sprayDir > maxSprayDir)
+                                {
+                                    sprayDir = minSprayDir;
+                                }
+                                fireBullet(sprayDir);
+                                fireBullet(maxSprayDir - sprayDir);
+                                stepCooldown = 12;
+                                break;
+                            }
+                    }
+                    if(stepCooldown == 0)
+                    {
+                        stepCooldown = stepCooldownReset;
+                    }
                 }
             }
             if(stepCooldown > 0)
@@ -99,8 +126,15 @@ namespace Geimu
             }
             if(remainingStepsBeforeChange == 0)
             {
-                attackMode = randNumGenerator.Next(3);
-                remainingStepsBeforeChange = stepsBeforeAttackChange;
+                attackMode = randNumGenerator.Next(4);
+                if (attackMode == 0)
+                {
+                    remainingStepsBeforeChange = betweenAttackSteps;
+                }
+                else
+                {
+                    remainingStepsBeforeChange = stepsBeforeAttackChange;
+                }
             }
             else if(remainingStepsBeforeChange > 0)
             {
@@ -114,13 +148,10 @@ namespace Geimu
             healthbarFrame.Draw(batch, drawHealthbarFrom);
             base.Draw(batch, offset);
         }
-        private void fireBullet(float dir, int cooldown)
+        private void fireBullet(float dir)
         {
-            if (stepCooldown == 0)
-            {
-                Room.GameObjectList.Add(new CompressedTouhouBall(Room, Position + (Size / 2), dir));
-                stepCooldown = cooldown;
-            }
+            Room.GameObjectList.Add(new CompressedTouhouBall(Room, Position + (Size / 2), dir));
+            stepCooldown = stepCooldownReset;
         }
 
         public void Damage()

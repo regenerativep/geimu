@@ -38,7 +38,7 @@ namespace Geimu
                 if (!Room.CheckTileAt(Position - new Vector2(0, Size.Y)))
                 {
                     GameTile tl = new GrassTopTile(Room, Position);
-                    tl.Layer = Layer + 0.01f;
+                    tl.Layer = Layer + 0.02f;
                     Room.GameTileList.Add(tl);
                 }
             });

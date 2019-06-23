@@ -23,13 +23,13 @@ namespace Geimu
         public static float BaseJumpSpeed = -5;
         public static float PerStepJumpSpeed = -0.4f;
         public static int MaximumAfterJumpSteps = 9;
+        public static int ShootCooldown = 8;
 
         private YinYangObject YinYang;
         private int jumpsRemaining = 2;
         private KeyboardState keyState;
         private KeyboardState prevKeyState;
         private MouseState mouseState;
-        private MouseState prevMouseState;
         private bool isJumping;
         private bool facingRight;
         private Texture2D[] idleSprite, moveSprite, jumpSprite, airSprite;
@@ -37,8 +37,10 @@ namespace Geimu
         private SoundEffect throwCardSound;
         private SoundEffect jumpSound;
         private Vector2 spawnLoc;
+        private int remainingShootCooldown;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
+            remainingShootCooldown = 0;
             spawnLoc = pos;
             isJumping = false;
             remainingJumpSteps = 0;
@@ -46,7 +48,7 @@ namespace Geimu
             Sprite = new SpriteData();
             Sprite.Size = new Vector2(64, 64);
             Sprite.Layer = Layer;
-            Hitbox = new Rectangle(12, 4, 40, 59);
+            Hitbox = new Rectangle(16, 4, 32, 59);
             Light = new LightData();
             Light.Brightness = 128;
             Light.Position = Position + (Size / 2);
@@ -224,21 +226,25 @@ namespace Geimu
             {
                 vel.X -= Math.Sign(vel.X) * HorizontalFriction;
             }
-            if(mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+            if(remainingShootCooldown == 0 && mouseState.LeftButton == ButtonState.Pressed)
             {
-                System.Diagnostics.Debug.WriteLine("Reimu is shoot");
                 Vector2 playerPos = YinYang.Position + (YinYang.Size / 2);
                 Vector2 playerOnScreenPos = playerPos - Room.ViewOffset;
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
                 Room.GameObjectList.Add(new CardBulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
+                remainingShootCooldown = ShootCooldown;
                 throwCardSound?.Play();
             }
+            if(remainingShootCooldown > 0)
+            {
+                remainingShootCooldown--;
+            }
+
             if (Position.Y > 2000)
                 Damage();
             Velocity = vel;
 
             prevKeyState = keyState;
-            prevMouseState = mouseState;
             base.Update();
         }
         public override void Draw(SpriteBatch batch, Vector2 offset)
