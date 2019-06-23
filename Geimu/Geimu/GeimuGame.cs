@@ -84,9 +84,15 @@ namespace Geimu
             AssetManager.LoadTexture("yokaiMountain2", "sprites\\yokaiMountain2", 1);
             AssetManager.LoadTexture("yokaiMountain3", "sprites\\yokaiMountain3", 1);
             AssetManager.LoadTexture("yokaiMountain4", "sprites\\yokaiMountain4", 1);
+            AssetManager.LoadTexture("moriyaShrine0", "sprites\\moriyaShrine0", 1);
+            AssetManager.LoadTexture("moriyaShrine1", "sprites\\moriyaShrine1", 1);
+            AssetManager.LoadTexture("moriyaShrine2", "sprites\\moriyaShrine2", 1);
+            AssetManager.LoadTexture("moriyaShrine3", "sprites\\moriyaShrine3", 1);
+            AssetManager.LoadTexture("moriyaShrine4", "sprites\\moriyaShrine4", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
+            AssetManager.LoadSound("mainTheme", "sounds\\Theme");
         }
 
         /// <summary>

@@ -1,7 +1,9 @@
 ﻿using Geimu.GameObjects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +26,8 @@ namespace Geimu
         /// </summary>
         public int LightingUpdateRate { get; set; }
         private int lightingUpdateRateCounter;
+        private SoundEffect mainTheme;
+        private SoundEffectInstance mainThemeInstance;
 
         public Room(GeimuGame game)
         {
@@ -38,6 +42,16 @@ namespace Geimu
             Lighting = new LightingSystem(this, 16);
             LightingUpdateRate = 4;
             lightingUpdateRateCounter = 0;
+
+            AssetManager.RequestSound("mainTheme", (sound) =>
+            {
+                mainTheme = sound;
+                mainThemeInstance = mainTheme.CreateInstance();
+                //System.Diagnostics.Debug.WriteLine(mainThemeInstance.Volume);
+                mainThemeInstance.Volume = .1f;
+                mainThemeInstance.IsLooped = true;
+                mainThemeInstance.Play();
+            });
         }
         public void Update()
         {

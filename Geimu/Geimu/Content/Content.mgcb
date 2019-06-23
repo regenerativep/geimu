@@ -25,6 +25,12 @@
 /processorParam:Quality=Best
 /build:sounds/Hhuh.wav;sounds/reimuJump.wav
 
+#begin sounds/Theme.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/Theme.wav
+
 #begin sprites/bullet/bullet.png
 /importer:TextureImporter
 /processor:TextureProcessor
