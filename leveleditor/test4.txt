@@ -2,12 +2,7 @@ width 640
 height 512
 snapx 32
 snapy 32
-darknessColor 42 32 68
-background yokaiMountain0 2 0.03
-background yokaiMountain1 2 0.05
-background yokaiMountain2 2 0.09
-background yokaiMountain3 2 0.1
-background yokaiMountain4 2 0.2
+background mountain
 createobject block 0 480 5
 createobject block 32 480 5
 createobject block 64 480 5

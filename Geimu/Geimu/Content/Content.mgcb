@@ -349,6 +349,66 @@
 /processorParam:TextureFormat=Color
 /build:sprites/jumpParticle/2.png
 
+#begin sprites/moriyaShrine0/MoriyaShrine1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/moriyaShrine0/MoriyaShrine1.png;sprites/moriyaShrine0/0.png
+
+#begin sprites/moriyaShrine1/MoriyaShrine2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/moriyaShrine1/MoriyaShrine2.png;sprites/moriyaShrine1/0.png
+
+#begin sprites/moriyaShrine2/MoriyaShrine3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/moriyaShrine2/MoriyaShrine3.png;sprites/moriyaShrine2/0.png
+
+#begin sprites/moriyaShrine3/MoriyaShrine4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/moriyaShrine3/MoriyaShrine4.png;sprites/moriyaShrine3/0.png
+
+#begin sprites/moriyaShrine4/MoriyaShrine5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/moriyaShrine4/MoriyaShrine5.png;sprites/moriyaShrine4/0.png
+
 #begin sprites/reimu/ReimuGJIdlepose-1.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -8,13 +8,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Geimu
 {
-    public class TouhouBallBullet : BulletObject
+    public class CompressedTouhouBall : BulletObject
     {
         private static double hueChangePerStep = 4;
         private SpriteData outlineSprite;
         private double outlineHue;
         private Color outlineColor;
-        public TouhouBallBullet(Room room, Vector2 pos, float dir) : base(room, pos, dir)
+        public CompressedTouhouBall(Room room, Vector2 pos, float dir) : base(room, pos, dir)
         {
             outlineHue = 0;
             outlineColor = new Color(255, 255, 255);

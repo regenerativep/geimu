@@ -88,7 +88,7 @@ namespace Geimu
         {
             if (stepCooldown == 0)
             {
-                Room.GameObjectList.Add(new TouhouBallBullet(Room, Position + (Size / 2), dir));
+                Room.GameObjectList.Add(new CompressedTouhouBall(Room, Position + (Size / 2), dir));
                 //maybe play a sound?
                 stepCooldown = stepCooldownReset;
             }

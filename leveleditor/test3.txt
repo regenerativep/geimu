@@ -2,10 +2,7 @@ width 640
 height 512
 snapx 32
 snapy 32
-darknessColor 42 32 68
-background hakureiShrine 1 0.01
-background hakureiShrine2 2 0.05
-background hakureiShrine3 3 0.3
+background hakurei
 createobject block 0 480 5
 createobject block 32 480 5
 createobject block 64 480 5

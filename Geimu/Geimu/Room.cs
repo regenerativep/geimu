@@ -118,21 +118,9 @@ namespace Geimu
                         GameTileList.Add(obj);
                         break;
                     }
-                case "background": //"background [assetName] [layer * 100] [distSpeed]
+                case "background":
                     {
-                        ParallaxBackground bg = new ParallaxBackground(this, parts[1], (float)int.Parse(parts[2]) / 100f, float.Parse(parts[3]));
-                        Background.Backgrounds.Add(bg);
-                        break;
-                    }
-                case "showBackgroundOutsideRoom":
-                    {
-                        Background.ShowBackgroundOutsideRoom = true;
-                        break;
-                    }
-                case "darknessColor":
-                    {
-                        Color col = new Color(int.Parse(parts[1]), int.Parse(parts[2]), int.Parse(parts[3]));
-                        Lighting.DarknessColor = col;
+                        Background.LoadBackground(parts[1]);
                         break;
                     }
             }
