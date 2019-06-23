@@ -3,8 +3,9 @@ height 768
 snapx 32
 snapy 32
 background hakurei
-note hello there
-note this is an important test11!
+note HEY Red I, Clownpiece stole your green girlfriend
+note to find her you have to beat my cunning fairy engineered traps
+note WITHOUT FLYING! heeheehee *"Hey Cirno where are you?"
 createobject block 0 448 0
 createobject block 0 416 0
 createobject block 0 384 0
