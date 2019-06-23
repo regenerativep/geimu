@@ -59,6 +59,7 @@
     <Compile Include="GameTiles\DirtSideLeftTile.cs" />
     <Compile Include="GameTiles\DirtSideRightTile.cs" />
     <Compile Include="GameTiles\DirtSideTopTile.cs" />
+    <Compile Include="GameTiles\SpikeTopTile.cs" />
     <Compile Include="GameTiles\SpikeLeftTile.cs" />
     <Compile Include="GameTiles\SpikeBottomTile.cs" />
     <Compile Include="GameTiles\StoneSideTopTile.cs" />
