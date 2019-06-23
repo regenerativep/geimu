@@ -17,7 +17,8 @@ GameObjectType[] possibleTypes = new GameObjectType[] {
   null,
   new GameObjectType("reimu", 64, 64),
   new GameObjectType("block", 32, 32),
-  new GameObjectType("clownpiece", 64, 64)
+  new GameObjectType("clownpiece", 64, 64),
+  new GameObjectType("fairy", 32, 32)
 };
 GameObjectType[] possibleTiles = new GameObjectType[] {
   null,
