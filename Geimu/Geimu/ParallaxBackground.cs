@@ -20,12 +20,11 @@ namespace Geimu
             DistanceSpeed = distSpeed;
             Sprite = new SpriteData();
             Sprite.Layer = layer;
-            drawFrom = new Vector2(0, 0);
+            Sprite.Size = new Vector2(Room.Game.GraphicsDevice.Viewport.Width, Room.Game.GraphicsDevice.Viewport.Height);
+            drawFrom = Vector2.Zero;
             AssetManager.RequestTexture(spriteName, (frame) =>
             {
                 Sprite.Change(frame);
-                Sprite.Size = new Vector2(frame[0].Bounds.Width, frame[0].Bounds.Height);
-                drawFrom = (new Vector2(Room.Width, Room.Height) - Sprite.Size) / 2;
             });
         }
         public void Draw(SpriteBatch batch, Vector2 offset)

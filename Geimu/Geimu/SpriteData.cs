@@ -57,7 +57,8 @@ namespace Geimu
         {
             if (Frames != null)
             {
-                batch.Draw(Frames[CurrentFrame], new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y), null, color, Angle, Offset, SpriteEffect, Layer);
+                Rectangle drawRect = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
+                batch.Draw(Frames[CurrentFrame], drawRect, null, color, Angle, Offset, SpriteEffect, Layer);
             }
         }
         public void Change(Texture2D[] newSprite)
