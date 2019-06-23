@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Geimu.GameTiles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -113,6 +114,7 @@ namespace Geimu
             AssetManager.LoadTexture("clownpieceHealthbarFrame", "sprites\\clownpieceHealthbarFrame", 1);
             AssetManager.LoadTexture("textWindow", "sprites\\textWindow", 1);
             AssetManager.LoadTexture("note", "sprites\\note", 1);
+            AssetManager.LoadTexture("win", "sprites\\win", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
@@ -131,25 +133,34 @@ namespace Geimu
 
         public void LoadLevel(int levelnum)
         {
+            currentLevel = levelnum;
+            currentRoom?.music?.Stop();
             currentRoom = null;
+
             currentRoom = new Room(this);
             //currentRoom.Load("test3.txt");
-            currentRoom.Load("level"+levelnum+".txt");
-            CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
-            camera.Target = currentRoom.FindObject("reimu");
-            currentRoom.GameObjectList.Add(camera);
+            if (currentLevel == 6)
+            {
+                currentRoom.Load("win.txt");
+                currentRoom.GameTileList.Add(new WinScreenTile(currentRoom, new Vector2(0, 0)));
+            }
+            else
+            {
+                currentRoom.Load("level" + levelnum + ".txt");
+                CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
+                camera.Target = currentRoom.FindObject("reimu");
+                currentRoom.GameObjectList.Add(camera);
+            }
         }
 
         public void NextLevel()
         {
-            currentLevel++;
-            LoadLevel(currentLevel);
+            LoadLevel(currentLevel + 1);
         }
 
         public void Lose()
         {
             LoadLevel(1);
-            currentLevel = 1;
             lives = 4;
         }
 
@@ -165,6 +176,8 @@ namespace Geimu
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.H))
                 currentRoom.DisplayHitbox();
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+                Lose();
             currentRoom.Update();
             base.Update(gameTime);
         }

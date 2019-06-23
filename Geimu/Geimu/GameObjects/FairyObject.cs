@@ -27,7 +27,7 @@ namespace Geimu.GameObjects
         {
             life = 3;
             cooldown = 60;
-            moving = false;
+            moving = true;
             Position -= new Vector2(0, 16);
             facingRight = true;
             Sprite = new SpriteData();
@@ -48,6 +48,7 @@ namespace Geimu.GameObjects
 
         public override void Update()
         {
+            System.Diagnostics.Debug.WriteLine("Moving: " + moving + " cooldown: " + cooldown + "right: " + facingRight);
             if (cooldown > 0)
                 cooldown--;
             if (animationindex == -10)
@@ -96,11 +97,11 @@ namespace Geimu.GameObjects
             {
                 facingRight = true;
             }
-            if (!Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(-1, 1))))
+            if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(0, 1))) && !Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(-1, 1))))
             {
                 facingRight = true;
             }
-            if (!Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 1))))
+            if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(0, 1))) && !Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 1))))
             {
                 facingRight = false;
             }

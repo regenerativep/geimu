@@ -233,7 +233,8 @@ namespace Geimu
                 Room.GameObjectList.Add(new CardBulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
                 throwCardSound?.Play();
             }
-
+            if (Position.Y > 2000)
+                Damage();
             Velocity = vel;
 
             prevKeyState = keyState;

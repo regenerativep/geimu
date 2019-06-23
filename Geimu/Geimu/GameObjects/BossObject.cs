@@ -11,7 +11,7 @@ namespace Geimu
     public class BossObject : GameObject
     {
         private static Random randNumGenerator = new Random();
-        private static int stepCooldownReset = 12;
+        //private static int stepCooldownReset = 12;
         private static float minSprayDir = 0;
         private static float maxSprayDir = (float) Math.PI;
         private static float sprayDirChange = 0.04f;
@@ -78,7 +78,7 @@ namespace Geimu
                     case 1: //direct attack
                         {
                             float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
-                            fireBullet(dir);
+                            fireBullet(dir, 30);
                             break;
                         }
                     case 2: //spray attack
@@ -88,7 +88,7 @@ namespace Geimu
                             {
                                 sprayDir = minSprayDir;
                             }
-                            fireBullet(sprayDir);
+                            fireBullet(sprayDir, 12);
                             break;
                         }
                 }
@@ -114,12 +114,12 @@ namespace Geimu
             healthbarFrame.Draw(batch, drawHealthbarFrom);
             base.Draw(batch, offset);
         }
-        private void fireBullet(float dir)
+        private void fireBullet(float dir, int cooldown)
         {
             if (stepCooldown == 0)
             {
                 Room.GameObjectList.Add(new CompressedTouhouBall(Room, Position + (Size / 2), dir));
-                stepCooldown = stepCooldownReset;
+                stepCooldown = cooldown;
             }
         }
 
