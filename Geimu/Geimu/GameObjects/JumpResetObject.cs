@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Geimu.GameObjects
 {
@@ -17,6 +18,8 @@ namespace Geimu.GameObjects
             Hitbox = new Rectangle(8, 8, 16, 16);
             IsActive = true;
             stepsRemaning = 0;
+            Sprite = new SpriteData();
+            Sprite.Size = new Vector2(24, 24);
             AssetManager.RequestTexture("jumpReset", (frames) =>
             {
                 Sprite.Change(frames);
@@ -42,6 +45,10 @@ namespace Geimu.GameObjects
         {
             IsActive = false;
             stepsRemaning = StepsUntilReset;
+        }
+        public override void Draw(SpriteBatch batch, Vector2 offset)
+        {
+            Sprite.Draw(batch, Position - offset - Sprite.Offset, Color.White * (IsActive ? 1f : 0.5f));
         }
     }
 }

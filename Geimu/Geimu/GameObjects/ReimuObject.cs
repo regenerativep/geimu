@@ -195,17 +195,7 @@ namespace Geimu
                 }
             }
             bool gotJumpReset = false;
-            GameObject collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "jumpReset");
-            if (collidedObj != null)
-            {
-                JumpResetObject jumpObject = (JumpResetObject)collidedObj;
-                if(jumpObject.IsActive)
-                {
-                    jumpObject.Use();
-                    gotJumpReset = true;
-                    Room.Sounds.PlaySound(jumpResetSound);
-                }
-            }
+            GameObject collidedObj;
             collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "note");
             if(collidedObj != null)
             {
@@ -220,15 +210,29 @@ namespace Geimu
                     ((NoteObject)foundObject).ShowTextWindow = false;
                 }
             }
-            if ((keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0) || gotJumpReset)
+            if ((keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump)))
             {
-                Room.Sounds.PlaySound(jumpSound);
-                vel.Y = BaseJumpSpeed;
-                isJumping = true;
-                remainingJumpSteps = MaximumAfterJumpSteps;
-                jumpsRemaining--;
-                Vector2 footPos = new Vector2(Position.X + (Size.X / 4), Position.Y + Size.Y);
-                Room.GameObjectList.Add(new JumpParticleObject(Room, footPos));
+                collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "jumpReset");
+                if (collidedObj != null)
+                {
+                    JumpResetObject jumpObject = (JumpResetObject)collidedObj;
+                    if (jumpObject.IsActive)
+                    {
+                        jumpObject.Use();
+                        gotJumpReset = true;
+                        Room.Sounds.PlaySound(jumpResetSound);
+                    }
+                }
+                if (jumpsRemaining > 0 || gotJumpReset)
+                {
+                    Room.Sounds.PlaySound(jumpSound);
+                    vel.Y = BaseJumpSpeed;
+                    isJumping = true;
+                    remainingJumpSteps = MaximumAfterJumpSteps;
+                    jumpsRemaining--;
+                    Vector2 footPos = new Vector2(Position.X + (Size.X / 4), Position.Y + Size.Y);
+                    Room.GameObjectList.Add(new JumpParticleObject(Room, footPos));
+                }
             }
             if (Math.Abs(vel.X) > MaxVelocity.X)
             {

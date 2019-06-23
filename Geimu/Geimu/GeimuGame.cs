@@ -146,8 +146,8 @@ namespace Geimu
             }
             else
             {
-                //currentRoom.Load("test3.txt");
-                currentRoom.Load("level" + levelnum + ".txt");
+                currentRoom.Load("test.txt");
+                //currentRoom.Load("level" + levelnum + ".txt");
                 CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
                 camera.Target = currentRoom.FindObject("reimu");
                 currentRoom.GameObjectList.Add(camera);

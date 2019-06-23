@@ -141,7 +141,6 @@ namespace Geimu
         //https://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
         public static bool RectangleInRectangle(Rectangle a, Rectangle b)
         {
-            //return a.Left < b.Right && a.Right > b.Left && a.Top > b.Bottom && a.Bottom < b.Top;
             return a.X < b.X + b.Width && a.X + a.Width > b.X && a.Y < b.Y + b.Height && a.Y + a.Height > b.Y; //flipped comparisons for y since original code is for cartesian coords
         }
         public static Rectangle AddVectorToRect(Rectangle rect, params Vector2[] vecs)
