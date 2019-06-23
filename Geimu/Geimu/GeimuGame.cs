@@ -139,7 +139,7 @@ namespace Geimu
             currentLevel = levelnum;
             currentRoom?.Destroy();
             currentRoom = new Room(this);
-            if (currentLevel == 6)
+            if (currentLevel == 8)
             {
                 currentRoom.Load("win.txt");
                 currentRoom.GameTileList.Add(new WinScreenTile(currentRoom, new Vector2(0, 0)));

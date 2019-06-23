@@ -27,10 +27,11 @@ namespace Geimu
             CurrentMusic.IsLooped = true;
             CurrentMusic.Play();
         }
-        public void PlaySound(SoundEffect sound)
+        public void PlaySound(SoundEffect sound, float volume = 1f)
         {
             if (sound == null) return;
             SoundEffectInstance soundInstance = sound.CreateInstance();
+            soundInstance.Volume = volume;
             soundInstance.Play();
             LiveSounds.Add(soundInstance);
         }
