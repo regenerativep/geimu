@@ -25,6 +25,7 @@ namespace Geimu
         /// frames/update
         /// </summary>
         public int LightingUpdateRate { get; set; }
+        public string NoteText { get; set; }
         private int lightingUpdateRateCounter;
         private SoundEffect mainTheme;
         private SoundEffect bossTheme;
@@ -43,7 +44,7 @@ namespace Geimu
             Lighting = new LightingSystem(this, 16);
             LightingUpdateRate = 4;
             lightingUpdateRateCounter = 0;
-
+            NoteText = "";
             AssetManager.RequestSound("mainTheme", (sound) =>
             {
                 mainTheme = sound;
@@ -151,6 +152,15 @@ namespace Geimu
                 case "background":
                     {
                         Background.LoadBackground(parts[1]);
+                        break;
+                    }
+                case "note":
+                    {
+                        for(int i = 1; i < parts.Length; i++)
+                        {
+                            NoteText += parts[i] + " ";
+                        }
+                        NoteText += "\n";
                         break;
                     }
             }

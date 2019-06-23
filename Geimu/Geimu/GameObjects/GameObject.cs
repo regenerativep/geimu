@@ -176,6 +176,8 @@ namespace Geimu
                     return typeof(DamageBlockObject);
                 case "goal":
                     return typeof(GoalBlockObject);
+                case "note":
+                    return typeof(NoteObject);
                 case "":
                     return typeof(GameObject);
             }

@@ -13,6 +13,13 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin fonts/mainFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/mainFont.spritefont
+
 #begin sounds/bossTheme.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -613,6 +620,18 @@
 /processorParam:TextureFormat=Color
 /build:sprites/myourenTemple4/0.png
 
+#begin sprites/note/GJpaper.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/note/GJpaper.png;sprites/note/0.png
+
 #begin sprites/reimu/ReimuGJIdlepose-1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -876,6 +895,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/stoneSideTop/0.png
+
+#begin sprites/textWindow/GJtextbox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/textWindow/GJtextbox.png;sprites/textWindow/0.png
 
 #begin sprites/touhouBall/PurpleBall.png
 /importer:TextureImporter

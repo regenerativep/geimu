@@ -11,6 +11,7 @@ namespace Geimu
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public SpriteFont MainFont;
 
         Room currentRoom;
         private int currentLevel;
@@ -47,6 +48,7 @@ namespace Geimu
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            MainFont = Content.Load<SpriteFont>("fonts\\mainFont");
             AssetManager.Content = Content;
             AssetManager.LoadTexture("reimuIdle", "sprites\\reimu", 3);
             AssetManager.LoadTexture("reimuRun", "sprites\\reimuRun", 8);
@@ -109,6 +111,8 @@ namespace Geimu
             AssetManager.LoadTexture("spikeBottom", "sprites\\spikeBottom", 1);
             AssetManager.LoadTexture("clownpieceHealthbar", "sprites\\clownpieceHealthbar", 1);
             AssetManager.LoadTexture("clownpieceHealthbarFrame", "sprites\\clownpieceHealthbarFrame", 1);
+            AssetManager.LoadTexture("textWindow", "sprites\\textWindow", 1);
+            AssetManager.LoadTexture("note", "sprites\\note", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
@@ -129,8 +133,8 @@ namespace Geimu
         {
             currentRoom = null;
             currentRoom = new Room(this);
-            currentRoom.Load("test3.txt");
-            //currentRoom.Load("level"+levelnum+".txt");
+            //currentRoom.Load("test3.txt");
+            currentRoom.Load("level"+levelnum+".txt");
             CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
             camera.Target = currentRoom.FindObject("reimu");
             currentRoom.GameObjectList.Add(camera);

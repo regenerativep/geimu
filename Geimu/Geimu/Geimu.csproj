@@ -52,6 +52,7 @@
     <Compile Include="GameObjects\HeartObject.cs" />
     <Compile Include="GameObjects\CompressedTouhouBall.cs" />
     <Compile Include="GameObjects\JumpResetObject.cs" />
+    <Compile Include="GameObjects\NoteObject.cs" />
     <Compile Include="GameObjects\YinYangObject.cs" />
     <Compile Include="GameObjects\JumpParticleObject.cs" />
     <Compile Include="GameObjects\CrosshairObject.cs" />

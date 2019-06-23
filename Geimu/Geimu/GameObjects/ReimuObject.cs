@@ -179,13 +179,27 @@ namespace Geimu
             }
             bool gotJumpReset = false;
             GameObject collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "jumpReset");
-            if (collidedObj!= null)
+            if (collidedObj != null)
             {
                 JumpResetObject jumpObject = (JumpResetObject)collidedObj;
                 if(jumpObject.IsActive)
                 {
                     jumpObject.Use();
                     gotJumpReset = true;
+                }
+            }
+            collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "note");
+            if(collidedObj != null)
+            {
+                NoteObject note = (NoteObject)collidedObj;
+                note.ShowTextWindow = true;
+            }
+            else
+            {
+                GameObject foundObject = Room.FindObject("note");
+                if(foundObject != null)
+                {
+                    ((NoteObject)foundObject).ShowTextWindow = false;
                 }
             }
             if ((keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0) || gotJumpReset)
