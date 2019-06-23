@@ -14,10 +14,8 @@ namespace Geimu
     {
         private static Dictionary<string, Texture2D[]> textureData = new Dictionary<string, Texture2D[]>();
         private static Dictionary<string, SoundEffect> soundData = new Dictionary<string, SoundEffect>();
-        //private static Dictionary<string, Song> songData = new Dictionary<string, Song>();
         private static List<KeyValuePair<string, Action<Texture2D[]>>> textureRequests = new List<KeyValuePair<string, Action<Texture2D[]>>>();
         private static List<KeyValuePair<string, Action<SoundEffect>>> soundRequests = new List<KeyValuePair<string, Action<SoundEffect>>>();
-        //private static List<KeyValuePair<string, Action<Song>>> songRequests = new List<KeyValuePair<string, Action<Song>>>();
         public static ContentManager Content;
         public static Texture2D[] LoadTexture(string name, string foldername, int frameCount)
         {

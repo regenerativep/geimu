@@ -36,8 +36,10 @@ namespace Geimu
         private int remainingJumpSteps;
         private SoundEffect throwCardSound;
         private SoundEffect jumpSound;
+        private Vector2 spawnLoc;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
+            spawnLoc = pos;
             isJumping = false;
             remainingJumpSteps = 0;
             facingRight = true;
@@ -234,7 +236,28 @@ namespace Geimu
                 Sprite.SpriteEffect = SpriteEffects.FlipHorizontally;
             }
             YinYang.Draw(batch, offset);
+            DrawLives(batch);
             base.Draw(batch, offset);
+        }
+
+        public void DrawLives(SpriteBatch batch)
+        {
+            int l = Room.Game.lives;
+            Vector2 v = new Vector2(5, 5);
+            for (int i = 0; i < l; i++)
+            {
+                HeartObject h = new HeartObject(Room, v);
+                h.Draw(batch, new Vector2(0,0));
+                v += new Vector2(32, 0);
+            }
+        }
+        public void Damage()
+        {
+            Position = spawnLoc;
+            if (Room.Game.lives == 0)
+                Room.Game.Lose();
+            else
+                Room.Game.lives--;
         }
     }
 }

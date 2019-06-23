@@ -21,9 +21,11 @@ namespace Geimu.GameObjects
         private bool goingUp;
         private bool moving;
         private int cooldown;
+        private int life;
 
         public FairyObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
+            life = 3;
             cooldown = 60;
             moving = false;
             Position -= new Vector2(0, 16);
@@ -118,6 +120,14 @@ namespace Geimu.GameObjects
             }
             Sprite.Offset = new Vector2(0, animationindex/2);
             base.Draw(batch, offset);
+        }
+
+        public void Damage()
+        {
+            if (life <= 0)
+                Room.GameObjectList.Remove(this);
+            else
+                life--;
         }
     }
 }

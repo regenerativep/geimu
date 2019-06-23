@@ -84,6 +84,10 @@ namespace Geimu
                     Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine4", 6, 0.2f));
                     break;
                 case "village":
+                    Room.Lighting.DarknessColor = new Color(42, 32, 68);
+                    Backgrounds.Add(new ParallaxBackground(Room, "humanVillage0", 2, 0.05f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "humanVillage1", 3, 0.07f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "humanVillage2", 4, 0.3f));
                     break;
                 case "myouren":
                     break;

@@ -44,7 +44,13 @@ namespace Geimu
             outlineColor = new Color(r, g ,b);
             outlineHue += hueChangePerStep;
             outlineHue %= 256;
-            base.Update();
+            GameObject coll = Room.FindCollision(AddVectorToRect(Hitbox, Position), "reimu");
+            if (coll != null)
+            {
+                ((ReimuObject)coll).Damage();
+                Room.GameObjectList.Remove(this);
+            } else
+                base.Update();
         }
         public override void Draw(SpriteBatch batch, Vector2 offset)
         {

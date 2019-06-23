@@ -13,6 +13,7 @@ namespace Geimu
         SpriteBatch spriteBatch;
 
         Room currentRoom;
+        public int lives;
         public GeimuGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -27,17 +28,13 @@ namespace Geimu
         /// </summary>
         protected override void Initialize()
         {
+            lives = 4;
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
 
-            currentRoom = new Room(this);
-            currentRoom.Load("level1.txt");
-            CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
-            camera.Target = currentRoom.FindObject("reimu");
-            currentRoom.GameObjectList.Add(camera);
-            
+            LoadLevel(1);
             base.Initialize();
         }
 
@@ -90,6 +87,10 @@ namespace Geimu
             AssetManager.LoadTexture("moriyaShrine3", "sprites\\moriyaShrine3", 1);
             AssetManager.LoadTexture("moriyaShrine4", "sprites\\moriyaShrine4", 1);
             AssetManager.LoadTexture("jumpReset", "sprites\\jumpReset", 5);
+            AssetManager.LoadTexture("heart", "sprites\\gui\\life", 1);
+            AssetManager.LoadTexture("humanVillage0", "sprites\\humanVillage0", 1);
+            AssetManager.LoadTexture("humanVillage1", "sprites\\humanVillage1", 1);
+            AssetManager.LoadTexture("humanVillage2", "sprites\\humanVillage2", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
@@ -105,6 +106,22 @@ namespace Geimu
 
         }
 
+        public void LoadLevel(int levelnum)
+        {
+            currentRoom = null;
+            currentRoom = new Room(this);
+            currentRoom.Load("level"+levelnum+".txt");
+            CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
+            camera.Target = currentRoom.FindObject("reimu");
+            currentRoom.GameObjectList.Add(camera);
+        }
+
+        public void Lose()
+        {
+            LoadLevel(1);
+            lives = 4;
+        }
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -112,6 +129,7 @@ namespace Geimu
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //System.Diagnostics.Debug.WriteLine("Lives: " + lives);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.H))

@@ -283,6 +283,18 @@
 /processorParam:TextureFormat=Color
 /build:sprites/grassTop/2hugrass.png;sprites/grassTop/0.png
 
+#begin sprites/gui/life/life.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/gui/life/life.png;sprites/gui/life/0.png
+
 #begin sprites/hakureiShrine/HakureiShrine.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -318,6 +330,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/hakureiShrine3/HakureiShrine3.png;sprites/hakureiShrine3/0.png
+
+#begin sprites/humanVillage0/HumanVillage0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/humanVillage0/HumanVillage0.png;sprites/humanVillage0/0.png
+
+#begin sprites/humanVillage1/HumanVillage1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/humanVillage1/HumanVillage1.png;sprites/humanVillage1/0.png
+
+#begin sprites/humanVillage2/HumanVillage2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/humanVillage2/HumanVillage2.png;sprites/humanVillage2/0.png
 
 #begin sprites/jumpParticle/0.png
 /importer:TextureImporter

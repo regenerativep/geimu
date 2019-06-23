@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Geimu.GameObjects;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,17 @@ namespace Geimu
             {
                 Sprite.Change(frames);
             });
+        }
+
+        public override void Update()
+        {
+            GameObject coll = Room.FindCollision(AddVectorToRect(Hitbox, Position), "fairy");
+            if (coll != null)
+            {
+                ((FairyObject)coll).Damage();
+                Room.GameObjectList.Remove(this);
+            } else
+                base.Update();
         }
     }
 }

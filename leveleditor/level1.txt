@@ -154,12 +154,12 @@ createobject block 960 128 0
 createobject block 928 128 0
 createobject block 896 128 0
 createobject block 864 128 0
-createobject fairy 864 416 5
-createobject fairy 768 224 5
-createobject fairy 480 128 5
-createobject fairy 96 160 5
-createobject fairy 96 320 5
 createobject reimu 32 672 5
+createobject fairy 96 352 5
+createobject fairy 64 192 5
+createobject fairy 384 160 5
+createobject fairy 768 256 5
+createobject fairy 864 448 5
 createtile dirt 992 160 6
 createtile dirt 992 192 6
 createtile dirt 992 224 6
