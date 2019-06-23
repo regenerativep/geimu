@@ -33,7 +33,7 @@ namespace Geimu
             graphics.ApplyChanges();
 
             currentRoom = new Room(this);
-            currentRoom.Load("test3.txt");
+            currentRoom.Load("test4.txt");
             CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
             camera.Target = currentRoom.FindObject("reimu");
             currentRoom.GameObjectList.Add(camera);

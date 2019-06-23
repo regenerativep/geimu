@@ -10,7 +10,7 @@ namespace Geimu.GameObjects
 {
     public class FairyObject : GameObject
     {
-        public static float MoveSpeed = 1.5f;
+        public static float MoveSpeed = .8f;
         public static float HorizontalFriction = 1;
         public static Vector2 MaxVelocity = new Vector2(4, 16);
         public static float IdleMaxSpeed = 3;
@@ -35,6 +35,7 @@ namespace Geimu.GameObjects
             {
                 fairySprite = frames;
             });
+
         }
 
         public void SwitchMode(string mode)
@@ -66,6 +67,12 @@ namespace Geimu.GameObjects
                 animationindex++;
             else
                 animationindex--;
+            Vector2 vel = Velocity;
+            if (facingRight)
+                vel.X = MoveSpeed;
+            else
+                vel.X = -MoveSpeed;
+            Velocity = vel;
             if (Math.Abs(Velocity.X) < IdleMaxSpeed)
             {
                 SwitchMode("idle");
@@ -74,10 +81,28 @@ namespace Geimu.GameObjects
             {
                 SwitchMode("move");
             }
-            if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(0, 1))))
+            if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 0))))
             {
-                System.Diagnostics.Debug.WriteLine("fairy collide");
+                System.Diagnostics.Debug.WriteLine("fairy collide x+1");
+                facingRight = false;
+
             }
+            if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(-1, 0))))
+            {
+                System.Diagnostics.Debug.WriteLine("fairy collide x-1");
+                facingRight = true;
+            }
+            if (!Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(-1, 1))))
+            {
+                System.Diagnostics.Debug.WriteLine("fairy collide x-1, y+1");
+                facingRight = true;
+            }
+            if (!Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 1))))
+            {
+                System.Diagnostics.Debug.WriteLine("fairy collide x+1, y+1");
+                facingRight = false;
+            }
+
             base.Update();
         }
 
