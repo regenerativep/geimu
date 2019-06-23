@@ -175,7 +175,18 @@ namespace Geimu
                     SwitchMode("idle");
                 }
             }
-            if (keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0)
+            bool gotJumpReset = false;
+            GameObject collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "jumpReset");
+            if (collidedObj!= null)
+            {
+                JumpResetObject jumpObject = (JumpResetObject)collidedObj;
+                if(jumpObject.IsActive)
+                {
+                    jumpObject.Use();
+                    gotJumpReset = true;
+                }
+            }
+            if ((keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0) || gotJumpReset)
             {
                 jumpSound?.Play();
                 vel.Y = BaseJumpSpeed;

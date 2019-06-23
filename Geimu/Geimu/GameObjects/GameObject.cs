@@ -168,6 +168,10 @@ namespace Geimu
                     return typeof(FairyObject);
                 case "clownpiece":
                     return typeof(BossObject);
+                case "jumpReset":
+                    return typeof(JumpResetObject);
+                case "touhouBall":
+                    return typeof(CompressedTouhouBall);
                 case "":
                     return typeof(GameObject);
             }

@@ -48,6 +48,7 @@
     <Compile Include="GameObjects\CameraObject.cs" />
     <Compile Include="GameObjects\CardBulletObject.cs" />
     <Compile Include="GameObjects\CompressedTouhouBall.cs" />
+    <Compile Include="GameObjects\JumpResetObject.cs" />
     <Compile Include="GameObjects\YinYangObject.cs" />
     <Compile Include="GameObjects\JumpParticleObject.cs" />
     <Compile Include="GameObjects\CrosshairObject.cs" />
