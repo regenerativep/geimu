@@ -17,6 +17,30 @@ namespace Geimu
                 Sprite.Size = new Vector2(32, 32);
                 Sprite.Speed = 0;
                 Sprite.Layer = Layer;
+                if (!Room.CheckTileAt(Position + new Vector2(Size.X, 0)))
+                {
+                    GameTile tl = new StoneSideRightTile(Room, Position);
+                    tl.Layer = Layer + 0.01f;
+                    Room.GameTileList.Add(tl);
+                }
+                if (!Room.CheckTileAt(Position + new Vector2(0, Size.Y)))
+                {
+                    GameTile tl = new StoneSideBottomTile(Room, Position);
+                    tl.Layer = Layer + 0.01f;
+                    Room.GameTileList.Add(tl);
+                }
+                if (!Room.CheckTileAt(Position - new Vector2(Size.X, 0)))
+                {
+                    GameTile tl = new StoneSideLeftTile(Room, Position);
+                    tl.Layer = Layer + 0.01f;
+                    Room.GameTileList.Add(tl);
+                }
+                if (!Room.CheckTileAt(Position - new Vector2(0, Size.Y)))
+                {
+                    GameTile tl = new StoneSideTopTile(Room, Position);
+                    tl.Layer = Layer + 0.01f;
+                    Room.GameTileList.Add(tl);
+                }
             });
         }
     }

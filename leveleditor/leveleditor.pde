@@ -37,7 +37,7 @@ GameObjectType[] possibleTiles = new GameObjectType[] {
   new GameObjectType("stoneSideBottom", 32, 32),
   new GameObjectType("stoneSideLeft", 32, 32),
   new GameObjectType("stoneSideTop", 32, 32),
-  new GameObjectType("spikeRight", 32, 32),
+  new GameObjectType("spikeRight", 32, 32), //THE SIDE THAT THE SPIKES COME OUT FROM
   new GameObjectType("spikeBottom", 32, 32),
   new GameObjectType("spikeLeft", 32, 32),
   new GameObjectType("spikeTop", 32, 32)

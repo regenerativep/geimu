@@ -24,15 +24,13 @@ namespace Geimu
         /// </summary>
         public int LightingUpdateRate { get; set; }
         private int lightingUpdateRateCounter;
-        private CrosshairObject crosshair;
 
         public Room(GeimuGame game)
         {
             Game = game;
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
-            crosshair = new CrosshairObject(this);
-            GameObjectList.Add(crosshair);
+            GameObjectList.Add(new CrosshairObject(this));
             Width = 512;
             Height = 512;
             ViewOffset = new Vector2(0, 0);
@@ -79,7 +77,6 @@ namespace Geimu
                 tile.Draw(batch, ceiledOffset);
             }
             Lighting.Draw(batch, ceiledOffset);
-            //crosshair.Draw(batch, GameObject.VectorCeil(ViewOffset));
         }
         public void DisplayHitbox()
         {
@@ -114,7 +111,7 @@ namespace Geimu
                         Type type = GameTile.GetObjectFromName(parts[1]);
                         Vector2 position = new Vector2(int.Parse(parts[2]), int.Parse(parts[3]));
                         GameTile obj = (GameTile)type.GetConstructor(new Type[] { typeof(Room), typeof(Vector2) }).Invoke(new object[] { this, position });
-                        obj.Layer = int.Parse(parts[4]);
+                        obj.Layer = (float)int.Parse(parts[4]) / 100f;
                         GameTileList.Add(obj);
                         break;
                     }
@@ -137,6 +134,45 @@ namespace Geimu
                     {
                         return true;
                     }
+                }
+            }
+            return false;
+        }
+        public bool CheckTileCollision(GameTile checkingTile, Vector2 checkPos, params Type[] includeTypes)
+        {
+            Rectangle checkingRect = new Rectangle((int)checkingTile.Position.X, (int)checkingTile.Position.Y, (int)checkingTile.Size.X, (int)checkingTile.Size.Y);
+            for (int i = 0; i < GameTileList.Count; i++)
+            {
+                GameTile tile = GameTileList[i];
+                bool isValidTile = false;
+                for (int j = 0; j < includeTypes.Length; j++)
+                {
+                    if (includeTypes[j] == tile.GetType())
+                    {
+                        isValidTile = true;
+                        break;
+                    }
+                }
+                if (!isValidTile || checkingTile == tile)
+                {
+                    continue;
+                }
+                Rectangle targetRect = new Rectangle((int)tile.Position.X, (int)tile.Position.Y, (int)tile.Size.X, (int)tile.Size.Y);
+                if (GameObject.RectangleInRectangle(checkingRect, targetRect))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckTileAt(Vector2 checkPos)
+        {
+            for (int i = 0; i < GameTileList.Count; i++)
+            {
+                GameTile tile = GameTileList[i];
+                if (checkPos.X >= tile.Position.X && checkPos.X < tile.Position.X + tile.Size.X && checkPos.Y >= tile.Position.Y && checkPos.Y < tile.Position.Y + tile.Size.Y)
+                {
+                    return true;
                 }
             }
             return false;

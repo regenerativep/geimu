@@ -22,7 +22,7 @@ namespace Geimu
             Room = room;
             DistanceSpeed = distSpeed;
             Sprite = new SpriteData();
-            Sprite.Layer = layer;
+            Sprite.Layer = layer / 1000;
             windowSize = new Vector2(Room.Game.GraphicsDevice.Viewport.Width, Room.Game.GraphicsDevice.Viewport.Height);
             Sprite.Size = windowSize * 1.1f;
             AssetManager.RequestTexture(spriteName, (frame) =>

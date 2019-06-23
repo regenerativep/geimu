@@ -34,6 +34,7 @@ namespace Geimu
                 {
                     req.Value.Invoke(frames);
                     textureRequests.RemoveAt(i);
+                    if (name == "dirtSideTop") System.Diagnostics.Debug.WriteLine("b");
                 }
             }
             textureData[name] = frames;
@@ -47,6 +48,7 @@ namespace Geimu
             }
             else
             {
+                if (name == "dirtSideTop") System.Diagnostics.Debug.WriteLine("a");
                 textureRequests.Add(new KeyValuePair<string, Action<Texture2D[]>>(name, callback));
             }
         }

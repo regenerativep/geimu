@@ -12,7 +12,6 @@ namespace Geimu
     {
         public List<ParallaxBackground> Backgrounds { get; set; }
         public Room Room { get; set; }
-        public float BackgroundLayer { get; set; }
         public bool ShowBackgroundOutsideRoom { get; set; }
         private Texture2D whiteChunk;
         public BackgroundSystem(Room room)
@@ -24,7 +23,6 @@ namespace Geimu
             Room = room;
             ShowBackgroundOutsideRoom = false;
             Backgrounds = new List<ParallaxBackground>();
-            BackgroundLayer = 2f / 100;
         }
         public void Draw(SpriteBatch batch, Vector2 offset)
         {
@@ -65,25 +63,25 @@ namespace Geimu
             {
                 case "hakurei":
                     Room.Lighting.DarknessColor = new Color(42, 32, 68);
-                    Backgrounds.Add(new ParallaxBackground(Room, "hakureiShrine", BackgroundLayer, 0.05f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "hakureiShrine2", BackgroundLayer, 0.07f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "hakureiShrine3", BackgroundLayer, 0.3f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "hakureiShrine", 2, 0.05f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "hakureiShrine2", 3, 0.07f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "hakureiShrine3", 4, 0.3f));
                     break;
                 case "mountain":
                     Room.Lighting.DarknessColor = new Color(42, 32, 68);
-                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain0", BackgroundLayer, 0.03f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain1", BackgroundLayer, 0.05f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain2", BackgroundLayer, 0.09f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain3", BackgroundLayer, 0.1f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain4", BackgroundLayer, 0.2f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain0", 2, 0.03f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain1", 3, 0.05f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain2", 4, 0.09f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain3", 5, 0.1f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "yokaiMountain4", 6, 0.2f));
                     break;
                 case "moriya":
                     Room.Lighting.DarknessColor = new Color(42, 32, 68);
-                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine0", BackgroundLayer, 0.03f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine1", BackgroundLayer, 0.05f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine2", BackgroundLayer, 0.09f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine3", BackgroundLayer, 0.1f));
-                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine4", BackgroundLayer, 0.2f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine0", 2, 0.03f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine1", 3, 0.05f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine2", 4, 0.09f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine3", 5, 0.1f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "moriyaShrine4", 6, 0.2f));
                     break;
                 case "village":
                     break;

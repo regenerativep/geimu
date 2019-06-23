@@ -23,7 +23,7 @@ namespace Geimu
             }
             set
             {
-                layer = value / 100;
+                layer = value;
                 if (Sprite != null)
                 {
                     Sprite.Layer = layer;
@@ -35,7 +35,7 @@ namespace Geimu
             Position = pos;
             Size = size;
             Sprite = null;
-            Layer = 0;
+            //Layer = 0;
             Room = room;
         }
         public void Update()
