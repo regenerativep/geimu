@@ -30,6 +30,7 @@ namespace Geimu
         public float Layer { get; set; }
         public Vector2 Offset { get; set; }
         public float Angle { get; set; }
+        public Rectangle? Source { get; set; }
         public SpriteData()
         {
             CurrentFrame = 0;
@@ -37,6 +38,7 @@ namespace Geimu
             Layer = 0;
             Offset = new Vector2(0, 0);
             SpriteEffect = SpriteEffects.None;
+            Source = null;
         }
         public SpriteData(Texture2D[] frames) : base()
         {
@@ -58,7 +60,7 @@ namespace Geimu
             if (Frames != null)
             {
                 Rectangle drawRect = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
-                batch.Draw(Frames[CurrentFrame], drawRect, null, color, Angle, Offset, SpriteEffect, Layer);
+                batch.Draw(Frames[CurrentFrame], drawRect, Source, color, Angle, Offset, SpriteEffect, Layer);
             }
         }
         public void Change(Texture2D[] newSprite)

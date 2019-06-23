@@ -97,6 +97,30 @@
 /processorParam:TextureFormat=Color
 /build:sprites/clownpiece/2.png;sprites/clownpiece/0.png
 
+#begin sprites/clownpieceHealthbar/Healthbar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/clownpieceHealthbar/Healthbar.png;sprites/clownpieceHealthbar/0.png
+
+#begin sprites/clownpieceHealthbarFrame/HealthbarFrame.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/clownpieceHealthbarFrame/HealthbarFrame.png;sprites/clownpieceHealthbarFrame/0.png
+
 #begin sprites/crosshair/0.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -516,18 +540,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/moriyaShrine3/MoriyaShrine4.png;sprites/moriyaShrine3/0.png
-
-#begin sprites/moriyaShrine4/MoriyaShrine5.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:sprites/moriyaShrine4/MoriyaShrine5.png;sprites/moriyaShrine4/0.png
 
 #begin sprites/moriyaShrine4/MoriyaShrine5.png
 /importer:TextureImporter

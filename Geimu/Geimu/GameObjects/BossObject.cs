@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Geimu
 {
@@ -15,15 +16,20 @@ namespace Geimu
         private static float maxSprayDir = (float) Math.PI;
         private static float sprayDirChange = 0.04f;
         private static int stepsBeforeAttackChange = 300;
+        private static int maxLife = 200;
+        private static int healthbarTopPadding = 8;
         private int attackMode;
         private int stepCooldown;
         private float sprayDir;
         private int remainingStepsBeforeChange;
         private GameObject target;
         private int life;
+        private SpriteData healthbar;
+        private SpriteData healthbarFrame;
+        private Vector2 drawHealthbarFrom;
         public BossObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
-            life = 200;
+            life = maxLife;
             stepCooldown = 0;
             sprayDir = minSprayDir;
             attackMode = 0;
@@ -36,9 +42,25 @@ namespace Geimu
             Light = new LightData();
             Light.Brightness = 64;
             Light.Position = Position + (Size / 2);
+            healthbar = new SpriteData();
+            healthbar.Size = new Vector2(384, 32);
+            healthbar.Source = new Rectangle(0, 0, (int)healthbar.Size.X, (int)healthbar.Size.Y);
+            healthbar.Layer = 0.98f;
+            healthbarFrame = new SpriteData();
+            healthbarFrame.Size = new Vector2(384, 32);
+            healthbarFrame.Layer = 0.99f;
+            drawHealthbarFrom = new Vector2((Room.Game.GraphicsDevice.Viewport.Width - healthbarFrame.Size.X) / 2, healthbarTopPadding);
             AssetManager.RequestTexture("clownpiece", (frames) =>
             {
                 Sprite.Change(frames);
+            });
+            AssetManager.RequestTexture("clownpieceHealthbar", (frames) =>
+            {
+                healthbar.Change(frames);
+            });
+            AssetManager.RequestTexture("clownpieceHealthbarFrame", (frames) =>
+            {
+                healthbarFrame.Change(frames);
             });
         }
         public override void Update()
@@ -86,12 +108,17 @@ namespace Geimu
             }
             base.Update();
         }
+        public override void Draw(SpriteBatch batch, Vector2 offset)
+        {
+            healthbar.Draw(batch, drawHealthbarFrom);
+            healthbarFrame.Draw(batch, drawHealthbarFrom);
+            base.Draw(batch, offset);
+        }
         private void fireBullet(float dir)
         {
             if (stepCooldown == 0)
             {
                 Room.GameObjectList.Add(new CompressedTouhouBall(Room, Position + (Size / 2), dir));
-                //maybe play a sound?
                 stepCooldown = stepCooldownReset;
             }
         }
@@ -99,9 +126,16 @@ namespace Geimu
         public void Damage()
         {
             if (life <= 0)
+            {
                 Room.GameObjectList.Remove(this);
+            }
             else
+            {
                 life--;
+                int newWidth = (int)(((float)life / maxLife) * healthbarFrame.Size.X);
+                healthbar.Source = new Rectangle(0, 0, newWidth, (int)healthbarFrame.Size.Y);
+                healthbar.Size = new Vector2(newWidth, healthbar.Size.Y);
+            }
         }
     }
 }

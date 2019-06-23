@@ -107,6 +107,8 @@ namespace Geimu
             AssetManager.LoadTexture("spikeLeft", "sprites\\spikeLeft", 1);
             AssetManager.LoadTexture("spikeTop", "sprites\\spikeTop", 1);
             AssetManager.LoadTexture("spikeBottom", "sprites\\spikeBottom", 1);
+            AssetManager.LoadTexture("clownpieceHealthbar", "sprites\\clownpieceHealthbar", 1);
+            AssetManager.LoadTexture("clownpieceHealthbarFrame", "sprites\\clownpieceHealthbarFrame", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
@@ -127,8 +129,8 @@ namespace Geimu
         {
             currentRoom = null;
             currentRoom = new Room(this);
-            //currentRoom.Load("test3.txt");
-            currentRoom.Load("level"+levelnum+".txt");
+            currentRoom.Load("test3.txt");
+            //currentRoom.Load("level"+levelnum+".txt");
             CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
             camera.Target = currentRoom.FindObject("reimu");
             currentRoom.GameObjectList.Add(camera);
