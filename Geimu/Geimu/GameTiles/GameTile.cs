@@ -64,6 +64,25 @@ namespace Geimu
                     return typeof(DirtSideLeftTile);
                 case "dirtSideTop":
                     return typeof(DirtSideTopTile);
+                case "spikeRight":
+                    return typeof(SpikeRightTile);
+                case "spikeBottom":
+                    return typeof(SpikeBottomTile);
+                case "spikeLeft":
+                    return typeof(SpikeLeftTile);
+                case "spikeTop":
+                    return typeof(SpikeTopTile);
+                case "stoneSideRight":
+                    return typeof(StoneSideRightTile);
+                case "stoneSideBottom":
+                    return typeof(StoneSideBottomTile);
+                case "stoneSideLeft":
+                    return typeof(StoneSideLeftTile);
+                case "stoneSideTop":
+                    return typeof(StoneSideTopTile);
+                case "stone":
+                    return typeof(StoneTile);
+
             }
             return null;
         }
