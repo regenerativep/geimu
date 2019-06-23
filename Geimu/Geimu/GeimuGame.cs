@@ -31,7 +31,7 @@ namespace Geimu
         /// </summary>
         protected override void Initialize()
         {
-            lives = 4;
+            lives = 0;
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
@@ -134,11 +134,8 @@ namespace Geimu
         public void LoadLevel(int levelnum)
         {
             currentLevel = levelnum;
-            currentRoom?.music?.Stop();
-            currentRoom = null;
-
+            currentRoom?.Destroy();
             currentRoom = new Room(this);
-            //currentRoom.Load("test3.txt");
             if (currentLevel == 6)
             {
                 currentRoom.Load("win.txt");
@@ -146,6 +143,7 @@ namespace Geimu
             }
             else
             {
+                //currentRoom.Load("test3.txt");
                 currentRoom.Load("level" + levelnum + ".txt");
                 CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
                 camera.Target = currentRoom.FindObject("reimu");

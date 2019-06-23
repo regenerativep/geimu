@@ -85,12 +85,6 @@ namespace Geimu
                                 stepCooldown = 30;
                                 break;
                             }
-                        case 1: //direct attack
-                            {
-                                float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
-                                fireBullet(dir);
-                                break;
-                            }
                         case 2: //spray attack
                             {
                                 sprayDir += sprayDirChange;

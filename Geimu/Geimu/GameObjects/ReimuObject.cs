@@ -206,7 +206,7 @@ namespace Geimu
             }
             if ((keyState.IsKeyDown(Settings.Binds.Jump) && prevKeyState.IsKeyUp(Settings.Binds.Jump) && jumpsRemaining > 0) || gotJumpReset)
             {
-                jumpSound?.Play();
+                Room.Sounds.PlaySound(jumpSound);
                 vel.Y = BaseJumpSpeed;
                 isJumping = true;
                 remainingJumpSteps = MaximumAfterJumpSteps;
@@ -233,7 +233,7 @@ namespace Geimu
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
                 Room.GameObjectList.Add(new CardBulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
                 remainingShootCooldown = ShootCooldown;
-                throwCardSound?.Play();
+                Room.Sounds.PlaySound(throwCardSound);
             }
             if(remainingShootCooldown > 0)
             {

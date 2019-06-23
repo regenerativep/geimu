@@ -95,7 +95,7 @@ namespace Geimu
         }*/
         public static void RequestSound(string name, Action<SoundEffect> callback)
         {
-            if (textureData.ContainsKey(name))
+            if (soundData.ContainsKey(name))
             {
                 callback.Invoke(soundData[name]);
             }

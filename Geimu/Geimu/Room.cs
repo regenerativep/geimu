@@ -21,6 +21,7 @@ namespace Geimu
         public Vector2 ViewOffset { get; set; }
         public LightingSystem Lighting { get; set; }
         public BackgroundSystem Background { get; set; }
+        public SoundManager Sounds { get; set; }
         /// <summary>
         /// frames/update
         /// </summary>
@@ -29,11 +30,11 @@ namespace Geimu
         private int lightingUpdateRateCounter;
         private SoundEffect mainTheme;
         private SoundEffect bossTheme;
-        public SoundEffectInstance music;
 
         public Room(GeimuGame game)
         {
             Game = game;
+            Sounds = new SoundManager();
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
             GameObjectList.Add(new CrosshairObject(this));
@@ -48,31 +49,24 @@ namespace Geimu
             AssetManager.RequestSound("mainTheme", (sound) =>
             {
                 mainTheme = sound;
-                //music = mainTheme.CreateInstance();
 
             });
             AssetManager.RequestSound("bossTheme", (sound) =>
             {
                 bossTheme = sound;
-                /*bossMusic = bossTheme.CreateInstance();
-                music.Volume = .1f;
-                music.IsLooped = true;
-                music.Play();*/
             });
         }
         public void Update()
         {
-            if (music == null || music.State != SoundState.Playing) {
-                if (FindObject("clownpiece") != null && bossTheme != null) {
-                    music = bossTheme.CreateInstance();
-                    music.Volume = .1f;
-                    music.IsLooped = true;
-                    music.Play();
-                } else if (mainTheme != null){
-                    music = mainTheme.CreateInstance();
-                    music.Volume = .1f;
-                    music.IsLooped = true;
-                    music.Play();
+            if (Sounds.CurrentMusic == null)
+            {
+                if(FindObject("clownpiece") == null)
+                {
+                    Sounds.PlayMusic(mainTheme);
+                }
+                else
+                {
+                    Sounds.PlayMusic(bossTheme);
                 }
             }
             for (int i = 0; i < GameObjectList.Count; i++)
@@ -93,7 +87,12 @@ namespace Geimu
                 }
                 Lighting.UpdateLighting(lights.ToArray());
             }
+            Sounds.Update();
             lightingUpdateRateCounter = (lightingUpdateRateCounter + 1) % LightingUpdateRate;
+        }
+        public void Destroy()
+        {
+            Sounds.Destroy();
         }
         public void Draw(SpriteBatch batch)
         {

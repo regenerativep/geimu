@@ -48,7 +48,6 @@ namespace Geimu.GameObjects
 
         public override void Update()
         {
-            System.Diagnostics.Debug.WriteLine("Moving: " + moving + " cooldown: " + cooldown + "right: " + facingRight);
             if (cooldown > 0)
                 cooldown--;
             if (animationindex == -10)
