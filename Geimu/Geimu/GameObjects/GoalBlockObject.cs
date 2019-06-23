@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 
 namespace Geimu.GameObjects
 {
-    class DamageBlockObject : GameObject
+    class GoalBlockObject : GameObject
     {
-        public DamageBlockObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32,32))
+        public GoalBlockObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
 
         }
-
-        /*public void ChangeHitbox(Rectangle rect)
-        {
-            Hitbox = rect;
-        }*/
 
         public override void Update()
         {
             GameObject coll = Room.FindCollision(AddVectorToRect(Hitbox, Position), "reimu");
             if (coll != null)
             {
-                ((ReimuObject)coll).Damage();
+                if (Room.FindObject("fairy") == null && Room.FindObject("clownpiece") == null)
+                {
+                    Room.Game.NextLevel();
+                }
+                    
             }
             base.Update();
         }

@@ -66,7 +66,7 @@ namespace Geimu.GameObjects
                     vel.X = MoveSpeed;
                 else
                     vel.X = -MoveSpeed;
-                if ((Math.Pow(Position.X - reimu.Position.X, 2) + Math.Pow(Position.Y - reimu.Position.Y, 2)) < (256 * 256))
+                if ((Math.Pow(Position.X - reimu.Position.X, 2) + Math.Pow(Position.Y - reimu.Position.Y, 2)) < (400 * 400))
                 {
                     if (cooldown <= 0)
                         moving = false;

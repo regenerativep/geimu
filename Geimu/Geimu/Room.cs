@@ -62,12 +62,12 @@ namespace Geimu
         public void Update()
         {
             if (music == null || music.State != SoundState.Playing) {
-                if (FindObject("clownpiece") != null) {
+                if (FindObject("clownpiece") != null && bossTheme != null) {
                     music = bossTheme.CreateInstance();
                     music.Volume = .1f;
                     music.IsLooped = true;
                     music.Play();
-                } else {
+                } else if (mainTheme != null){
                     music = mainTheme.CreateInstance();
                     music.Volume = .1f;
                     music.IsLooped = true;

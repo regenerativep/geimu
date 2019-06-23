@@ -23,7 +23,7 @@ namespace Geimu
         private int life;
         public BossObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
-            life = 100;
+            life = 200;
             stepCooldown = 0;
             sprayDir = minSprayDir;
             attackMode = 0;

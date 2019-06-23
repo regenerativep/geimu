@@ -212,6 +212,7 @@ namespace Geimu
             }
             if(mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
             {
+                System.Diagnostics.Debug.WriteLine("Reimu is shoot");
                 Vector2 playerPos = YinYang.Position + (YinYang.Size / 2);
                 Vector2 playerOnScreenPos = playerPos - Room.ViewOffset;
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;

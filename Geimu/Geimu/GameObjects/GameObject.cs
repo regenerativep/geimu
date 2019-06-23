@@ -172,6 +172,10 @@ namespace Geimu
                     return typeof(JumpResetObject);
                 case "touhouBall":
                     return typeof(CompressedTouhouBall);
+                case "death":
+                    return typeof(DamageBlockObject);
+                case "goal":
+                    return typeof(GoalBlockObject);
                 case "":
                     return typeof(GameObject);
             }
