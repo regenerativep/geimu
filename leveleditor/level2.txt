@@ -3,9 +3,6 @@ height 512
 snapx 32
 snapy 32
 background mountain
-createobject fairy 960 192 0
-createobject fairy 288 448 0
-createobject fairy 864 448 0
 createobject block 0 96 0
 createobject block 32 96 0
 createobject block 64 96 0
@@ -255,8 +252,13 @@ createobject block 128 224 0
 createobject block 96 224 0
 createobject block 64 224 0
 createobject block 32 224 0
-createobject fairy 256 320 0
-createobject reimu 64 32 0
+createobject goal 992 448 0
+createobject death 480 352 0
+createobject death 320 352 0
+createobject death 704 224 0
+createobject death 896 224 0
+createobject death 448 96 0
+createobject death 224 96 0
 createtile stone 160 96 6
 createtile stone 128 96 6
 createtile stone 96 96 6
@@ -334,8 +336,6 @@ createtile spikeLeft 224 96 6
 createtile stone 192 96 6
 createtile stone 928 224 6
 createtile stone 960 224 6
-createtile spikeRight 704 224 6
-createtile spikeLeft 896 224 6
 createtile stone 672 224 6
 createtile stone 640 224 6
 createtile stone 608 224 6
@@ -385,3 +385,5 @@ createtile stone 960 352 6
 createtile spikeRight 448 96 6
 createtile stone 544 96 6
 createtile stone 832 352 6
+createtile spikeRight 896 224 6
+createtile spikeLeft 704 224 6

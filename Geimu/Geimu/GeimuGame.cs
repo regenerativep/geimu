@@ -13,6 +13,7 @@ namespace Geimu
         SpriteBatch spriteBatch;
 
         Room currentRoom;
+        private int currentLevel;
         public int lives;
         public GeimuGame()
         {
@@ -34,7 +35,8 @@ namespace Geimu
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
 
-            LoadLevel(2);
+            LoadLevel(1);
+            currentLevel = 1;
             base.Initialize();
         }
 
@@ -97,6 +99,10 @@ namespace Geimu
             AssetManager.LoadTexture("myourenTemple2", "sprites\\myourenTemple2", 1);
             AssetManager.LoadTexture("myourenTemple3", "sprites\\myourenTemple3", 1);
             AssetManager.LoadTexture("myourenTemple4", "sprites\\myourenTemple4", 1);
+            AssetManager.LoadTexture("spikeRight", "sprites\\spikeRight", 1);
+            AssetManager.LoadTexture("spikeLeft", "sprites\\spikeLeft", 1);
+            AssetManager.LoadTexture("spikeTop", "sprites\\spikeTop", 1);
+            AssetManager.LoadTexture("spikeBottom", "sprites\\spikeBottom", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
@@ -124,9 +130,16 @@ namespace Geimu
             currentRoom.GameObjectList.Add(camera);
         }
 
+        public void NextLevel()
+        {
+            currentLevel++;
+            LoadLevel(currentLevel);
+        }
+
         public void Lose()
         {
             LoadLevel(1);
+            currentLevel = 1;
             lives = 4;
         }
 

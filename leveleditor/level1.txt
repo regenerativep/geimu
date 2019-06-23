@@ -160,6 +160,7 @@ createobject fairy 64 192 5
 createobject fairy 384 160 5
 createobject fairy 768 256 5
 createobject fairy 864 448 5
+createobject goal 992 96 0
 createtile dirt 992 160 6
 createtile dirt 992 192 6
 createtile dirt 992 224 6

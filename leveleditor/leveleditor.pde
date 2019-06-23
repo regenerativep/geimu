@@ -21,7 +21,8 @@ GameObjectType[] possibleTypes = new GameObjectType[] {
   new GameObjectType("clownpiece", 64, 64),
   new GameObjectType("fairy", 32, 32),
   new GameObjectType("death", 32, 32),
-  new GameObjectType("jumpReset", 32, 32)
+  new GameObjectType("jumpReset", 32, 32),
+  new GameObjectType("goal", 32, 32)
 };
 GameObjectType[] possibleTiles = new GameObjectType[] {
   null,
