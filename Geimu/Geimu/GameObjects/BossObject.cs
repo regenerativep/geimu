@@ -24,7 +24,7 @@ namespace Geimu
         {
             stepCooldown = 0;
             sprayDir = minSprayDir;
-            attackMode = 2;
+            attackMode = 0;
             target = null;
             remainingStepsBeforeChange = stepsBeforeAttackChange;
             Sprite = new SpriteData();
@@ -75,7 +75,7 @@ namespace Geimu
             }
             if(remainingStepsBeforeChange == 0)
             {
-                //attackMode = randNumGenerator.Next(3);
+                attackMode = randNumGenerator.Next(3);
                 remainingStepsBeforeChange = stepsBeforeAttackChange;
             }
             else if(remainingStepsBeforeChange > 0)
