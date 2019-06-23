@@ -19,9 +19,13 @@ namespace Geimu.GameObjects
         private Texture2D[] fairySprite;
         private int animationindex;
         private bool goingUp;
+        private bool moving;
+        private int cooldown;
 
         public FairyObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(32, 32))
         {
+            cooldown = 60;
+            moving = false;
             Position -= new Vector2(0, 16);
             facingRight = true;
             Sprite = new SpriteData();
@@ -34,31 +38,16 @@ namespace Geimu.GameObjects
             AssetManager.RequestTexture("fairy", (frames) =>
             {
                 fairySprite = frames;
+                Sprite.Change(fairySprite);
+                Sprite.Speed = 1f / 10;
             });
 
         }
 
-        public void SwitchMode(string mode)
-        {
-            switch (mode)
-            {
-                case "idle":
-                    Sprite.Change(fairySprite);
-                    Sprite.Speed = 1f / 10;
-                    Sprite.Size = new Vector2(32, 32);
-                    Sprite.Offset = new Vector2(0, 0);
-                    break;
-                case "move":
-                    Sprite.Change(fairySprite);
-                    Sprite.Speed = 1f / 5;
-                    Sprite.Size = new Vector2(32, 32);
-                    Sprite.Offset = new Vector2(0, 0);
-                    break;
-            }
-        }
-
         public override void Update()
         {
+            if (cooldown > 0)
+                cooldown--;
             if (animationindex == -10)
                 goingUp = true;
             if (animationindex == 14)
@@ -68,19 +57,34 @@ namespace Geimu.GameObjects
             else
                 animationindex--;
             Vector2 vel = Velocity;
-            if (facingRight)
-                vel.X = MoveSpeed;
+            ReimuObject reimu = (ReimuObject)Room.FindObject("reimu");
+            if (moving)
+            {
+                if (facingRight)
+                    vel.X = MoveSpeed;
+                else
+                    vel.X = -MoveSpeed;
+                if ((Math.Pow(Position.X - reimu.Position.X, 2) + Math.Pow(Position.Y - reimu.Position.Y, 2)) < (256 * 256))
+                {
+                    if (cooldown <= 0)
+                        moving = false;
+                }
+
+            }
             else
-                vel.X = -MoveSpeed;
+            {
+
+
+                Vector2 playerPos = reimu.Position + (reimu.Size / 2);
+                Vector2 fairyPos = Position + (Size / 2);
+                /*Vector2 fairyOnScreenPos = fairyPos - Room.ViewOffset;
+                Vector2 playerRelativePos = playerPos - fairyOnScreenPos;*/
+                float dir = (float)Math.Atan2(playerPos.Y - Position.Y, playerPos.X - Position.X);
+                Room.GameObjectList.Add(new CompressedTouhouBall(Room, fairyPos, dir));
+                moving = true;
+                cooldown = 60;
+            }
             Velocity = vel;
-            if (Math.Abs(Velocity.X) < IdleMaxSpeed)
-            {
-                SwitchMode("idle");
-            }
-            else
-            {
-                SwitchMode("move");
-            }
             if (Room.CheckCollision(AddVectorToRect(Hitbox, Position, new Vector2(1, 0))))
             {
                 facingRight = false;
