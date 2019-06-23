@@ -36,6 +36,9 @@ namespace Geimu
         private int remainingJumpSteps;
         private SoundEffect throwCardSound;
         private SoundEffect jumpSound;
+        private SoundEffect jumpResetSound;
+        private SoundEffect reimuDamagedSound;
+
         private Vector2 spawnLoc;
         private int remainingShootCooldown;
         public ReimuObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
@@ -82,6 +85,14 @@ namespace Geimu
             AssetManager.RequestSound("throwCard", (sound) =>
             {
                 throwCardSound = sound;
+            });
+            AssetManager.RequestSound("jumpReset", (sound) =>
+            {
+                jumpResetSound = sound;
+            });
+            AssetManager.RequestSound("reimuDamaged", (sound) =>
+            {
+                reimuDamagedSound = sound;
             });
         }
         public void SwitchMode(string mode)
@@ -188,6 +199,7 @@ namespace Geimu
                 {
                     jumpObject.Use();
                     gotJumpReset = true;
+                    Room.Sounds.PlaySound(jumpResetSound);
                 }
             }
             collidedObj = Room.FindCollision(AddVectorToRect(Hitbox, Position), "note");
@@ -275,6 +287,7 @@ namespace Geimu
         }
         public void Damage()
         {
+            Room.Sounds.PlaySound(reimuDamagedSound);
             Position = spawnLoc;
             if (Room.Game.lives == 0)
                 Room.Game.Lose();

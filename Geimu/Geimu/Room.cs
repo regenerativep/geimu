@@ -30,10 +30,18 @@ namespace Geimu
         private int lightingUpdateRateCounter;
         private SoundEffect mainTheme;
         private SoundEffect bossTheme;
-
+        private int transitionProgress;
+        private static int transitionPerStep = 15;
+        private static int maxTransitionProgress = 255;
+        private int transitionDirection;
+        private int roomToGoTo;
+        private Texture2D whiteChunk;
         public Room(GeimuGame game)
         {
             Game = game;
+            roomToGoTo = -1;
+            transitionDirection = -1;
+            transitionProgress = 255;
             Sounds = new SoundManager();
             GameObjectList = new List<GameObject>();
             GameTileList = new List<GameTile>();
@@ -54,6 +62,10 @@ namespace Geimu
             AssetManager.RequestSound("bossTheme", (sound) =>
             {
                 bossTheme = sound;
+            });
+            AssetManager.RequestTexture("whiteChunk", (frames) =>
+            {
+                whiteChunk = frames[0];
             });
         }
         public void Update()
@@ -87,12 +99,47 @@ namespace Geimu
                 }
                 Lighting.UpdateLighting(lights.ToArray());
             }
+            if(transitionDirection != 0)
+            {
+                transitionProgress += transitionDirection * transitionPerStep;
+                if(transitionProgress < 0)
+                {
+                    transitionProgress = 0;
+                    transitionDirection = 0;
+                }
+                else if(transitionProgress > maxTransitionProgress)
+                {
+                    transitionProgress = maxTransitionProgress;
+                    transitionDirection = 0;
+                    if(roomToGoTo == -1)
+                    {
+                        Game.NextLevel();
+                    }
+                    else
+                    {
+                        Game.LoadLevel(roomToGoTo);
+                    }
+                }
+            }
             Sounds.Update();
-            lightingUpdateRateCounter = (lightingUpdateRateCounter + 1) % LightingUpdateRate;
         }
         public void Destroy()
         {
             Sounds.Destroy();
+        }
+        public void ChangeRoom(int room)
+        {
+            if (transitionDirection != 0) return;
+            roomToGoTo = room;
+            transitionProgress = 0;
+            transitionDirection = 1;
+        }
+        public void NextRoom()
+        {
+            if (transitionDirection != 0) return;
+            roomToGoTo = -1;
+            transitionProgress = 0;
+            transitionDirection = 1;
         }
         public void Draw(SpriteBatch batch)
         {
@@ -110,6 +157,8 @@ namespace Geimu
                 tile.Draw(batch, ceiledOffset);
             }
             Lighting.Draw(batch, ceiledOffset);
+            Lighting.LightingDifficulty = transitionProgress + 1;
+            batch.Draw(whiteChunk, new Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height), null, Color.Black * ((float)transitionProgress / maxTransitionProgress), 0f, Vector2.Zero, SpriteEffects.None, 1f);
         }
         public void DisplayHitbox()
         {

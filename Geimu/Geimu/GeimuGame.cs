@@ -120,6 +120,9 @@ namespace Geimu
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
             AssetManager.LoadSound("mainTheme", "sounds\\Theme");
             AssetManager.LoadSound("bossTheme", "sounds\\bossTheme");
+            AssetManager.LoadSound("jumpReset", "sounds\\JumpReset");
+            AssetManager.LoadSound("levelComplete", "sounds\\Ding");
+            AssetManager.LoadSound("reimuDamaged", "sounds\\ReimuDamaged");
         }
 
         /// <summary>
@@ -158,7 +161,7 @@ namespace Geimu
 
         public void Lose()
         {
-            LoadLevel(1);
+            currentRoom.ChangeRoom(1);
             lives = 4;
         }
 

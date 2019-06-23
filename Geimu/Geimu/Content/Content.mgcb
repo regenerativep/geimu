@@ -32,11 +32,29 @@
 /processorParam:Quality=Best
 /build:sounds/CardToss.wav;sounds/throwCard.wav
 
+#begin sounds/Ding.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/Ding.wav
+
 #begin sounds/Hhuh.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sounds/Hhuh.wav;sounds/reimuJump.wav
+
+#begin sounds/JumpReset.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/JumpReset.wav
+
+#begin sounds/ReimuDamaged.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/ReimuDamaged.wav
 
 #begin sounds/Theme.wav
 /importer:WavImporter
