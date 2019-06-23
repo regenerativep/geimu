@@ -233,7 +233,7 @@ namespace Geimu
                 Vector2 mouseRelative = new Vector2(mouseState.X, mouseState.Y) - playerOnScreenPos;
                 Room.GameObjectList.Add(new CardBulletObject(Room, playerPos, (float)Math.Atan2(mouseRelative.Y, mouseRelative.X)));
                 remainingShootCooldown = ShootCooldown;
-                Room.Sounds.PlaySound(throwCardSound);
+                Room.Sounds.PlaySound(throwCardSound, .4f);
             }
             if(remainingShootCooldown > 0)
             {
