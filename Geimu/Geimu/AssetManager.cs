@@ -49,7 +49,7 @@ namespace Geimu
             }
             else
             {
-                if (name == "dirtSideTop") System.Diagnostics.Debug.WriteLine("a");
+                //if (name == "dirtSideTop") System.Diagnostics.Debug.WriteLine("a");
                 textureRequests.Add(new KeyValuePair<string, Action<Texture2D[]>>(name, callback));
             }
         }
