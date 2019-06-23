@@ -43,7 +43,6 @@ createobject block 384 160 0
 createobject death 384 352 0
 createobject goal 480 448 0
 createobject reimu 0 416 6
-createobject note 224 448 6
 createobject fairy 448 384 6
 createobject fairy 224 288 6
 createobject death 128 448 6
