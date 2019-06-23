@@ -17,6 +17,11 @@ namespace Geimu.GameObjects
             Hitbox = new Rectangle(8, 8, 16, 16);
             IsActive = true;
             stepsRemaning = 0;
+            AssetManager.RequestTexture("jumpReset", (frames) =>
+            {
+                Sprite.Change(frames);
+                Sprite.Speed = 0.5f;
+            });
         }
         public override void Update()
         {

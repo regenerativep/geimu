@@ -89,6 +89,7 @@ namespace Geimu
             AssetManager.LoadTexture("moriyaShrine2", "sprites\\moriyaShrine2", 1);
             AssetManager.LoadTexture("moriyaShrine3", "sprites\\moriyaShrine3", 1);
             AssetManager.LoadTexture("moriyaShrine4", "sprites\\moriyaShrine4", 1);
+            AssetManager.LoadTexture("jumpReset", "sprites\\jumpReset", 5);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
