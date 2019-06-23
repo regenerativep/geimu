@@ -256,7 +256,6 @@ createobject block 96 224 0
 createobject block 64 224 0
 createobject block 32 224 0
 createobject fairy 256 320 0
-createobject reimu 64 32 0
 createtile stone 160 96 6
 createtile stone 128 96 6
 createtile stone 96 96 6

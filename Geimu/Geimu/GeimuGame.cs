@@ -59,6 +59,10 @@ namespace Geimu
             AssetManager.LoadTexture("dirtSideBottom", "sprites\\dirtSideBottom", 1);
             AssetManager.LoadTexture("dirtSideLeft", "sprites\\dirtSideLeft", 1);
             AssetManager.LoadTexture("dirtSideTop", "sprites\\dirtSideTop", 1);
+            AssetManager.LoadTexture("stoneSideRight", "sprites\\stoneSideRight", 1);
+            AssetManager.LoadTexture("stoneSideBottom", "sprites\\stoneSideBottom", 1);
+            AssetManager.LoadTexture("stoneSideLeft", "sprites\\stoneSideLeft", 1);
+            AssetManager.LoadTexture("stoneSideTop", "sprites\\stoneSideTop", 1);
             AssetManager.LoadTexture("stone", "sprites\\stone", 1);
             AssetManager.LoadTexture("bullet", "sprites\\bullet", 1);
             AssetManager.LoadTexture("whiteChunk", "sprites\\whiteChunk", 1);
