@@ -29,7 +29,7 @@ namespace Geimu
         private int lightingUpdateRateCounter;
         private SoundEffect mainTheme;
         private SoundEffect bossTheme;
-        private SoundEffectInstance music;
+        public SoundEffectInstance music;
 
         public Room(GeimuGame game)
         {

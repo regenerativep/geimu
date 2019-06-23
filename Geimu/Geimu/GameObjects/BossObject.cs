@@ -74,10 +74,17 @@ namespace Geimu
             {
                 if (stepCooldown == 0)
                 {
-                    switch (attackMode)
+                    switch(attackMode)
                     {
                         case 0: //no attack
                             break;
+                        case 1: //direct attack
+                            {
+                                float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
+                                fireBullet(dir);
+                                stepCooldown = 30;
+                                break;
+                            }
                         case 1: //direct attack
                             {
                                 float dir = (float)Math.Atan2(target.Position.Y - Position.Y, target.Position.X - Position.X);
@@ -103,10 +110,14 @@ namespace Geimu
                                 }
                                 fireBullet(sprayDir);
                                 fireBullet(maxSprayDir - sprayDir);
+                                stepCooldown = 12;
                                 break;
                             }
                     }
-                    stepCooldown = stepCooldownReset;
+                    if(stepCooldown == 0)
+                    {
+                        stepCooldown = stepCooldownReset;
+                    }
                 }
             }
             if(stepCooldown > 0)
@@ -115,7 +126,7 @@ namespace Geimu
             }
             if(remainingStepsBeforeChange == 0)
             {
-                //attackMode = randNumGenerator.Next(4);
+                attackMode = randNumGenerator.Next(4);
                 if (attackMode == 0)
                 {
                     remainingStepsBeforeChange = betweenAttackSteps;

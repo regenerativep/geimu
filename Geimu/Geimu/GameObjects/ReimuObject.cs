@@ -240,6 +240,8 @@ namespace Geimu
                 remainingShootCooldown--;
             }
 
+            if (Position.Y > 2000)
+                Damage();
             Velocity = vel;
 
             prevKeyState = keyState;

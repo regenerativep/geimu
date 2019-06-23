@@ -1,0 +1,4 @@
+width 512
+height 512
+snapx 32
+snapy 32

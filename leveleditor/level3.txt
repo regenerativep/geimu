@@ -51,7 +51,7 @@ createobject block 256 64 0
 createobject block 384 64 0
 createobject death 256 96 0
 createobject death 384 192 0
-createtile grass 0 480 6
+createobject block 480 384 0
 createtile grass 32 480 6
 createtile grass 64 480 6
 createtile grass 96 480 6
@@ -90,3 +90,9 @@ createtile spikeBottom 128 448 6
 createtile spikeTop 256 96 6
 createtile spikeBottom 256 256 6
 createtile spikeTop 384 192 6
+createtile stone 128 96 6
+createtile stone 128 64 6
+createtile stone 256 64 6
+createtile stone 384 64 6
+createtile stone 384 96 6
+createtile grass 0 480 6
