@@ -34,7 +34,7 @@ namespace Geimu
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
 
-            LoadLevel(1);
+            LoadLevel(2);
             base.Initialize();
         }
 
@@ -59,6 +59,7 @@ namespace Geimu
             AssetManager.LoadTexture("dirtSideBottom", "sprites\\dirtSideBottom", 1);
             AssetManager.LoadTexture("dirtSideLeft", "sprites\\dirtSideLeft", 1);
             AssetManager.LoadTexture("dirtSideTop", "sprites\\dirtSideTop", 1);
+            AssetManager.LoadTexture("stone", "sprites\\stone", 1);
             AssetManager.LoadTexture("bullet", "sprites\\bullet", 1);
             AssetManager.LoadTexture("whiteChunk", "sprites\\whiteChunk", 1);
             AssetManager.LoadTexture("fairy", "sprites\\fairy", 4);
@@ -91,10 +92,16 @@ namespace Geimu
             AssetManager.LoadTexture("humanVillage0", "sprites\\humanVillage0", 1);
             AssetManager.LoadTexture("humanVillage1", "sprites\\humanVillage1", 1);
             AssetManager.LoadTexture("humanVillage2", "sprites\\humanVillage2", 1);
+            AssetManager.LoadTexture("myourenTemple0", "sprites\\myourenTemple0", 1);
+            AssetManager.LoadTexture("myourenTemple1", "sprites\\myourenTemple1", 1);
+            AssetManager.LoadTexture("myourenTemple2", "sprites\\myourenTemple2", 1);
+            AssetManager.LoadTexture("myourenTemple3", "sprites\\myourenTemple3", 1);
+            AssetManager.LoadTexture("myourenTemple4", "sprites\\myourenTemple4", 1);
 
             AssetManager.LoadSound("reimuJump", "sounds\\reimuJump");
             AssetManager.LoadSound("throwCard", "sounds\\throwCard");
             AssetManager.LoadSound("mainTheme", "sounds\\Theme");
+            AssetManager.LoadSound("bossTheme", "sounds\\bossTheme");
         }
 
         /// <summary>
@@ -110,6 +117,7 @@ namespace Geimu
         {
             currentRoom = null;
             currentRoom = new Room(this);
+            //currentRoom.Load("test3.txt");
             currentRoom.Load("level"+levelnum+".txt");
             CameraObject camera = new CameraObject(currentRoom, new Vector2(0, 0));
             camera.Target = currentRoom.FindObject("reimu");

@@ -26,10 +26,15 @@ namespace Geimu
 
         public override void Update()
         {
-            GameObject coll = Room.FindCollision(AddVectorToRect(Hitbox, Position), "fairy");
-            if (coll != null)
+            GameObject collFairy = Room.FindCollision(AddVectorToRect(Hitbox, Position), "fairy");
+            GameObject collClown = Room.FindCollision(AddVectorToRect(Hitbox, Position), "clownpiece");
+            if (collFairy != null)
             {
-                ((FairyObject)coll).Damage();
+                ((FairyObject)collFairy).Damage();
+                Room.GameObjectList.Remove(this);
+            } else if (collClown != null)
+            {
+                ((BossObject)collClown).Damage();
                 Room.GameObjectList.Remove(this);
             } else
                 base.Update();

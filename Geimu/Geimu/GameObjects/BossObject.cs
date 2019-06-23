@@ -20,8 +20,10 @@ namespace Geimu
         private float sprayDir;
         private int remainingStepsBeforeChange;
         private GameObject target;
+        private int life;
         public BossObject(Room room, Vector2 pos) : base(room, pos, new Vector2(0, 0), new Vector2(64, 64))
         {
+            life = 100;
             stepCooldown = 0;
             sprayDir = minSprayDir;
             attackMode = 0;
@@ -92,6 +94,14 @@ namespace Geimu
                 //maybe play a sound?
                 stepCooldown = stepCooldownReset;
             }
+        }
+
+        public void Damage()
+        {
+            if (life <= 0)
+                Room.GameObjectList.Remove(this);
+            else
+                life--;
         }
     }
 }

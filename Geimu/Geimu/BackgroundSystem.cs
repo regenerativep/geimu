@@ -90,6 +90,12 @@ namespace Geimu
                     Backgrounds.Add(new ParallaxBackground(Room, "humanVillage2", 4, 0.3f));
                     break;
                 case "myouren":
+                    Room.Lighting.DarknessColor = new Color(42, 32, 68);
+                    Backgrounds.Add(new ParallaxBackground(Room, "myourenTemple0", 2, 0.03f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "myourenTemple1", 3, 0.05f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "myourenTemple2", 4, 0.09f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "myourenTemple3", 5, 0.1f));
+                    Backgrounds.Add(new ParallaxBackground(Room, "myourenTemple4", 6, 0.2f));
                     break;
             }
         }

@@ -47,6 +47,7 @@
     <Compile Include="GameObjects\BulletObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
     <Compile Include="GameObjects\CardBulletObject.cs" />
+    <Compile Include="GameObjects\DamageBlockObject.cs" />
     <Compile Include="GameObjects\HeartObject.cs" />
     <Compile Include="GameObjects\CompressedTouhouBall.cs" />
     <Compile Include="GameObjects\JumpResetObject.cs" />

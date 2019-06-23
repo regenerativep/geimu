@@ -27,7 +27,8 @@ namespace Geimu
         public int LightingUpdateRate { get; set; }
         private int lightingUpdateRateCounter;
         private SoundEffect mainTheme;
-        private SoundEffectInstance mainThemeInstance;
+        private SoundEffect bossTheme;
+        private SoundEffectInstance music;
 
         public Room(GeimuGame game)
         {
@@ -46,15 +47,33 @@ namespace Geimu
             AssetManager.RequestSound("mainTheme", (sound) =>
             {
                 mainTheme = sound;
-                mainThemeInstance = mainTheme.CreateInstance();
-                //System.Diagnostics.Debug.WriteLine(mainThemeInstance.Volume);
-                mainThemeInstance.Volume = .1f;
-                mainThemeInstance.IsLooped = true;
-                mainThemeInstance.Play();
+                //music = mainTheme.CreateInstance();
+
+            });
+            AssetManager.RequestSound("bossTheme", (sound) =>
+            {
+                bossTheme = sound;
+                /*bossMusic = bossTheme.CreateInstance();
+                music.Volume = .1f;
+                music.IsLooped = true;
+                music.Play();*/
             });
         }
         public void Update()
         {
+            if (music == null || music.State != SoundState.Playing) {
+                if (FindObject("clownpiece") != null) {
+                    music = bossTheme.CreateInstance();
+                    music.Volume = .1f;
+                    music.IsLooped = true;
+                    music.Play();
+                } else {
+                    music = mainTheme.CreateInstance();
+                    music.Volume = .1f;
+                    music.IsLooped = true;
+                    music.Play();
+                }
+            }
             for (int i = 0; i < GameObjectList.Count; i++)
             {
                 GameObject obj = GameObjectList[i];
@@ -225,6 +244,7 @@ namespace Geimu
             {
                 ProcessCommand(lines[i]);
             }
+            
         }
         public static int HorizRectDistance(Rectangle a, Rectangle b) //not too sure where to put these
         {
