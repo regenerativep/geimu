@@ -7,6 +7,7 @@ int viewOffsetX, viewOffsetY;
 int roomWidth, roomHeight;
 int currentLayer;
 String commandInput;
+String backgroundName;
 boolean doSpecialAction;
 boolean showGrid;
 boolean showDebug; //not actually used xd
@@ -18,7 +19,8 @@ GameObjectType[] possibleTypes = new GameObjectType[] {
   new GameObjectType("reimu", 64, 64),
   new GameObjectType("block", 32, 32),
   new GameObjectType("clownpiece", 64, 64),
-  new GameObjectType("fairy", 32, 32)
+  new GameObjectType("fairy", 32, 32),
+  new GameObjectType("death", 32, 32)
 };
 GameObjectType[] possibleTiles = new GameObjectType[] {
   null,
@@ -29,7 +31,16 @@ GameObjectType[] possibleTiles = new GameObjectType[] {
   new GameObjectType("dirtSideBottom", 32, 32),
   new GameObjectType("dirtSideLeft", 32, 32),
   new GameObjectType("dirtSideTop", 32, 32),
-  new GameObjectType("darkness", 32, 32)
+  new GameObjectType("darkness", 32, 32),
+  new GameObjectType("stone", 32, 32),
+  new GameObjectType("stoneSideRight", 32, 32),
+  new GameObjectType("stoneSideBottom", 32, 32),
+  new GameObjectType("stoneSideLeft", 32, 32),
+  new GameObjectType("stoneSideTop", 32, 32),
+  new GameObjectType("spikeRight", 32, 32),
+  new GameObjectType("spikeBottom", 32, 32),
+  new GameObjectType("spikeLeft", 32, 32),
+  new GameObjectType("spikeTop", 32, 32)
 };
 void setup()
 {
@@ -59,6 +70,7 @@ void reset()
   showTiles = true;
   showObjects = true;
   showCurrentLayer = false;
+  backgroundName = "";
 }
 void draw()
 {
@@ -226,6 +238,9 @@ void doCommand(String inp)
       case "reset":
         reset();
         break;
+      case "background":
+        backgroundName = parts[1];
+        break;
       case "createobject":
       {
         String name = parts[1];
@@ -326,6 +341,10 @@ void saveRoom(String filename)
   writer.println("height " + roomHeight);
   writer.println("snapx " + snapX);
   writer.println("snapy " + snapY);
+  if(!backgroundName.equals(""))
+  {
+    writer.println("background " + backgroundName);
+  }
   for(int i = 0; i < objects.size(); i++)
   {
     GameObject obj = objects.get(i);

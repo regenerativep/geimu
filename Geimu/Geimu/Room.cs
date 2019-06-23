@@ -113,7 +113,7 @@ namespace Geimu
                     {
                         Type type = GameTile.GetObjectFromName(parts[1]);
                         Vector2 position = new Vector2(int.Parse(parts[2]), int.Parse(parts[3]));
-                        GameTile obj = (GameTile)type.GetConstructor(new Type[] { typeof(Vector2) }).Invoke(new object[] { position });
+                        GameTile obj = (GameTile)type.GetConstructor(new Type[] { typeof(Room), typeof(Vector2) }).Invoke(new object[] { this, position });
                         obj.Layer = int.Parse(parts[4]);
                         GameTileList.Add(obj);
                         break;

@@ -10,7 +10,7 @@ namespace Geimu
     public class DirtTile : GameTile
     {
         private static Random randGen = new Random();
-        public DirtTile(Vector2 pos) : base(pos, new Vector2(32, 32))
+        public DirtTile(Room room, Vector2 pos) : base(room, pos, new Vector2(32, 32))
         {
             string[] options = new string[] { "dirt", "dirt2" };
             int optionInd = randGen.Next(options.Length);

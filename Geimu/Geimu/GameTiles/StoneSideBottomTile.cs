@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Geimu
 {
-    public class GrassTopTile : GameTile
+    public class StoneSideBottomTile : GameTile
     {
-        public GrassTopTile(Room room, Vector2 pos) : base(room, pos, new Vector2(32, 32))
+        public StoneSideBottomTile(Room room, Vector2 pos) : base(room, pos, new Vector2(32, 32))
         {
-            AssetManager.RequestTexture("grassTop", (frames) =>
+            AssetManager.RequestTexture("stoneSideBottom", (frames) =>
             {
                 Sprite = new SpriteData(frames);
                 Sprite.Size = new Vector2(32, 32);

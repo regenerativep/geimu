@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Geimu
 {
-    public class GameTile
+    public abstract class GameTile
     {
         public Vector2 Position { get; set; }
         public Vector2 Size { get; set; }
         public SpriteData Sprite { get; set; }
+        public Room Room { get; set; }
         private float layer;
         public float Layer
         {
@@ -29,18 +30,19 @@ namespace Geimu
                 }
             }
         }
-        public GameTile(Vector2 pos, Vector2 size)
+        public GameTile(Room room, Vector2 pos, Vector2 size)
         {
             Position = pos;
             Size = size;
             Sprite = null;
             Layer = 0;
+            Room = room;
         }
         public void Update()
         {
             Sprite?.Update();
         }
-        public void Draw(SpriteBatch batch, Vector2 offset)
+        public virtual void Draw(SpriteBatch batch, Vector2 offset)
         {
             Sprite?.Draw(batch, Position - offset);
         }

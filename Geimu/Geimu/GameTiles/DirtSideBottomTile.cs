@@ -9,7 +9,7 @@ namespace Geimu
 {
     public class DirtSideBottomTile : GameTile
     {
-        public DirtSideBottomTile(Vector2 pos) : base(pos, new Vector2(32, 32))
+        public DirtSideBottomTile(Room room, Vector2 pos) : base(room, pos, new Vector2(32, 32))
         {
             AssetManager.RequestTexture("dirtSideBottom", (frames) =>
             {

@@ -15,7 +15,7 @@ namespace Geimu
         public Room Room { get; set; }
         private Vector2 drawFrom;
         private Vector2 windowSize;
-        private int arbitraryNumber;
+        private int arbitraryNumber; //yes its arbitray. idk why it works but it does
         public ParallaxBackground(Room room, string spriteName, float layer, float distSpeed)
         {
             arbitraryNumber = 32;
