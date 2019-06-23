@@ -15,8 +15,10 @@ namespace Geimu
         public Room Room { get; set; }
         private Vector2 drawFrom;
         private Vector2 windowSize;
+        private int arbitraryNumber;
         public ParallaxBackground(Room room, string spriteName, float layer, float distSpeed)
         {
+            arbitraryNumber = 32;
             Room = room;
             DistanceSpeed = distSpeed;
             Sprite = new SpriteData();
@@ -26,7 +28,8 @@ namespace Geimu
             AssetManager.RequestTexture(spriteName, (frame) =>
             {
                 Sprite.Change(frame);
-                drawFrom = (windowSize - Sprite.Size) / 2;
+                drawFrom = windowSize - Sprite.Size;
+                drawFrom.Y += arbitraryNumber;
             });
         }
         public void Draw(SpriteBatch batch, Vector2 offset)
